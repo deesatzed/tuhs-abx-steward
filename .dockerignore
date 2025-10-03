@@ -1,7 +1,5 @@
 # Git and version control
-.git
 .gitignore
-.gitattributes
 
 # Python
 __pycache__
@@ -25,13 +23,6 @@ wheels/
 .installed.cfg
 *.egg
 *.log
-
-# Virtual environments
-venv/
-venv_agno/
-.venv
-env/
-ENV/
 
 # IDEs
 .vscode/
@@ -76,13 +67,6 @@ npm-debug.log*
 # Deployment
 fly.toml
 .dockerignore
-
-# Development files
-start_*.sh
-restart.sh
-test_*.py
-test_*.sh
-speed_test_*.py
 
 # Coverage and testing artifacts
 coverage/
