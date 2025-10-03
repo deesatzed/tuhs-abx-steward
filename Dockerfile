@@ -19,7 +19,7 @@ COPY fastapi_server.py .
 COPY agno_bridge_v2.py .
 COPY evidence_coordinator_full.py .
 COPY alpine_frontend.html .
-copy .env .
+COPY .env .
 EXPOSE 8080
 
 # Healthcheck hits /health
