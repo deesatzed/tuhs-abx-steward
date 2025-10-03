@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inpatient Antibiotic Selection - TUHS</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.1/marked.min.js"></script>
+  <style>
+    /* Enhanced clinical response formatting */
+    .clinical-response {
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .clinical-response h2, .clinical-response h3, .clinical-response h4 {
+      color: #1f2937;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .clinical-response h2 {
+      border-left: 4px solid #3b82f6;
+      padding-left: 0.75rem;
+      font-size: 1.25rem;
+    }
+
+    .clinical-response h3 {
+      color: #059669;
+      font-size: 1.1rem;
+    }
+
+    .clinical-response p {
+      margin-bottom: 0.75rem;
+    }
+
+    .clinical-response ul, .clinical-response ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    .clinical-response li {
+      margin-bottom: 0.25rem;
+    }
+
+    .clinical-response strong {
+      color: #1f2937;
+      font-weight: 600;
+    }
+
+    /* Highlight key information */
+    .dose-highlight {
+      background-color: #fef3c7;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      color: #92400e;
+    }
+
+    .rationale-highlight {
+      background-color: #f0f9ff;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      border-left: 3px solid #0ea5e9;
+    }
+  </style>
+</head>
+<body class="bg-base-300">
+  <div class="container mx-auto p-4">
+    <header class="navbar bg-base-100 shadow-xl rounded-box mb-4">
+      <div class="flex-1">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary mr-2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l-4.25-4.25a2.652 2.652 0 0 1 0-3.749l5.25-5.25a2.652 2.652 0 0 1 3.749 0l4.25 4.25M11.42 15.17 11.42 15.17Z" />
+        </svg>
+        <a class="text-xl font-bold">Inpatient Antibiotic Selection</a>
+      </div>
+    </header>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <div class="flex gap-4 flex-col lg:flex-row">
+          <div class="lg:w-96 flex flex-col gap-3 overflow-y-auto max-h-[80vh] pr-0 lg:pr-4 lg:border-r">
+            <!-- Accordion for form sections -->
+            <div class="join join-vertical w-full">
+              <div class="collapse collapse-arrow join-item border-base-300 border">
+                <input type="radio" name="form-accordion" checked="checked" />
+                <div class="collapse-title text-lg font-medium">Demographics</div>
+                <div class="collapse-content">
+                  <section class="space-y-3">
+                    <div class="grid grid-cols-2 gap-2">
+                      <label class="form-control">
+                        <span class="label-text">Age</span>
+                        <input id="age" type="number" class="input input-bordered input-sm" placeholder="67">
+                      </label>
+                      <label class="form-control">
+                        <span class="label-text">Gender</span>
+                        <select id="gender" class="select select-bordered select-sm">
+                          <option value="">Select...</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                      <label class="form-control">
+                        <span class="label-text">Weight (kg)</span>
+                        <input id="weight" type="number" class="input input-bordered input-sm" placeholder="74">
+                      </label>
+                      <label class="form-control">
+                        <span class="label-text">Estimated GFR</span>
+                        <input id="gfr" type="number" class="input input-bordered input-sm" placeholder="60">
+                      </label>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <div class="collapse collapse-arrow join-item border-base-300 border">
+                <input type="radio" name="form-accordion" />
+                <div class="collapse-title text-lg font-medium">Clinical Details</div>
+                <div class="collapse-content">
+                  <section class="space-y-3">
+                    <label class="form-control">
+                      <span class="label-text">Level of Care</span>
+                      <div class="flex gap-2">
+                        <label class="label cursor-pointer gap-2 flex-1 bg-base-200 rounded px-2 py-1">
+                          <input type="radio" name="acuity" value="Ward" class="radio radio-sm">
+                          <span>Ward</span>
+                        </label>
+                        <label class="label cursor-pointer gap-2 flex-1 bg-base-200 rounded px-2 py-1">
+                          <input type="radio" name="acuity" value="ICU" class="radio radio-sm">
+                          <span>ICU</span>
+                        </label>
+                        <label class="label cursor-pointer gap-2 flex-1 bg-base-200 rounded px-2 py-1">
+                          <input type="radio" name="acuity" value="ED" class="radio radio-sm">
+                          <span>ED</span>
+                        </label>
+                      </div>
+                    </label>
+
+                    <label class="form-control">
+                      <span class="label-text">Suspected Source</span>
+                      <select id="source" class="select select-bordered select-sm">
+                        <option value="">Select...</option>
+                        <option>Pneumonia</option>
+                        <option>UTI</option>
+                        <option>Skin/Soft Tissue</option>
+                        <option>Intra-abdominal</option>
+                        <option>Bacteremia</option>
+                        <option>Meningitis</option>
+                        <option>Bone/Joint</option>
+                        <option>Endocarditis</option>
+                        <option>Other</option>
+                      </select>
+                    </label>
+
+                    <div class="form-control">
+                      <span class="label-text mb-1">Allergies</span>
+                      <div class="flex flex-wrap gap-2">
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Penicillin (anaphylaxis)" class="checkbox checkbox-xs" data-group="allergy"> Penicillin (anaphylaxis)
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Penicillin (rash)" class="checkbox checkbox-xs" data-group="allergy"> Penicillin (rash)
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Cephalosporins" class="checkbox checkbox-xs" data-group="allergy"> Cephalosporins
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Sulfa" class="checkbox checkbox-xs" data-group="allergy"> Sulfa
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Fluoroquinolones" class="checkbox checkbox-xs" data-group="allergy"> Fluoroquinolones
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Carbapenems" class="checkbox checkbox-xs" data-group="allergy"> Carbapenems
+                        </label>
+                      </div>
+                      <textarea id="allergies-notes" class="textarea textarea-bordered textarea-sm mt-2" rows="2" placeholder="Add other allergies and reactions"></textarea>
+                    </div>
+
+                    <label class="form-control">
+                      <span class="label-text">Culture Status</span>
+                      <select id="culture-status" class="select select-bordered select-sm">
+                        <option value="Pending">Pending</option>
+                        <option value="Positive">Positive</option>
+                        <option value="Negative">Negative</option>
+                        <option value="Not collected">Not collected</option>
+                      </select>
+                    </label>
+
+                    <label class="form-control">
+                      <span class="label-text">Culture Details</span>
+                      <textarea id="culture" class="textarea textarea-bordered textarea-sm" rows="2" placeholder="Blood: MRSA, vanc MIC 1"></textarea>
+                    </label>
+
+                    <div class="form-control">
+                      <span class="label-text mb-1">Prior Resistance</span>
+                      <div class="flex flex-wrap gap-2">
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="MRSA colonization" class="checkbox checkbox-xs" data-group="resistance"> MRSA colonization
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="ESBL Enterobacterales" class="checkbox checkbox-xs" data-group="resistance"> ESBL Enterobacterales
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="CRE" class="checkbox checkbox-xs" data-group="resistance"> CRE
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="VRE" class="checkbox checkbox-xs" data-group="resistance"> VRE
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Pseudomonas resistant" class="checkbox checkbox-xs" data-group="resistance"> Pseudomonas resistant
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="C. auris" class="checkbox checkbox-xs" data-group="resistance"> C. auris
+                        </label>
+                      </div>
+                      <textarea id="resistance-notes" class="textarea textarea-bordered textarea-sm mt-2" rows="2" placeholder="Add other resistance patterns"></textarea>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <div class="collapse collapse-arrow join-item border-base-300 border">
+                <input type="radio" name="form-accordion" />
+                <div class="collapse-title text-lg font-medium">Risk Factors</div>
+                <div class="collapse-content">
+                  <section class="space-y-3">
+                    <div class="form-control">
+                      <span class="label-text mb-1">Source Risk Factors</span>
+                      <div class="flex flex-wrap gap-2">
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Recent surgery" class="checkbox checkbox-xs" data-group="source-risk"> Recent surgery
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Indwelling catheter" class="checkbox checkbox-xs" data-group="source-risk"> Indwelling catheter
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Prosthetic hardware" class="checkbox checkbox-xs" data-group="source-risk"> Prosthetic hardware
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Residence in LTC facility" class="checkbox checkbox-xs" data-group="source-risk"> LTC residence
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Recent hospitalization" class="checkbox checkbox-xs" data-group="source-risk"> Recent hospitalization
+                        </label>
+                      </div>
+                      <textarea id="source-risk-notes" class="textarea textarea-bordered textarea-sm mt-2" rows="2" placeholder="Add other source risk factors"></textarea>
+                    </div>
+
+                    <div class="form-control">
+                      <span class="label-text mb-1">Infection-Specific Risks</span>
+                      <div class="flex flex-wrap gap-2">
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Septic shock" class="checkbox checkbox-xs" data-group="inf-risk"> Septic shock
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Neutropenia" class="checkbox checkbox-xs" data-group="inf-risk"> Neutropenia
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Pregnancy" class="checkbox checkbox-xs" data-group="inf-risk"> Pregnancy
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Renal replacement therapy" class="checkbox checkbox-xs" data-group="inf-risk"> Renal replacement therapy
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Solid organ transplant" class="checkbox checkbox-xs" data-group="inf-risk"> Solid organ transplant
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Active chemotherapy" class="checkbox checkbox-xs" data-group="inf-risk"> Active chemotherapy
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Chronic immunosuppression" class="checkbox checkbox-xs" data-group="inf-risk"> Chronic immunosuppression
+                        </label>
+                        <label class="badge badge-outline gap-1 px-3 py-2">
+                          <input type="checkbox" value="Immunocompromised state" class="checkbox checkbox-xs" data-group="inf-risk"> Immunocompromised state
+                        </label>
+                      </div>
+                      <textarea id="inf-risks-notes" class="textarea textarea-bordered textarea-sm mt-2" rows="2" placeholder="Add other infection-specific risks"></textarea>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <div class="collapse collapse-arrow join-item border-base-300 border">
+                <input type="radio" name="form-accordion" />
+                <div class="collapse-title text-lg font-medium">Current Therapy</div>
+                <div class="collapse-content">
+                  <section class="space-y-3">
+                    <div class="grid grid-cols-2 gap-2">
+                      <label class="form-control">
+                        <span class="label-text">Outpatient Antibiotics</span>
+                        <input id="current-outpt" class="input input-bordered input-sm" placeholder="Azithromycin">
+                      </label>
+                      <label class="form-control">
+                        <span class="label-text">Inpatient Antibiotics</span>
+                        <input id="current-inp" class="input input-bordered input-sm" placeholder="Vancomycin">
+                      </label>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-2 mt-auto pt-4">
+              <button id="submit" class="btn btn-primary flex-1">Generate Recommendation</button>
+              <button id="reset" class="btn btn-ghost" type="button">New Entry</button>
+            </div>
+          </div>
+
+          <div class="flex-1 overflow-y-auto max-h-[80vh]">
+            <div id="results" class="prose max-w-none">
+              <p class="text-center opacity-50">Enter patient data and click Generate</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const collectSelections = (group) =>
+      Array.from(document.querySelectorAll(`input[data-group="${group}"]:checked`)).map((item) => item.value);
+
+    // Enhanced response formatting for clinicians
+    const formatClinicalResponse = (content) => {
+      if (!content) return '';
+
+      // Remove excessive repetition and verbose sections
+      let cleaned = content
+        .replace(/## Checklist[^]*?(?=##|$)/g, '') // Remove verbose checklists
+        .replace(/## Inputs[^]*?(?=##|$)/g, '') // Remove repeated inputs
+        .replace(/## Assessment\s*\n.*?##/g, '##') // Simplify assessment
+        .replace(/\*\*Step \d+:\*\*/g, '') // Remove step numbers
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .trim();
+
+      return cleaned;
+    };
+
+    const renderInlineMarkdown = (value) => {
+      if (!value) return '';
+      return window.marked.parseInline(String(value));
+    };
+
+    const toPlainText = (value) => String(value ?? '').replace(/\s+/g, ' ').trim();
+
+    const CATEGORY_RULES = [
+      {
+        alertClass: 'alert-error',
+        badgeClass: 'badge-error',
+        labelClass: 'text-error font-semibold',
+        matchers: [/critical/, /alert/, /warning/, /caution/, /contraindication/, /avoid/],
+      },
+      {
+        alertClass: 'alert-success',
+        badgeClass: 'badge-success',
+        labelClass: 'text-success font-semibold',
+        matchers: [/empiric/, /targeted/, /therapy/, /treatment/, /antibiotic/, /regimen/, /coverage/],
+      },
+      {
+        alertClass: 'alert-warning',
+        badgeClass: 'badge-warning',
+        labelClass: 'text-warning font-semibold',
+        matchers: [/monitor/, /lab/, /trend/, /check/, /watch/, /toxicity/, /renal/],
+      },
+      {
+        alertClass: 'alert-info',
+        badgeClass: 'badge-info',
+        labelClass: 'text-info font-semibold',
+        matchers: [/next/, /follow/, /plan/, /action/, /consult/, /workflow/, /communication/],
+      },
+      {
+        alertClass: 'alert-neutral',
+        badgeClass: 'badge-neutral',
+        labelClass: 'font-semibold',
+        matchers: [/history/, /context/, /summary/, /background/, /note/],
+      },
+    ];
+
+    const getCategoryStyles = (key) => {
+      const normalized = key.toLowerCase();
+      for (const rule of CATEGORY_RULES) {
+        if (rule.matchers.some((regex) => regex.test(normalized))) {
+          return rule;
+        }
+      }
+      return { alertClass: 'alert-neutral', badgeClass: 'badge-neutral', labelClass: 'font-semibold' };
+    };
+
+    const extractJsonBlock = (text) => {
+      if (!text) {
+        return { markdown: '', brief: null };
+      }
+
+      const codeBlockRegex = /BRIEF_JSON\s*:?[\s\S]*?```json\s*([\s\S]*?)\s*```/i;
+      const codeMatch = codeBlockRegex.exec(text);
+      if (codeMatch) {
+        const cleaned = text.replace(codeMatch[0], '').trim();
+        try {
+          return { markdown: cleaned, brief: JSON.parse(codeMatch[1]) };
+        } catch (error) {
+          console.warn('Failed to parse BRIEF_JSON block', error);
+          return { markdown: cleaned, brief: null };
+        }
+      }
+
+      const markerIndex = text.lastIndexOf('BRIEF_JSON');
+      if (markerIndex === -1) {
+        return { markdown: text.trim(), brief: null };
+      }
+
+      const braceIndex = text.indexOf('{', markerIndex);
+      if (braceIndex === -1) {
+        return { markdown: text.trim(), brief: null };
+      }
+
+      let depth = 0;
+      let endIndex = -1;
+      for (let i = braceIndex; i < text.length; i += 1) {
+        const ch = text[i];
+        if (ch === '{') depth += 1;
+        if (ch === '}') {
+          depth -= 1;
+          if (depth === 0) {
+            endIndex = i + 1;
+            break;
+          }
+        }
+      }
+
+      if (endIndex === -1) {
+        return { markdown: text.trim(), brief: null };
+      }
+
+      const jsonString = text.slice(braceIndex, endIndex);
+      const cleaned = (text.slice(0, markerIndex) + text.slice(endIndex)).trim();
+      try {
+        return { markdown: cleaned, brief: JSON.parse(jsonString) };
+      } catch (error) {
+        console.warn('Failed to parse BRIEF_JSON object', error);
+        return { markdown: cleaned, brief: null };
+      }
+    };
+
+    const escapeHtml = (value) => value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+    const renderBriefSummary = (brief) => {
+      if (!brief || typeof brief !== 'object') {
+        return '';
+      }
+
+      let topRecommendation = '';
+      const rows = Object.entries(brief)
+        .filter(([, value]) => value !== null && value !== undefined && value !== '')
+        .map(([key, value]) => {
+          if (key === 'top_recommendation' && value && typeof value === 'object') {
+            const agentRaw = value.agent ?? 'Not specified';
+            const agent = Array.isArray(agentRaw)
+              ? agentRaw.map((item) => renderInlineMarkdown(item)).join(', ')
+              : renderInlineMarkdown(agentRaw);
+            const route = renderInlineMarkdown(value.route || '');
+            const dose = renderInlineMarkdown(value.dose || '');
+            const rationale = renderInlineMarkdown(value.rationale || '');
+
+            topRecommendation = `
+              <div class="alert alert-success flex-col items-start gap-2">
+                <h4 class="text-success font-semibold text-lg flex items-center gap-2">
+                  <span class="badge badge-success">Top Recommendation</span>
+                  <span>${agent}</span>
+                </h4>
+                <div class="w-full space-y-1 text-sm">
+                  ${route ? `<p><span class="font-semibold">Route:</span> ${route}</p>` : ''}
+                  ${dose ? `<p><span class="font-semibold">Dose:</span> ${dose}</p>` : ''}
+                  ${rationale ? `<p><span class="font-semibold">Why:</span> ${rationale}</p>` : ''}
+                </div>
+              </div>
+            `;
+            return null;
+          }
+
+          const styles = getCategoryStyles(key);
+          let display;
+          if (Array.isArray(value)) {
+            display = `<div class="flex flex-wrap gap-1">${value.map((item) => `<span class="badge ${styles.badgeClass} badge-outline">${renderInlineMarkdown(item)}</span>`).join('')}</div>`;
+          } else if (typeof value === 'object') {
+            display = `<pre class="bg-base-200 rounded px-3 py-2 text-sm whitespace-pre-wrap">${escapeHtml(JSON.stringify(value, null, 2))}</pre>`;
+          } else {
+            display = renderInlineMarkdown(value);
+          }
+
+          return `
+            <div class="alert ${styles.alertClass} flex-col items-start gap-2">
+              <dt class="${styles.labelClass} capitalize">${escapeHtml(key.replace(/_/g, ' '))}</dt>
+              <dd class="w-full">${display}</dd>
+            </div>
+          `;
+        });
+
+      const filteredRows = rows.filter(Boolean);
+      if (!filteredRows.length && !topRecommendation) {
+        return '';
+      }
+
+      return `
+        <div class="card bg-base-200 mb-6">
+          <div class="card-body">
+            <h3 class="card-title text-lg">Quick Reference</h3>
+            ${topRecommendation || '<div class="alert alert-info">No specific top recommendation provided.</div>'}
+            ${filteredRows.length ? `<dl class="mt-3 space-y-2">${filteredRows.join('')}</dl>` : ''}
+          </div>
+        </div>
+      `;
+    };
+
+    // Render confidence indicator
+    const renderConfidence = (confidence) => {
+      if (!confidence) {
+        return '<div class="alert alert-warning mb-4"><div class="w-full"><h4 class="font-bold">Confidence: Not Available</h4><p>Confidence scoring could not be calculated for this recommendation.</p></div></div>';
+      }
+      
+      const level = confidence.level || 'Medium';
+      const score = confidence.score || 50;
+      const factors = confidence.factors || [];
+      
+      const levelClass = level === 'High' ? 'alert-success' : level === 'Medium' ? 'alert-info' : 'alert-warning';
+      const badgeClass = level === 'High' ? 'badge-success' : level === 'Medium' ? 'badge-info' : 'badge-warning';
+      
+      return `
+        <div class="alert ${levelClass} mb-4">
+          <div class="w-full">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-bold">Confidence: <span class="badge ${badgeClass}">${level} (${score}%)</span></h4>
+            </div>
+            <progress class="progress progress-${level === 'High' ? 'success' : level === 'Medium' ? 'info' : 'warning'} w-full" value="${score}" max="100"></progress>
+            ${factors.length > 0 ? `
+              <details class="mt-2">
+                <summary class="cursor-pointer text-sm opacity-70 hover:opacity-100">Score breakdown</summary>
+                <ul class="list-disc list-inside text-sm mt-2 space-y-1">
+                  ${factors.map(f => `<li>${f.factor}: +${f.points} points</li>`).join('')}
+                </ul>
+              </details>
+            ` : '<p class="text-sm opacity-70 mt-2">No detailed scoring factors available.</p>'}
+          </div>
+        </div>
+      `;
+    };
+
+    // Render tools used
+    const renderToolsUsed = (tools) => {
+      if (!tools || tools.length === 0) {
+        return '<div class="alert alert-neutral mb-4"><div class="w-full"><h4 class="font-bold">Clinical Tools: None Used</h4><p>No clinical decision support tools were utilized for this recommendation.</p></div></div>';
+      }
+      
+      const toolLabels = {
+        'search_antibiotic_guideline': 'TUHS Guideline Search',
+        'check_allergy_contraindication': 'Allergy Check',
+        'validate_resistance_coverage': 'Resistance Validation',
+        'calculate_renal_dosing': 'Renal Dosing'
+      };
+      
+      return `
+        <div class="alert alert-info mb-4">
+          <div class="w-full">
+            <h4 class="font-bold mb-2">Clinical Tools Used:</h4>
+            <div class="flex flex-wrap gap-2">
+              ${tools.map(tool => `
+                <span class="badge badge-outline">
+                  <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  ${toolLabels[tool] || tool}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    };
+
+    const resetForm = () => {
+      document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach((el) => {
+        el.value = '';
+      });
+      document.querySelectorAll('input[type="radio"]').forEach((el) => {
+        el.checked = false;
+      });
+      document.querySelectorAll('input[type="checkbox"]').forEach((el) => {
+        el.checked = false;
+      });
+      document.getElementById('culture-status').value = 'Pending';
+      document.getElementById('results').innerHTML = '<p class="text-center opacity-50">Enter patient data and click Generate</p>';
+    };
+
+    document.getElementById('reset').addEventListener('click', () => {
+      resetForm();
+    });
+
+    window.addEventListener('load', () => {
+      resetForm();
+    });
+
+    document.getElementById('submit').addEventListener('click', async () => {
+      console.log('Submit button clicked!');
+      const submitButton = document.getElementById('submit');
+      submitButton.classList.add('btn-disabled');
+      submitButton.disabled = true;
+
+      let progress = 5;
+      const resultsEl = document.getElementById('results');
+      resultsEl.innerHTML = `
+        <div class="w-full flex flex-col items-center gap-4 py-10">
+          <progress class="progress progress-primary w-56" value="${progress}" max="100"></progress>
+          <p class="font-medium text-sm" id="progress-text">Submitting clinical profile…</p>
+        </div>
+      `;
+      const progressBar = resultsEl.querySelector('progress');
+      const progressText = document.getElementById('progress-text');
+
+      const progressTimer = setInterval(() => {
+        progress = Math.min(progress + 5, 90);
+        if (progressBar) progressBar.value = progress;
+      }, 500);
+
+      const statusTimer = setTimeout(() => {
+        if (progressText) progressText.textContent = 'Still working with the clinical prompt – large cases can take 20-30s…';
+      }, 8000);
+
+
+      if (progressText) progressText.textContent = 'Packaging prompt variables…';
+
+
+      // Collect form data first
+      const acuity = document.querySelector('input[name="acuity"]:checked')?.value;
+      const sourceRiskSelections = collectSelections('source-risk');
+      const infRiskSelections = collectSelections('inf-risk');
+      const allergySelections = collectSelections('allergy');
+      const resistanceSelections = collectSelections('resistance');
+      const allergiesNotes = document.getElementById('allergies-notes').value.trim();
+      const resistanceNotes = document.getElementById('resistance-notes').value.trim();
+      const sourceRiskNotes = document.getElementById('source-risk-notes').value.trim();
+      const infRiskNotes = document.getElementById('inf-risks-notes').value.trim();
+      const cultureStatus = document.getElementById('culture-status').value;
+      const cultureDetails = document.getElementById('culture').value.trim();
+
+      // DEBUG: Log what we're sending
+      console.log('Sending data:', data);
+      
+      const data = {
+        age: document.getElementById('age').value,
+        gender: document.getElementById('gender').value,
+        weight_kg: document.getElementById('weight').value,
+        gfr: document.getElementById('gfr').value,
+        location: acuity,  // Map acuity to location for backend
+        infection_type: document.getElementById('source').value,  // Map source to infection_type
+        allergies: [...allergySelections, allergiesNotes].filter(Boolean).join('; '),
+        culture_results: cultureDetails ? `${cultureStatus}: ${cultureDetails}` : cultureStatus,
+        prior_resistance: [...resistanceSelections, resistanceNotes].filter(Boolean).join('; '),
+        source_risk: [...sourceRiskSelections, sourceRiskNotes].filter(Boolean).join('; '),
+        inf_risks: [...infRiskSelections, infRiskNotes].filter(Boolean).join('; '),
+        current_outpt_abx: document.getElementById('current-outpt').value,
+        current_inp_abx: document.getElementById('current-inp').value,
+      };
+
+      try {
+        if (progressText) progressText.textContent = 'Connecting to Agno agent…';
+        
+        // Use streaming endpoint
+        const response = await fetch('/api/recommendation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        let fullContent = '';
+        let confidence = null;
+        let briefJson = null;
+        let toolsUsed = [];
+
+        if (progressText) progressText.textContent = 'Agent working…';
+        if (progressBar) progressBar.value = 20;
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+
+          // Process complete SSE lines
+          while (true) {
+            const lineEnd = buffer.indexOf('\n');
+            if (lineEnd === -1) break;
+
+            const line = buffer.slice(0, lineEnd).trim();
+            buffer = buffer.slice(lineEnd + 1);
+
+            if (line.startsWith('data: ')) {
+              const streamData = line.slice(6);
+              if (streamData === '[DONE]') break;
+
+              try {
+                const parsed = JSON.parse(streamData);
+
+                if (parsed.type === 'connected') {
+                  if (progressText) progressText.textContent = `Connected (${parsed.request_id})`;
+                  if (progressBar) progressBar.value = 30;
+                }
+
+                if (parsed.type === 'chunk') {
+                  fullContent += parsed.content;
+                  // Progressive rendering with cleaned content
+                  const sanitized = sanitizeCitations(fullContent);
+                  const cleanedContent = formatClinicalResponse(sanitized);
+                  const { markdown, brief } = extractJsonBlock(cleanedContent);
+                  const html = window.marked.parse(markdown || cleanedContent || 'Generating…');
+                  resultsEl.innerHTML = `<article class="prose max-w-none clinical-response">${html}</article>`;
+                  if (progressBar) progressBar.value = Math.min(40 + (fullContent.length / 50), 85);
+                }
+
+                if (parsed.type === 'tool_call') {
+                  toolsUsed.push(parsed.tool);
+                  if (progressText) progressText.textContent = `Running ${parsed.tool}…`;
+                }
+
+                if (parsed.type === 'complete') {
+                  confidence = parsed.confidence;
+                  briefJson = parsed.brief_json;
+                  if (progressText) progressText.textContent = 'Finalizing…';
+                  if (progressBar) progressBar.value = 95;
+                }
+
+                if (parsed.type === 'done') {
+                  if (progressText) progressText.textContent = `Complete (${parsed.duration_ms}ms)`;
+                  if (progressBar) progressBar.value = 100;
+                }
+
+                if (parsed.type === 'error') {
+                  throw new Error(parsed.error);
+                }
+              } catch (e) {
+                // Ignore invalid JSON in stream
+                console.warn('Stream parse error:', e);
+              }
+            }
+          }
+        }
+
+        // Final render with confidence and brief summary
+        if (fullContent) {
+          const sanitized = sanitizeCitations(fullContent);
+          const cleanedContent = formatClinicalResponse(sanitized);
+          const { markdown, brief } = extractJsonBlock(cleanedContent);
+          const summaryCard = renderBriefSummary(briefJson || brief);
+          const confidenceCard = confidence ? renderConfidence(confidence) : '';
+          const toolsCard = toolsUsed.length > 0 ? renderToolsUsed(toolsUsed) : '';
+          const html = window.marked.parse(markdown || cleanedContent || 'No recommendation provided.');
+          resultsEl.innerHTML = `${confidenceCard}${toolsCard}${summaryCard || ''}<article class="prose max-w-none clinical-response">${html}</article>`;
+        } else {
+          resultsEl.innerHTML = '<div class="alert alert-warning">No content received from agent.</div>';
+        }
+
+      } catch (error) {
+        console.error('Recommendation error:', error);
+        resultsEl.innerHTML = `<div class="alert alert-error"><strong>Error:</strong> ${error.message}</div>`;
+      } finally {
+        clearInterval(progressTimer);
+        clearTimeout(statusTimer);
+        submitButton.disabled = false;
+        submitButton.classList.remove('btn-disabled');
+      }
+    });
+  </script>
+</body>
+</html>

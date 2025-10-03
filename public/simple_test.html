@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .form-group { margin: 10px 0; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #result { margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { border-color: #28a745; background: #d4edda; }
+        .error { border-color: #dc3545; background: #f8d7da; }
+    </style>
+</head>
+<body>
+    <h1>TUHS Antibiotic Steward - Simple Test</h1>
+
+    <div class="form-group">
+        <label>Age: <input type="number" id="age" value="65"></label>
+    </div>
+
+    <div class="form-group">
+        <label>Gender:
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>GFR: <input type="number" id="gfr" value="80"></label>
+    </div>
+
+    <div class="form-group">
+        <label>Location:
+            <select id="location">
+                <option value="Ward">Ward</option>
+                <option value="ICU">ICU</option>
+                <option value="ED">ED</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Infection Type:
+            <select id="infection_type">
+                <option value="pneumonia">Pneumonia</option>
+                <option value="uti">UTI</option>
+                <option value="bacteremia">Bacteremia</option>
+                <option value="skin">Skin/Soft Tissue</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Allergies: <input type="text" id="allergies" placeholder="e.g., penicillin, none"></label>
+    </div>
+
+    <button onclick="testAPI()">Get Recommendation</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Processing...</p>';
+            resultDiv.className = '';
+
+            // Collect form data
+            const testData = {
+                age: document.getElementById('age').value,
+                gender: document.getElementById('gender').value,
+                gfr: document.getElementById('gfr').value,
+                location: document.getElementById('location').value,
+                infection_type: document.getElementById('infection_type').value,
+                allergies: document.getElementById('allergies').value || 'none'
+            };
+
+            console.log('Sending test data:', testData);
+
+            try {
+                const response = await fetch('/api/recommendation', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testData)
+                });
+
+                console.log('Response status:', response.status);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                console.log('Received result:', result);
+
+                // Display results
+                resultDiv.className = 'success';
+                resultDiv.innerHTML = `
+                    <h3>✅ SUCCESS!</h3>
+                    <p><strong>Category:</strong> ${result.category || 'Unknown'}</p>
+                    <p><strong>Confidence:</strong> ${Math.round((result.final_confidence || 0) * 100)}%</p>
+                    <p><strong>TUHS Recommendation:</strong></p>
+                    <div style="margin-left: 20px; font-style: italic;">${(result.tuhs_recommendation || 'No recommendation').substring(0, 200)}...</div>
+                    ${result.reputable_sources && result.reputable_sources.length > 0 ?
+                        `<p><strong>Sources Found:</strong> ${result.reputable_sources.length}</p>` :
+                        '<p><strong>Sources:</strong> None needed (high confidence)</p>'
+                    }
+                `;
+
+            } catch (error) {
+                console.error('API test failed:', error);
+                resultDiv.className = 'error';
+                resultDiv.innerHTML = `
+                    <h3>❌ FAILED</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p><strong>Check browser console for details</strong></p>
+                `;
+            }
+        }
+
+        // Auto-test on page load for debugging
+        window.onload = function() {
+            console.log('Page loaded, ready to test API');
+        };
+    </script>
+</body>
+</html>

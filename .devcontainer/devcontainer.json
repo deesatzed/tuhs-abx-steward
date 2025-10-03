@@ -1,0 +1,39 @@
+{
+  "name": "TUHS Antibiotic Steward",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.13"
+    }
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.formatting.provider": "black"
+      }
+    }
+  },
+  
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "TUHS Antibiotic Steward",
+      "onAutoForward": "notify"
+    }
+  },
+  
+  "postCreateCommand": "pip install fastapi uvicorn[standard] python-multipart agno pydantic python-dotenv flask flask-cors",
+  
+  "remoteEnv": {
+    "OPENROUTER_API_KEY": "${localEnv:OPENROUTER_API_KEY}"
+  }
+}

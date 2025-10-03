@@ -1,0 +1,1184 @@
+{
+  "document_title": "TUH INC-ADMIN-MM-GUIDELINES-36-Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+  "document_type": "Guideline",
+  "origin_date": "November 2020",
+  "caveat": "This document is intended as a guideline only & should NOT replace sound clinical judgement.",
+  "general_instructions": [
+    "Culture and antibiotic history should be taken into account whenever available.",
+    "Antibiotics should be administered after collection of cultures, except when it is anticipated that there will be a delay in obtaining them.",
+    "Re-assess empiric regimen after 48-72hrs for de-escalation of therapy.",
+    "Upon selection of empiric antibiotic therapy, it is essential to consider patient's prior culture results in the past 6-12 months.",
+    "(1st) indicates the medication that should be given first by nursing staff to be compliant with sepsis core measures."
+  ],
+  "infection_guidelines": [
+    {
+      "infection": "Pneumonia",
+      "sub_sections": [
+        {
+          "type": "Community Acquired Pneumonia (CAP)",
+          "review_history_note": "Review patient's microbiology history within the last 12 months*. *Discuss empiric regimen with ID if patient has a history of organisms that are resistant to the recommended empiric regimen (e.g. Carbapenem resistant Enterobacteriaceae or Pseudomonas that is only sensitive to aminoglycosides).",
+          "general_notes": [
+            "Obtain MRSA nares swab if vancomycin is started. Negative MRSA nares swab has a >95% negative predictive value for MRSA PNA.",
+            "If covering MRSA or Pseudomonas (PSA), obtain sputum cultures, and if no microbiologic confirmation of MRSA or PSA, discontinue extended coverage."
+          ],
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "allergy_details": "",
+              "regimen": [
+                "Ceftriaxone IV (1st) OR Ampicillin-sulbactam IV (1st) (preferred if aspiration related empyema or lung abscess suspected)",
+                "PLUS Azithromycin IV/PO (Doxycycline IV/PO if contraindication to azithromycin)",
+                "ADD Vancomycin IV if: ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d"
+              ],
+              "duration": "5 days. Longer duration may be needed if: Severe CAP, Empyema, Complicated by extra-pulmonary infection. Discontinue azithromycin at 3 days (if dosed 500 mg daily) or 5 days (if dosed 500 mg, then 250mg daily) regardless of the total antibiotic duration (Due to prolonged half-life, it will stay in the system beyond discontinuation)."
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "allergy_details": "Rash, itching; Unknown reaction (>10yrs); Intolerance, PEN-FAST score ≤ 2",
+              "regimen": [
+                "Ceftriaxone IV (1st)",
+                "ADD Metronidazole IV/PO if: Aspiration related empyema or lung abscess suspected",
+                "PLUS Azithromycin IV/PO (Doxycycline IV/PO if contraindication to azithromycin)",
+                "ADD Vancomycin IV if: ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d"
+              ],
+              "duration": "5 days. Longer duration may be needed if: Severe CAP, Empyema, Complicated by extra-pulmonary infection. Discontinue azithromycin at 3 days (if dosed 500 mg daily) or 5 days (if dosed 500 mg, then 250mg daily) regardless of the total antibiotic duration."
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "allergy_details": "Anaphylaxis in the last 10yrs; Stevens-Johnson syndrome (SJS)/DRESS",
+              "regimen": [
+                "Levofloxacin IV/PO (1st)",
+                "ADD Vancomycin IV if: ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d",
+                "ADD Aztreonam IV if: ICU admission",
+                "ADD Metronidazole IV/PO If: Aspiration related empyema or lung abscess suspected"
+              ],
+              "duration": "5 days. Longer duration may be needed if: Severe CAP, Empyema, Complicated by extra-pulmonary infection. Discontinue azithromycin at 3 days (if dosed 500 mg daily) or 5 days (if dosed 500 mg, then 250mg daily) regardless of the total antibiotic duration."
+            }
+          ]
+        },
+        {
+          "type": "Hospital acquired pneumonia (HAP), Ventilator associated pneumonia (VAP), or CAP w/ risk factors for Pseudomonas or other MDRO",
+          "risk_factors_to_consider": [
+            "History of Pseudomonas or other MDRO in the last year",
+            "IV antibiotic use within last 90 days",
+            "Prolonged mechanical ventilation/tracheostomy",
+            "Immunocompromised",
+            "Advanced/end stage structural lung disease"
+          ],
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": [
+                "Cefepime IV (1st) OR Piperacillin-tazobactam IV (1st) (Preferred in aspiration related empyema or lung abscess suspected)",
+                "ADD Azithromycin IV/PO if CAP (Doxycycline IV/PO if contraindication to azithromycin)",
+                "ADD Vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d",
+                "Consider Tobramycin IV** if: Septic shock (**5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20)"
+              ],
+              "duration": "CAP: 5 days. HAP/VAP: 5-7 days. Ultra short course (≤3 days) can be considered in patients with suspected VAP but minimal and stable ventilator settings (PEEP ≤5 cm H₂O and FiO₂≤40%). Discontinue azithromycin at 3 days (if dosed 500 mg daily) or 5 days (if dosed 500 mg, then 250mg daily) regardless of the total antibiotic duration."
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": [
+                "Cefepime IV (1st)",
+                "ADD Metronidazole IV/PO if: Aspiration related empyema or lung abscess suspected",
+                "ADD Azithromycin IV/PO if CAP (Doxycycline IV/PO if contraindication to azithromycin)",
+                "ADD Vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d",
+                "Consider Tobramycin IV** if: Septic shock"
+              ],
+              "duration": "CAP: 5 days. HAP/VAP: 5-7 days. Ultra short course (≤3 days) can be considered in patients with suspected VAP but minimal and stable ventilator settings (PEEP ≤5 cm H₂O and FiO₂≤40%). Discontinue azithromycin at 3 days (if dosed 500 mg daily) or 5 days (if dosed 500 mg, then 250mg daily) regardless of the total antibiotic duration."
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": [
+                "Levofloxacin IV/PO (1st) PLUS Aztreonam IV (1st)",
+                "ADD Vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d",
+                "ADD Metronidazole IV/PO If: Aspiration related empyema or lung abscess suspected",
+                "Consider Tobramycin IV** if: Septic shock"
+              ],
+              "duration": "CAP: 5 days. HAP/VAP: 5-7 days. Ultra short course (≤3 days) can be considered in patients with suspected VAP but minimal and stable ventilator settings (PEEP ≤5 cm H₂O and FiO₂≤40%). Discontinue azithromycin at 3 days (if dosed 500 mg daily) or 5 days (if dosed 500 mg, then 250mg daily) regardless of the total antibiotic duration."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "infection": "Urinary Tract Infections (UTI)",
+      "general_notes": [
+        "Pyuria on urinalysis (UA) alone is not an indication for antibiotic therapy. Always assess for symptoms (urinary symptoms, fever, hemodynamic instability) unless pregnant, planned urologic procedure, recent kidney transplant, neutropenia.",
+        "Obtain UA with reflex to urine culture (Ucx) prior to antibiotic initiation whenever possible."
+      ],
+      "sub_sections": [
+        {
+          "type": "Cystitis (Urinary symptoms only!! no fever or other systemic signs/symptoms suggestive of upper tract infection)",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": [
+                "Nitrofurantoin PO OR Fosfomycin PO OR Trimethoprim/sulfamethoxazole PO (TMP/SMX)",
+                "If unable to take po: Cephalexin PO OR Cefpodoxime PO OR Cefazolin IV (NOTE: Cefazolin MIC ≤16 is considered susceptible to cefazolin and can also be used as a surrogate to predict results for the oral agents such as cefpodoxime and cephalexin, when used for therapy of cystitis due to E. coli, K. pneumoniae, and P. mirabilis.)"
+              ],
+              "duration": "1-5 days. Nitrofurantoin: 5 days. TMP/SMX: 3 days. Fosfomycin: 1 day. Cefazolin: 3-5 days. Cephalexin/Cefpodoxime: 5-7 days. In patients with functional or structural GU abnormalities, duration of therapy for UTI is not well established. In most cases, 7 days of therapy is sufficient."
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": [
+                "Nitrofurantoin PO OR Fosfomycin PO OR Trimethoprim/sulfamethoxazole PO (TMP/SMX)",
+                "If unable to take po: Cefpodoxime PO OR Cefazolin IV",
+                "If the above preferred regimen is contraindicated: Ciprofloxacin IV"
+              ],
+              "duration": "1-5 days. Nitrofurantoin: 5 days. TMP/SMX: 3 days. Fosfomycin: 1 day. Cefazolin: 3-5 days. Cephalexin/Cefpodoxime: 5-7 days. In patients with functional or structural GU abnormalities, duration of therapy for UTI is not well established. In most cases, 7 days of therapy is sufficient."
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": [
+                "Nitrofurantoin PO OR Fosfomycin PO OR TMP/SMX PO",
+                "If the above preferred regimen is contraindicated: Ciprofloxacin IV (Discuss with ID if alternative regimen needed.)"
+              ],
+              "duration": "1-5 days. Nitrofurantoin: 5 days. TMP/SMX: 3 days. Fosfomycin: 1 day. Cefazolin: 3-5 days. Cephalexin/Cefpodoxime: 5-7 days. In patients with functional or structural GU abnormalities, duration of therapy for UTI is not well established. In most cases, 7 days of therapy is sufficient."
+            }
+          ]
+        },
+        {
+          "type": "Catheter-associated UTI (Foley, nephrostomy, supra-pubic catheter, stent etc.)",
+          "note_removal": "Remove or replace catheter prior to UA/Ucx collection & initiation of antibiotic therapy whenever feasible",
+          "sub_groups": [
+            {
+              "group": "Patient without sepsis and no evidence of upper tract disease",
+              "empiric_regimens": [
+                {
+                  "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+                  "regimen": "Observation off antibiotic and await culture results. OR Fosfomycin PO"
+                },
+                {
+                  "pcp_allergy_status": "Mild to moderate PCN allergy",
+                  "regimen": "Observation off antibiotic and await culture results. OR Fosfomycin PO OR Ceftriaxone IV"
+                },
+                {
+                  "pcp_allergy_status": "Severe PCN Allergy",
+                  "regimen": "Observation off antibiotic and await culture results. OR Fosfomycin PO OR Ceftriaxone IV OR Ciprofloxacin IV/PO"
+                }
+              ],
+              "duration": "5-7 days"
+            },
+            {
+              "group": "Patient with sepsis and/or with evidence of upper tract disease",
+              "empiric_regimens": [
+                {
+                  "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+                  "regimen": "Piperacillin-tazobactam IV PLUS Vancomycin IV. If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock"
+                },
+                {
+                  "pcp_allergy_status": "Mild to moderate PCN allergy",
+                  "regimen": "Cefepime IV PLUS Vancomycin IV. Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock"
+                },
+                {
+                  "pcp_allergy_status": "Severe PCN Allergy",
+                  "regimen": "Aztreonam IV PLUS Vancomycin IV. Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock, History of severe IgE mediated PCN reactions (Benefit of using carbapenem should be weighed), History of non-IgE mediated PCN reactions (SJS/DRESS) (discuss with ID)"
+                }
+              ],
+              "duration": "7-14 days"
+            }
+          ]
+        },
+        {
+          "type": "Febrile UTI, Pyelonephritis",
+          "sub_groups": [
+            {
+              "group": "Community-acquired",
+              "empiric_regimens": [
+                {
+                  "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+                  "regimen": "Ceftriaxone IV. Consider ertapenem IV If: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock"
+                },
+                {
+                  "pcp_allergy_status": "Mild to moderate PCN allergy",
+                  "regimen": "Ceftriaxone IV. Consider ertapenem IV If: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock"
+                },
+                {
+                  "pcp_allergy_status": "Severe PCN Allergy",
+                  "regimen": "Aztreonam IV PLUS Vancomycin IV. If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: History of severe IgE mediated PCN reactions (Benefit of using carbapenem should be weighed), History of non-IgE mediated PCN reactions (SJS/DRESS) (discuss with ID)"
+                }
+              ],
+              "duration": "7 days. *Most can be treated with 7 days if good clinical response (e.g. improvement within 3-5 days, afebrile >48 hrs). Discuss with ID if longer durations are clinically indicated."
+            },
+            {
+              "group": "Hospital-acquired (>48 hrs after admission)",
+              "empiric_regimens": [
+                {
+                  "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+                  "regimen": "Piperacillin-tazobactam IV OR Cefepime IV. Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock"
+                },
+                {
+                  "pcp_allergy_status": "Mild to moderate PCN allergy",
+                  "regimen": "Cefepime IV. Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock"
+                },
+                {
+                  "pcp_allergy_status": "Severe PCN Allergy",
+                  "regimen": "Piperacillin-tazobactam IV (This appears to be an error in the original document's table structure for Severe PCN Allergy, usually this column prescribes alternatives to $\beta$-lactams. I will maintain the document's explicit text, but note the potential issue.)"
+                }
+              ],
+              "duration": "7 days. *Most can be treated with 7 days if good clinical response. Discuss with ID if longer durations are clinically indicated."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "infection": "Intra-abdominal Infection",
+      "duration_note": "4 days after source control. ID consult recommended in patients who are hemodynamically unstable or have difficult to achieve source control.",
+      "general_notes": [
+        "Review patient's microbiology history within the last 12 months*. *Discuss empiric regimen with ID if patient has a history of organisms that are resistant to the recommended empiric regimen.",
+        "Consider anti-fungal therapy (i.e. micafungin) in severe sepsis or septic shock."
+      ],
+      "sub_groups": [
+        {
+          "group": "Community Acquired",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "Ceftriaxone IV (1st) PLUS Metronidazole IV/PO OR Piperacillin-tazobactam IV (Preferred option as provides coverage for Enterococcus faecalis)"
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "Ceftriaxone IV (1st) PLUS Metronidazole IV/PO"
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "Aztreonam IV (1st) PLUS Metronidazole IV/PO"
+            }
+          ]
+        },
+        {
+          "group": "Healthcare associated: Recent IV antibiotics within 90 days, Intra-abdominal surgery in the last year",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": [
+                "Piperacillin-tazobactam IV (1st)",
+                "OR Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV#",
+                "Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock",
+                "#ADD or Replace vancomycin to Daptomycin IV if: Severe sepsis or Septic shock, History of VRE in the past 12 months"
+              ]
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": [
+                "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV#",
+                "Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock",
+                "#ADD or Replace vancomycin to Daptomycin IV if: Severe sepsis or Septic shock, History of VRE in the past 12 months"
+              ]
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": [
+                "Aztreonam IV (1st) PLUS Metronidazole IV/PO PLUS Daptomycin IV or Vancomycin IV",
+                "Consider Daptomycin IV if history of VRE in past 12 months or severe sepsis or septic shock",
+                "If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: History of severe IgE mediated PCN reactions (Benefit of using carbapenem should be weighed), History of non-IgE mediated PCN reactions (SJS/DRESS) (discuss with ID)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "infection": "Skin and Soft Tissue Infection (SSTI)",
+      "duration_note": "Consider ID consult if no clinical improvement past the expected duration.",
+      "sub_sections": [
+        {
+          "type": "Non-purulent (non-severe¹) cellulitis (Patients without systemic signs/symptoms of infection, No associated drainage or abscess)",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "Cephalexin PO OR Cefazolin IV"
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "TMP/SMX PO OR Cefazolin IV"
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "TMP/SMX PO OR Vancomycin IV"
+            }
+          ],
+          "duration": "5-7 days"
+        },
+        {
+          "type": "Purulent (non-severe¹) cellulitis (Patients without systemic signs/symptoms of infection)",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "TMP/SMX PO OR Doxycycline IV/PO OR Vancomycin IV"
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "TMP/SMX PO OR Doxycycline IV/PO OR Vancomycin IV"
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "TMP/SMX PO OR Doxycycline IV/PO OR Vancomycin IV"
+            }
+          ],
+          "duration": "5-7 days. If I&D of abscess is performed, count 5-7d from source control."
+        },
+        {
+          "type": "Injection-related cellulitis and/or xylazine related wounds (non-severe)",
+          "note": "In stable patients, hold OFF on antibiotics until wound care and thorough wound examination is performed. If patient with systemic signs/symptoms, please see 'Severe sepsis with SSTI' section.",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "If clinical concerns for infection after wound care assessment: Amoxicillin 1gm q12h PO PLUS Doxycycline IV/PO OR TMP/SMX PO OR Vancomycin IV OR Daptomycin IV"
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "If clinical concerns for infection after wound care assessment: TMP/SMX PO OR Vancomycin IV OR Daptomycin IV"
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "If clinical concerns for infection after wound care assessment: TMP/SMX PO OR Vancomycin IV OR Daptomycin IV"
+            }
+          ],
+          "duration": "5-7 days. If I&D of abscess is performed, count 5-7d from source control."
+        },
+        {
+          "type": "Severe sepsis patient with SSTI (non-necrotizing)",
+          "note": "For patients without signs/symptoms of infection, please see above SSTI section. For NSTI, see section below.",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "Ceftriaxone IV (1st) PLUS Vancomycin IV. Consider Cefepime IV if: immunocompromised host. For vancomycin allergy: Linezolid IV/PO OR Daptomycin IV"
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "Ceftriaxone IV (1st) PLUS Vancomycin IV. Consider Cefepime IV if: immunocompromised host. For vancomycin allergy: Linezolid IV/PO OR Daptomycin IV"
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "Vancomycin IV (1st) PLUS Aztreonam IV. For vancomycin allergy: Linezolid IV/PO OR Daptomycin IV"
+            }
+          ],
+          "duration": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed."
+        },
+        {
+          "type": "Necrotizing SSTI (NSTI)",
+          "note": "NSTI generally requires ICU level of care; Recommend early general surgery consultation; Recommend ID consult. Linezolid has anti-toxin effects similar to clindamycin.",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "Piperacillin-tazobactam IV (1st) PLUS Linezolid IV/PO OR Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Linezolid IV/PO OR Piperacillin-tazobactam IV (1st) PLUS Vancomycin IV PLUS Clindamycin IV OR Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV PLUS Clindamycin IV"
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Linezolid IV/PO OR Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV PLUS Clindamycin IV"
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "Aztreonam IV (1st) PLUS Linezolid IV/PO PLUS Metronidazole IV/PO. Consider meropenem in place of aztreonam/metronidazole if critically ill (i.e. ICU admission). If patient with hx of SJS/DRESS: Linezolid IV OR Vancomycin IV (1st) PLUS Clindamycin IV AND CONSULT INFECTIOUS DISEASES for guidance on gram negative coverage."
+            }
+          ],
+          "duration": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed."
+        }
+      ]
+    },
+    {
+      "infection": "Infected diabetic wound",
+      "note": "Patients with diabetes who have cellulitis but NO open wound should be managed as outlined above for Skin/Soft Tissue Infection. Patients with NO systemic signs/symptoms of infection & pending biopsy, consider monitor off antibiotic until biopsy. **For vancomycin allergy daptomycin IV can be substituted.",
+      "duration_note": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+      "empiric_regimens": [
+        {
+          "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+          "regimen": "Mild, no recent antibiotic use: Vancomycin IV. All other situations without severe sepsis or septic shock: Ceftriaxone IV (1st) PLUS Vancomycin IV. If Severe sepsis or septic shock: Piperacillin-tazobactam IV (1st) PLUS Vancomycin IV."
+        },
+        {
+          "pcp_allergy_status": "Mild to moderate PCN allergy",
+          "regimen": "Mild, no recent antibiotic use: Vancomycin IV. All other situations without severe sepsis or septic shock: Ceftriaxone IV (1st) PLUS Vancomycin IV. If Severe sepsis or septic shock: Cefepime IV (1st) PLUS Vancomycin IV PLUS Metronidazole IV/PO."
+        },
+        {
+          "pcp_allergy_status": "Severe PCN Allergy",
+          "regimen": "Mild, no recent antibiotic use: Vancomycin IV. All other situations: Vancomycin IV (1st) PLUS Aztreonam IV PLUS Metronidazole IV/PO. If patient with hx of SJS/DRESS: Vancomycin IV (1st) AND CONSULT INFECTIOUS DISEASES for guidance on gram negative coverage."
+        }
+      ]
+    },
+    {
+      "infection": "Bite wounds (human, dog, cat)",
+      "note": "Consult ID for all other bite wounds. Thorough wound irrigation and examination. Evaluation for tetanus and/or rabies post-exposure prophylaxis. Consider antibiotic prophylaxis when: Deep wounds (cat bites, Bone or Joint penetration), Wounds of face, hands or genitals, Immunocompromised, asplenia, Wound is adjacent to prosthetic material.",
+      "sub_groups": [
+        {
+          "group": "Prophylaxis",
+          "duration": "3-5 days"
+        },
+        {
+          "group": "Mild infection",
+          "duration": "5-7 days"
+        },
+        {
+          "group": "Severe/complicated infection",
+          "duration": "7-14 days - Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed."
+        }
+      ],
+      "empiric_regimens": [
+        {
+          "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+          "regimen": "Amoxicillin-clavulanate PO. If unable to take oral agent: Ampicillin-sulbactam IV."
+        },
+        {
+          "pcp_allergy_status": "Mild to moderate PCN allergy",
+          "regimen": "Metronidazole PO PLUS of the following: Doxycycline PO OR TMP/SMX PO OR Levofloxacin PO. If unable to take oral agent: Ceftriaxone IV PLUS Metronidazole IV."
+        },
+        {
+          "pcp_allergy_status": "Severe PCN Allergy",
+          "regimen": "Metronidazole PO PLUS of the following: Doxycycline PO OR TMP/SMX PO OR Levofloxacin PO. If unable to take oral agent: Doxycycline IV PLUS Metronidazole IV OR Levofloxacin IV PLUS Metronidazole IV."
+        }
+      ]
+    },
+    {
+      "infection": "Septic arthritis",
+      "note": "Collection of synovial fluid gram stain and cultures should occur prior to the administration of antibiotics. Therapy should be tailored based on gram stain, culture, and sensitivities.",
+      "duration_note": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+      "sub_sections": [
+        {
+          "type": "Atraumatic bacterial arthritis (See below if persons who injects drugs (PWID), severe sepsis or septic shock)",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "Vancomycin IV (1st). For vancomycin allergy: Linezolid IV/PO OR Daptomycin IV."
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "Vancomycin IV (1st). For vancomycin allergy: Linezolid IV/PO OR Daptomycin IV."
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "Vancomycin IV (1st). For vancomycin allergy: Linezolid IV/PO OR Daptomycin IV."
+            }
+          ]
+        },
+        {
+          "type": "Traumatic bacterial arthritis, PWID, Severe sepsis or septic shock, Immunocompromised patients, Prosthetic joint infection",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "Ceftriaxone IV (1st) PLUS Vancomycin IV OR Cefepime IV (1st) PLUS Vancomycin IV (for Immunocompromised patients)."
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "Ceftriaxone IV (1st) PLUS Vancomycin IV OR Cefepime IV (1st) PLUS Vancomycin IV (for Immunocompromised patients)."
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "Aztreonam IV (1st) PLUS Vancomycin IV."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "infection": "Meningitis",
+      "note": "Strongly encourage urgent lumbar puncture (LP), however antibiotics should NOT be withheld. ID consult highly recommended for the management of meningitis.",
+      "duration_note": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+      "sub_sections": [
+        {
+          "type": "Community acquired",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "Ceftriaxone IV (1st) PLUS Vancomycin IV. ADD ampicillin IV for listeria if: >50 years old, History of transplant, HIV and other immunocompromised patient. Consider adding dexamethasone 0.15 mg/kg IV with the first dose administered 10-20 minutes before, or at least concomitant with, the first dose of antimicrobial therapy in adults with suspected or proven pneumococcal meningitis. For vancomycin allergy: Initiate ceftriaxone as above AND CONSULT INFECTIOUS DISEASES. Consider acyclovir IV based on clinical presentation and CSF results."
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "Ceftriaxone IV (1st) PLUS Vancomycin IV. ADD TMP/SMX IV for listeria if: >50 years old, History of transplant, HIV and other immunocompromised patient. If listeria coverage needed, and TMP/SMX contraindicated: Meropenem IV PLUS Vancomycin IV. For vancomycin allergy: Initiate ceftriaxone as above AND CONSULT INFECTIOUS DISEASES. Consider acyclovir IV based on clinical presentation and CSF results."
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "Patients without hx of SJS/DRESS: Meropenem IV (1st) PLUS Vancomycin IV AND CONSULT INFECTIOUS DISEASES. Patients with hx of SJS/DRESS: Vancomycin IV (1st) PLUS Ciprofloxacin IV. ADD TMP/SMX IV for listeria if: >50 years old, History of transplant, HIV and other immunocompromised patient (if Ciprofloxacin is used AND CONSULT INFECTIOUS DISEASES). For vancomycin allergy: Initiate meropenem or ciprofloxacin as above AND CONSULT INFECTIOUS DISEASES. Consider acyclovir IV based on clinical presentation and CSF results."
+            }
+          ]
+        },
+        {
+          "type": "Healthcare associated/Ventriculitis",
+          "empiric_regimens": [
+            {
+              "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+              "regimen": "Cefepime IV (1st) PLUS Vancomycin IV. For vancomycin allergy: Initiate cefepime as above AND CONSULT INFECTIOUS DISEASES."
+            },
+            {
+              "pcp_allergy_status": "Mild to moderate PCN allergy",
+              "regimen": "Cefepime IV (1st) PLUS Vancomycin IV. For vancomycin allergy: Initiate cefepime as above AND CONSULT INFECTIOUS DISEASES."
+            },
+            {
+              "pcp_allergy_status": "Severe PCN Allergy",
+              "regimen": "Aztreonam IV (1st) PLUS Vancomycin IV AND CONSULT INFECTIOUS DISEASES. For vancomycin allergy: Initiate aztreonam as above AND CONSULT INFECTIOUS DISEASES."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "infection": "Neutropenic Fever",
+      "definition": "Absolute Neutrophil Count (ANC) of less than 500, or ANC 1000 with an expectation that the ANC will drop below 500 within 48 hours. Please also see TUH INC MM Guidelines 37-Febrile Neutropenia Empiric Treatment Guideline.",
+      "duration_note": "Duration depends on the infectious source and ANC recovery. Please consult infectious diseases if assistance needed.",
+      "empiric_regimens": [
+        {
+          "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+          "regimen": "Cefepime IV (1st) OR Piperacillin-tazobactam IV. Consider Vancomycin IV if: Suspicion of PNA, SSTI, line infection, Hemodynamic instability, History of MRSA or PCN/Ceph resistant pneumococci. Consider Tobramycin IV if: Septic shock (5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20). Consider: metronidazole IV/PO if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess."
+        },
+        {
+          "pcp_allergy_status": "Mild to moderate PCN allergy",
+          "regimen": "Cefepime IV (1st). Consider Vancomycin IV if: Suspicion of PNA, SSTI, line infection, Hemodynamic instability, History of MRSA or PCN/Ceph resistant pneumococci. Consider Tobramycin IV if: Septic shock (5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20). Consider: metronidazole IV/PO if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess."
+        },
+        {
+          "pcp_allergy_status": "Severe PCN Allergy",
+          "regimen": "Aztreonam IV (1st) PLUS Vancomycin IV. Consider Tobramycin IV if: Septic shock (5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20). Consider: metronidazole IV/PO if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess. If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: History of severe IgE mediated PCN reactions (Benefit of using carbapenem should be weighed), History of non-IgE mediated PCN reactions (SJS/DRESS) (discuss with ID)."
+        }
+      ]
+    },
+    {
+      "infection": "Central Line Infection",
+      "note": "Consider removal of lines whenever feasible. Keep in mind other sources of infection and review those guidelines in order to provide best empirical therapy.",
+      "duration_note": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+      "empiric_regimens": [
+        {
+          "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+          "regimen": "Cefepime IV (1st) PLUS Vancomycin IV OR Piperacillin-tazobactam IV (1st) PLUS Vancomycin IV. Consider Micafungin IV If the patient receives TPN via central line for >7days."
+        },
+        {
+          "pcp_allergy_status": "Mild to moderate PCN allergy",
+          "regimen": "Cefepime IV (1st) PLUS Vancomycin IV. Consider Micafungin IV If the patient receives TPN via central line for >7days."
+        },
+        {
+          "pcp_allergy_status": "Severe PCN Allergy",
+          "regimen": "Aztreonam IV (1st) PLUS Vancomycin IV. Consider Micafungin IV If the patient receives TPN via central line for >7days."
+        }
+      ]
+    },
+    {
+      "infection": "Sepsis of Unknown origin",
+      "note": "This section is for unknown source only. (1st) indicates the medication that should be given first by nursing staff to be compliant with sepsis core measures.",
+      "duration_note": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+      "empiric_regimens": [
+        {
+          "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
+          "regimen": "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV OR Piperacillin-tazobactam IV (1st) PLUS Vancomycin IV PLUS Metronidazole IV/PO. Consider Tobramycin IV** if: Septic shock (**5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20)."
+        },
+        {
+          "pcp_allergy_status": "Mild to moderate PCN allergy",
+          "regimen": "Cefepime IV (1st) PLUS Vancomycin IV PLUS Metronidazole IV/PO. Consider Tobramycin IV** if: Septic shock."
+        },
+        {
+          "pcp_allergy_status": "Severe PCN Allergy",
+          "regimen": "Aztreonam IV (1st) PLUS Vancomycin IV PLUS Metronidazole IV/PO. Consider Tobramycin IV** if: Septic shock."
+        }
+      ]
+    }
+  ],
+  "dosing_and_renal_adjustment": {
+    "calculation_notes": {
+      "CrCl_formula": "[(140-age) x weight*] / [72 x SCr] (x0.85 if female)",
+      "weight_use": "*weight: Use IBW unless a) TBW<IBW → use TBW or b) TBW is >120%IBW → use AdjBW. eGFR is typically NOT recommended for drug dosing unless noted otherwise.",
+      "CVVHDF_note": "Literature on dosing for CVVHDF is limited. Consider the severity/site of infection and the toxicity profile of the drug to determine dosing, and consider TDM (therapeutic drug monitoring) if available."
+    },
+    "renal_dosing_table": [
+      {
+        "drug": "Acyclovir IV (HSV encephalitis/meningitis or Varicella or Herpes Zoster infection, If BMI ≥35 kg/m² use AdjBW)",
+        "ed_once_dose": "10 mg/kg",
+        "crcl_gt_50": "10 mg/kg q8h",
+        "crcl_50_30": "10 mg/kg q12h",
+        "crcl_29_10": "10 mg/kg q24h",
+        "crcl_lt_10_no_hd": "5 mg/kg q24h",
+        "hd": "5 mg/kg q24h AD",
+        "cvvhdf": "10 mg/kg q12h"
+      },
+      {
+        "drug": "Amoxicillin/Clavulanate PO (Standard dose: 875 mg)",
+        "ed_once_dose": "Standard dose",
+        "crcl_gt_50": "875mg q12h or 500mg q8h",
+        "crcl_50_30": "250-500mg q12h",
+        "crcl_29_10": "500mg q24h AD or 250-500mg q24h",
+        "crcl_lt_10_no_hd": "",
+        "hd": "500 mg q12h",
+        "cvvhdf": "No data"
+      },
+      {
+        "drug": "Ampicillin IV (Standard dose: 2 gram)",
+        "ed_once_dose": "Standard dose",
+        "crcl_gt_50": "1-2g q8h or 1-2g q6h",
+        "crcl_50_30": "1-2g q12h",
+        "crcl_29_10": "1-2g q24h AD or 1-2g q24h",
+        "crcl_lt_10_no_hd": "",
+        "hd": "1-2g q8h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ampicillin IV (Meningitis dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q6h or 2g q4h",
+        "crcl_50_30": "2g q8h",
+        "crcl_29_10": "2g q12h AD or 2g q12h",
+        "crcl_lt_10_no_hd": "",
+        "hd": "2g q6h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ampicillin/Sulbactam IV (Standard dose: 1.5-3 gram)",
+        "ed_once_dose": "Standard dose",
+        "crcl_gt_50": "1.5g q6h or 1.5-3g q6h or 3g q8h",
+        "crcl_50_30": "1.5-3g q12h",
+        "crcl_29_10": "1.5g q12h AD or 1.5-3g q24h or 3g q24h AD",
+        "crcl_lt_10_no_hd": "",
+        "hd": "1.5-3g q8h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ampicillin/Sulbactam IV (High dose regimen for Carbapenem resistant Acinetobacter spp. infections: 9 gram over 4 hours)",
+        "ed_once_dose": "9 gram over 4 hours",
+        "crcl_gt_50": "9g q8h over 4 hours (CrCl 50-60 is a gray zone. Can be dosed as >60 or 30-60.)",
+        "crcl_50_30": "6g q8h over 4 hours",
+        "crcl_29_10": "4.5g q12h over 4 hours",
+        "crcl_lt_10_no_hd": "CrCl <30 (6g q8h over 4 hours - no data)",
+        "hd": "",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Azithromycin IV/PO (Standard dose: 500 mg)",
+        "ed_once_dose": "500 mg",
+        "crcl_gt_50": "3-day regimen: 500mg q24h. 5-day regimen: 500mg q24h x 1day, then 250mg q24h x 4 days",
+        "crcl_50_30": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)",
+        "crcl_29_10": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)",
+        "hd": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)",
+        "cvvhdf": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)"
+      },
+      {
+        "drug": "Aztreonam IV (Mild to moderate systemic infections/UTI - Standard dose: 1 gram)",
+        "ed_once_dose": "1 gram",
+        "crcl_gt_50": "1g q8-12h",
+        "crcl_50_30": "1g q12h",
+        "crcl_29_10": "1g q24h AD or 1g q24h",
+        "crcl_lt_10_no_hd": "500mg q12h AD or 500mg q12h",
+        "hd": "1g q12h",
+        "cvvhdf": "1g q12h"
+      },
+      {
+        "drug": "Aztreonam IV (Serious systemic gram-negative infections including Pseudomonas aeruginosa - Standard dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q8h",
+        "crcl_50_30": "2g q12h",
+        "crcl_29_10": "2g q24h AD or 2g q24h or 1g q12h AD or 1g q12h",
+        "crcl_lt_10_no_hd": "2g q8h",
+        "hd": "2g q12h or 1gm q8h",
+        "cvvhdf": "2g q12h or 1gm q8h"
+      },
+      {
+        "drug": "Aztreonam IV (Meningitis - Standard dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q6h",
+        "crcl_50_30": "2g q8h",
+        "crcl_29_10": "2g q12h AD or 2g q12h",
+        "crcl_lt_10_no_hd": "2g q8h",
+        "hd": "2g q6-8h",
+        "cvvhdf": "2g q8h"
+      },
+      {
+        "drug": "Cefazolin IV (Standard dose: 1-2 gram)",
+        "ed_once_dose": "1-2 gram",
+        "crcl_gt_50": "1-2g q8h",
+        "crcl_50_30": "1g q8h",
+        "crcl_29_10": "1g q12h",
+        "crcl_lt_10_no_hd": "1g q24h",
+        "hd": "1g q24h AD or 2g after each HD (Can give 3g AD if next HD to occur in 3 days)",
+        "cvvhdf": "1g q8h or 2g q12h"
+      },
+      {
+        "drug": "Cefepime IV (Standard dose: 2 gram over 30 minutes)",
+        "ed_once_dose": "2 gram over 30 minutes",
+        "crcl_gt_50": "1g q8h",
+        "crcl_50_30": "1g q12h",
+        "crcl_29_10": "1g q24h",
+        "crcl_lt_10_no_hd": "1g q6h",
+        "hd": "2g loading dose, followed by: 1g q24h AD or 2g after each HD",
+        "cvvhdf": "1g q8h"
+      },
+      {
+        "drug": "Cefepime IV (Neutropenic fever, CNS infections - Standard dose: 2 gram over 30 minutes)",
+        "ed_once_dose": "2 gram over 30 minutes",
+        "crcl_gt_50": "2g q8h",
+        "crcl_50_30": "2g q12h",
+        "crcl_29_10": "2g q24h",
+        "crcl_lt_10_no_hd": "1g q24h",
+        "hd": "2g loading dose, followed by: 1g q24h AD or 2g after each HD",
+        "cvvhdf": "2g q12h"
+      },
+      {
+        "drug": "Cefepime IV (Intensive pharmacodynamically optimized dosing - 2g loading dose over 30 min, then infused over 4 hours)",
+        "ed_once_dose": "2g loading dose over 30 min",
+        "crcl_gt_50": "2g q8h over 4 hrs",
+        "crcl_50_30": "2g q12h over 4 hrs",
+        "crcl_29_10": "2g q24h over 4 hrs",
+        "crcl_lt_10_no_hd": "1g q24h over 4 hrs",
+        "hd": "1g q24h AD or 2g after each HD over 4 hrs",
+        "cvvhdf": "2g q12h over 4 hrs"
+      },
+      {
+        "drug": "Cefpodoxime PO (Standard dose: 200 mg)",
+        "ed_once_dose": "200 mg",
+        "crcl_gt_50": "200mg q12h",
+        "crcl_50_30": "200mg q12h",
+        "crcl_29_10": "200mg q24h",
+        "crcl_lt_10_no_hd": "200mg q24h",
+        "hd": "daily or 200mg 3x/wk AD",
+        "cvvhdf": "No data"
+      },
+      {
+        "drug": "Ceftriaxone IV (Standard dose: 1-2 gram)",
+        "ed_once_dose": "1-2 gram",
+        "crcl_gt_50": "1-2g q24h",
+        "crcl_50_30": "1-2g q24h",
+        "crcl_29_10": "1-2g q24h",
+        "crcl_lt_10_no_hd": "1-2g q24h",
+        "hd": "1-2g q24h AD",
+        "cvvhdf": "2g q24h"
+      },
+      {
+        "drug": "Ceftriaxone IV (Meningitis, Enterococcal infective endocarditis - Standard dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q12h",
+        "crcl_50_30": "NO RENAL ADJUSTMENT NECESSARY",
+        "crcl_29_10": "NO RENAL ADJUSTMENT NECESSARY",
+        "crcl_lt_10_no_hd": "NO RENAL ADJUSTMENT NECESSARY",
+        "hd": "2g q12h AD",
+        "cvvhdf": "2g q12h"
+      },
+      {
+        "drug": "Cephalexin PO (Uncomplicated Urinary Tract Infections - Standard dose: 500 mg)",
+        "ed_once_dose": "500 mg",
+        "crcl_gt_50": "500mg q12h",
+        "crcl_50_30": "500mg q12h",
+        "crcl_29_10": "500mg q24h",
+        "crcl_lt_10_no_hd": "500mg q24h AD",
+        "hd": "Consider alternative agent",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin IV (Uncomplicated Urinary Tract Infections - Standard dose: 200 mg)",
+        "ed_once_dose": "200 mg",
+        "crcl_gt_50": "200mg q12h",
+        "crcl_50_30": "200mg q12h",
+        "crcl_29_10": "200mg q24h",
+        "crcl_lt_10_no_hd": "200mg q24h AD",
+        "hd": "200mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin IV (Standard dose: 400 mg)",
+        "ed_once_dose": "400 mg",
+        "crcl_gt_50": "400mg q12h",
+        "crcl_50_30": "400mg q12h",
+        "crcl_29_10": "400mg q24h",
+        "crcl_lt_10_no_hd": "400mg q24h AD",
+        "hd": "400mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin IV (Severe systemic infection including Pseudomonas aeruginosa - Standard dose: 400 mg)",
+        "ed_once_dose": "400 mg",
+        "crcl_gt_50": "400mg q8h",
+        "crcl_50_30": "400mg q12h",
+        "crcl_29_10": "400mg q24h",
+        "crcl_lt_10_no_hd": "400mg q24h AD",
+        "hd": "400mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin PO (Uncomplicated Urinary Tract Infections - Standard dose: 250 mg)",
+        "ed_once_dose": "250 mg",
+        "crcl_gt_50": "250mg q12h",
+        "crcl_50_30": "250mg q12h",
+        "crcl_29_10": "250mg q24h",
+        "crcl_lt_10_no_hd": "250mg q24h AD",
+        "hd": "250mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin PO (Standard dose: 500 mg)",
+        "ed_once_dose": "500 mg",
+        "crcl_gt_50": "500mg q12h",
+        "crcl_50_30": "500mg q12h",
+        "crcl_29_10": "500mg q24h",
+        "crcl_lt_10_no_hd": "500mg q24h AD",
+        "hd": "500mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin PO (Severe systemic infection including Pseudomonas aeruginosa - Standard dose: 750 mg)",
+        "ed_once_dose": "750 mg",
+        "crcl_gt_50": "750mg q12h",
+        "crcl_50_30": "750mg q12h",
+        "crcl_29_10": "750mg q24h",
+        "crcl_lt_10_no_hd": "750mg q24h AD",
+        "hd": "750mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Clindamycin IV (Standard dose: 600 mg)",
+        "ed_once_dose": "600 mg",
+        "crcl_gt_50": "600mg q8h",
+        "crcl_50_30": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_29_10": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "cvvhdf": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)"
+      },
+      {
+        "drug": "Clindamycin IV (Maximum dose: 900 mg)",
+        "ed_once_dose": "900 mg",
+        "crcl_gt_50": "900mg q8h",
+        "crcl_50_30": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_29_10": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "cvvhdf": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)"
+      },
+      {
+        "drug": "Clindamycin PO (Standard dose: 300-450 mg)",
+        "ed_once_dose": "300-450 mg",
+        "crcl_gt_50": "300-450mg q6-8h",
+        "crcl_50_30": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_29_10": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "cvvhdf": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)"
+      },
+      {
+        "drug": "Daptomycin IV (Skin and soft tissue infection, simple cystitis - 4 mg/kg. If BMI ≥35 kg/m² use AdjBW)",
+        "ed_once_dose": "4 mg/kg",
+        "crcl_gt_50": "4 mg/kg q24h",
+        "crcl_50_30": "4 mg/kg q24h",
+        "crcl_29_10": "4 mg/kg q48h",
+        "crcl_lt_10_no_hd": "4 mg/kg q48h",
+        "hd": "4 mg/kg q48h AD or 4 mg/kg after each HD",
+        "cvvhdf": "4 mg/kg q48h"
+      },
+      {
+        "drug": "Daptomycin IV (Bacteremia - 6 mg/kg)",
+        "ed_once_dose": "6 mg/kg",
+        "crcl_gt_50": "6 mg/kg q24h",
+        "crcl_50_30": "6 mg/kg q24h",
+        "crcl_29_10": "6 mg/kg q48h",
+        "crcl_lt_10_no_hd": "6 mg/kg q48h",
+        "hd": "6 mg/kg q48h AD or 6 mg/kg after each HD (Can give 9mg/kg AD if next HD to occur in 3 days)",
+        "cvvhdf": "6 mg/kg q24h"
+      },
+      {
+        "drug": "Doxycycline IV/PO (Standard dose: 100 mg)",
+        "ed_once_dose": "100 mg",
+        "crcl_gt_50": "100mg q12h",
+        "crcl_50_30": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_29_10": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "cvvhdf": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)"
+      },
+      {
+        "drug": "Ertapenem IV (Standard dose: 1 gram)",
+        "ed_once_dose": "1 gram",
+        "crcl_gt_50": "1gm q24h",
+        "crcl_50_30": "1gm q24h",
+        "crcl_29_10": "500mg q24h",
+        "crcl_lt_10_no_hd": "500mg q24h",
+        "hd": "500mg q24h AD or 1gm 3x/wk (off label)",
+        "cvvhdf": "1gm q24h (Limited data)"
+      },
+      {
+        "drug": "Fosfomycin PO (Uncomplicated cystitis - 3 gram PO. >3 doses requires ID approval)",
+        "ed_once_dose": "3 gram PO",
+        "crcl_gt_50": "3g x 1 dose",
+        "crcl_50_30": "3g x 1 dose",
+        "crcl_29_10": "3g x 1 dose",
+        "crcl_lt_10_no_hd": "3g x 1 dose",
+        "hd": "3g x 1 dose",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Fosfomycin PO (Complicated cystitis - 3 gram PO. Off-label)",
+        "ed_once_dose": "3 gram PO",
+        "crcl_gt_50": "3g every other day x 3 doses",
+        "crcl_50_30": "3g every other day x 3 doses",
+        "crcl_29_10": "3g every other day x 3 doses",
+        "crcl_lt_10_no_hd": "3g every other day x 3 doses",
+        "hd": "3g every other day x 3 doses",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Levofloxacin IV/PO (750mg based regimen)",
+        "ed_once_dose": "750 mg IV/PO",
+        "crcl_gt_50": "750mg q24h",
+        "crcl_50_30": "750mg x1, then 750mg q48h",
+        "crcl_29_10": "750mg x1, then 500mg q48h AD or 250mg q24h",
+        "crcl_lt_10_no_hd": "CrCl <20, on HD (750mg x1, then 500mg q48h AD or 250mg q24h)",
+        "hd": "CrCl <20, on HD (750mg x1, then 500mg q48h AD or 250mg q24h)",
+        "cvvhdf": "750mg q24h"
+      },
+      {
+        "drug": "Levofloxacin IV/PO (500mg based regimen)",
+        "ed_once_dose": "500 mg IV/PO",
+        "crcl_gt_50": "500mg q24h",
+        "crcl_50_30": "500mg x1, then 250mg q24h",
+        "crcl_29_10": "500mg x1, then 250mg q48h AD",
+        "crcl_lt_10_no_hd": "CrCl <20, on HD (500mg x1, then 250mg q48h AD)",
+        "hd": "CrCl <20, on HD (500mg x1, then 250mg q48h AD)",
+        "cvvhdf": "500mg q24h"
+      },
+      {
+        "drug": "Levofloxacin IV/PO (250mg based regimen)",
+        "ed_once_dose": "250 mg IV/PO",
+        "crcl_gt_50": "250mg q24h",
+        "crcl_50_30": "250mg q24h",
+        "crcl_29_10": "250mg q48h AD",
+        "crcl_lt_10_no_hd": "CrCl <20, on HD (250mg q48h AD)",
+        "hd": "CrCl <20, on HD (250mg q48h AD)",
+        "cvvhdf": "250mg q24h"
+      },
+      {
+        "drug": "Linezolid IV/PO (Standard dose: 600 mg IV/PO)",
+        "ed_once_dose": "600 mg IV/PO",
+        "crcl_gt_50": "600mg q12h",
+        "crcl_50_30": "600mg q12h",
+        "crcl_29_10": "NO RENAL ADJUSTMENT NECESSARY",
+        "crcl_lt_10_no_hd": "NO RENAL ADJUSTMENT NECESSARY",
+        "hd": "600mg q12h AD",
+        "cvvhdf": "600mg q12h"
+      },
+      {
+        "drug": "Meropenem IV (Standard dose: 1 gram)",
+        "ed_once_dose": "1 gram",
+        "crcl_gt_50": "1g q8h",
+        "crcl_50_30": "1g q12h",
+        "crcl_29_10": "500mg q12h",
+        "crcl_lt_10_no_hd": "500mg q24h",
+        "hd": "500mg q24h AD",
+        "cvvhdf": "1g q8-12h"
+      },
+      {
+        "drug": "Meropenem IV (Meningitis, Treatment of Gram-negative organisms with meropenem mic=2 - Standard dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q8h",
+        "crcl_50_30": "2g q12h",
+        "crcl_29_10": "1g q12h",
+        "crcl_lt_10_no_hd": "1g q24h",
+        "hd": "1g q24h AD",
+        "cvvhdf": "2g q8-12h"
+      },
+      {
+        "drug": "Metronidazole IV/PO (General anaerobic coverage: 500 mg IV/PO)",
+        "ed_once_dose": "500 mg IV/PO",
+        "crcl_gt_50": "500mg q12h",
+        "crcl_50_30": "500mg q12h",
+        "crcl_29_10": "500mg q12h",
+        "crcl_lt_10_no_hd": "500mg q12h",
+        "hd": "500mg q12h AD",
+        "cvvhdf": "500mg q12h"
+      },
+      {
+        "drug": "Metronidazole IV/PO (C. difficile, H. pylori, CNS infections, Amebiasis: 500 mg IV/PO)",
+        "ed_once_dose": "500 mg IV/PO",
+        "crcl_gt_50": "500mg q8h",
+        "crcl_50_30": "500mg q8h",
+        "crcl_29_10": "500mg q8h",
+        "crcl_lt_10_no_hd": "500mg q8h",
+        "hd": "500mg q8h AD",
+        "cvvhdf": "500mg q8h"
+      },
+      {
+        "drug": "Micafungin IV (Standard dose: 100-150 mg q24h)",
+        "ed_once_dose": "100-150 mg q24h",
+        "crcl_gt_50": "100mg q24h",
+        "crcl_50_30": "100mg q24h",
+        "crcl_29_10": "100mg q24h",
+        "crcl_lt_10_no_hd": "100mg q24h",
+        "hd": "100mg q24h",
+        "cvvhdf": "CRRT data is limited and conflicting. Weigh risks and benefits."
+      },
+      {
+        "drug": "Nitrofurantoin SR (MacroBID™) (Standard dose: 100 mg q12h)",
+        "ed_once_dose": "100 mg",
+        "crcl_gt_50": "100mg q12h",
+        "crcl_50_30": "CONTRAINDICATED in CrCl ≤60ml/min",
+        "crcl_29_10": "CONTRAINDICATED in CrCl ≤60ml/min",
+        "crcl_lt_10_no_hd": "CONTRAINDICATED in CrCl ≤60ml/min",
+        "hd": "CONTRAINDICATED in CrCl ≤60ml/min",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Piperacillin/tazobactam IV (Extended infusion - Loading dose: 4.5gm over 30min x1)",
+        "ed_once_dose": "4.5 gram over 30 minutes",
+        "crcl_gt_50": "CrCl ≥220: 3.375g q8h, infuse over 4 hours (CrCl 50-220 is a gray zone. Use clinical judgement.)",
+        "crcl_50_30": "CrCl 50-220: 3.375g q8h, infuse over 4 hours (CrCl 50-220 is a gray zone. Use clinical judgement.)",
+        "crcl_29_10": "4.5g q12h, infuse over 30min",
+        "crcl_lt_10_no_hd": "CrCl <20: Refer to HD dosing",
+        "hd": "4.5g q8h, infuse over 30min",
+        "cvvhdf": "4.5g q12h, infuse over 30min"
+      },
+      {
+        "drug": "Piperacillin/tazobactam IV (Intermittent infusion)",
+        "ed_once_dose": "4.5 gram over 30 minutes",
+        "crcl_gt_50": "4.5g q6h, infuse over 30min",
+        "crcl_50_30": "4.5g q8h, infuse over 30min",
+        "crcl_29_10": "4.5g q12h, infuse over 30min",
+        "crcl_lt_10_no_hd": "CrCl <20: Refer to HD dosing",
+        "hd": "4.5g q8h, infuse over 30min",
+        "cvvhdf": "4.5g q12h, infuse over 30min"
+      },
+      {
+        "drug": "Trimethoprim/sulfamethoxazole (TMP/SMX) IV (PCP treatment - Dose based on TMP component)",
+        "ed_once_dose": "Calculate daily dose & divide by 2-4 (max 500mg TMP)",
+        "crcl_gt_50": "15-20mg/kg/DAY divided q6-8h x 48h, then 7-10mg/kg/day divided q12-24h",
+        "crcl_50_30": "CrCl 15-30: 7-10mg/kg/DAY divided q6-12h",
+        "crcl_29_10": "CrCl 15-30: 7-10mg/kg/DAY divided q6-12h",
+        "crcl_lt_10_no_hd": "CrCl <15: 7-10mg/kg/DAY divided q12-24h",
+        "hd": "15-20mg/kg/DAY divided q6-12h or 5mg/kg q24h AD",
+        "cvvhdf": "10-15mg/kg/DAY divided q6-12h (Limited data)"
+      },
+      {
+        "drug": "Trimethoprim/sulfamethoxazole (TMP/SMX) IV (Other indications - Dose based on TMP component)",
+        "ed_once_dose": "If renal function unknown, give 5mg/kg (max 500mg TMP)",
+        "crcl_gt_50": "8-12mg/kg/DAY divided q6-12h",
+        "crcl_50_30": "CrCl 30-15: 8-12mg/kg/DAY divided q12h x 48h, then 4-6mg/kg/day divided q12-24h",
+        "crcl_29_10": "CrCl 30-15: 8-12mg/kg/DAY divided q12h x 48h, then 4-6mg/kg/day divided q12-24h",
+        "crcl_lt_10_no_hd": "CrCl <15: 4-6mg/kg/DAY divided q12-24h",
+        "hd": "4-6mg/kg after each HD or 2.5mg/kg q24h AD",
+        "cvvhdf": "8-10mg/kg/DAY divided q6-12h (Limited data)"
+      },
+      {
+        "drug": "Trimethoprim/sulfamethoxazole (TMP/SMX) PO (Urinary Tract Infection, AECOPD, SSTI - Standard dose: 1 DS PO)",
+        "ed_once_dose": "1 DS PO",
+        "crcl_gt_50": "TBW ≤90 kg: 1 DS q12h. TBW >90 kg: 2DS q12h.",
+        "crcl_50_30": "TBW ≤90 kg: 1 DS q12h. TBW >90 kg: 2DS q12h.",
+        "crcl_29_10": "CrCl 30-15: 1 SS q12h. CrCl <15: Generally not recommended (1 SS-DS q24h - Limited data).",
+        "crcl_lt_10_no_hd": "CrCl 30-15: 1 SS q12h. CrCl <15: Generally not recommended (1 SS-DS q24h - Limited data).",
+        "hd": "1 SS-DS q24h AD",
+        "cvvhdf": "1 DS q12h (Limited data)"
+      }
+    ]
+  },
+  "vancomycin_loading_dose": {
+    "reference": "For full vancomycin dosing and monitoring information, please refer to TUH-ADMIN-MM-GUIDELINES-20",
+    "pharmacist_option": "Providers have an option to order 'pharmacy to dose vancomycin' to authorize the pharmacists to assume the responsibility of IV vancomycin dosing as per TUH INC-ADMIN-MM-980.8718",
+    "loading_dose_principle": "If patient has not received vancomycin doses within the last 24 hours, administer a one-time loading dose (~20-25 mg/kg, max 2500 mg) to achieve therapeutic serum concentrations rapidly. Loading doses should not be withheld due to impaired renal function.",
+    "higher_dose_criteria": "Higher end of the loading dose (25 mg/kg) is recommended in patients who meet one of the following criteria: Admitted to the intensive care unit with sepsis or septic shock, Currently receiving extracorporeal membrane oxygenation (ECMO), Augmented renal clearance (CrCl >120 mL/min + SCr <0.6 mg/dL + age <40).",
+    "lower_dose_criteria": "Lower end of the loading dose (20 mg/kg) is recommended for all other patients, however 25 mg/kg loading dose can also be considered based on clinical judgement.",
+    "loading_dose_table": [
+      {
+        "actual_weight_kg": "30-31",
+        "loading_dose_mg": "500-750",
+        "infusion_time_minutes": "60"
+      },
+      {
+        "actual_weight_kg": "32-34",
+        "loading_dose_mg": "750",
+        "infusion_time_minutes": "60"
+      },
+      {
+        "actual_weight_kg": "35-43",
+        "loading_dose_mg": "750-1000",
+        "infusion_time_minutes": "60"
+      },
+      {
+        "actual_weight_kg": "44",
+        "loading_dose_mg": "1000",
+        "infusion_time_minutes": "60"
+      },
+      {
+        "actual_weight_kg": "45-54",
+        "loading_dose_mg": "1000-1250",
+        "infusion_time_minutes": "60-90"
+      },
+      {
+        "actual_weight_kg": "55-56",
+        "loading_dose_mg": "1000-1500",
+        "infusion_time_minutes": "60-90"
+      },
+      {
+        "actual_weight_kg": "57-64",
+        "loading_dose_mg": "1250-1500",
+        "infusion_time_minutes": "90"
+      },
+      {
+        "actual_weight_kg": "65-68",
+        "loading_dose_mg": "1250-1750",
+        "infusion_time_minutes": "90-120"
+      },
+      {
+        "actual_weight_kg": "69-74",
+        "loading_dose_mg": "1500-1750",
+        "infusion_time_minutes": "90-120"
+      },
+      {
+        "actual_weight_kg": "75-81",
+        "loading_dose_mg": "1500-2000",
+        "infusion_time_minutes": "90-120"
+      },
+      {
+        "actual_weight_kg": "82-89",
+        "loading_dose_mg": "1750-2000",
+        "infusion_time_minutes": "120"
+      },
+      {
+        "actual_weight_kg": "90-93",
+        "loading_dose_mg": "1750-2500",
+        "infusion_time_minutes": "120-150"
+      },
+      {
+        "actual_weight_kg": "94-112",
+        "loading_dose_mg": "2000-2500",
+        "infusion_time_minutes": "120-150"
+      },
+      {
+        "actual_weight_kg": ">112",
+        "loading_dose_mg": "2500",
+        "infusion_time_minutes": "150"
+      }
+    ]
+  },
+  "revision_history": [
+    {
+      "date": "12/14/21",
+      "change": "Meningitis: Add guidance to consult ID for vancomycin allergy"
+    },
+    {
+      "date": "3/4/22",
+      "change": "Add dosing information column for one time doses in ED"
+    },
+    {
+      "date": "3/4/22",
+      "change": "Revise zosyn dosing recommendation to include 4.5gm loading dose"
+    },
+    {
+      "date": "5/11/22",
+      "change": "Add cefepime/vancomycin/metronidazole/clindamycin regimen to NSTI, no PCN allergy"
+    },
+    {
+      "date": "6/10/22",
+      "change": "Update renal dosing recommendations to align with recent update to the institutional renal dosing guideline"
+    },
+    {
+      "date": "4/23/2024",
+      "change": [
+        "Add PEN-FAST score as a criteria for mild to moderate PCN allergy",
+        "CAP-Comment on azithromycin duration",
+        "HAP/VAP - Comment on azithromycin duration, ultra short course, modification of risk factors",
+        "UTI-comment about shorter duration",
+        "HA-IAI-emphasis on VRE coverage in severe sepsis or septic shock",
+        "SSTI-remove clindamycin for non-purulent cellulitis given increased GAS resistance, addition of injection related cellulitis, emphasis on linezolid-based regimen for NSTI, criteria for gram-positive coverage only for diabetic foot infection, add bite wounds row",
+        "NF-add zosyn based regimen",
+        "Dosing table updated to reflect current version of TUH dosing guideline"
+      ]
+    },
+    {
+      "date": "8/23/2024",
+      "change": "HAP/VAP/CAP w risk factors for Pseudomonas - severe PCN allergy: change levofloxacin or aztreonam to levofloxacin PLUS aztreonam"
+    },
+    {
+      "date": "12/11/2024",
+      "change": "Revision of neutropenic fever - reference link and align definitions"
+    }
+  ]
+}

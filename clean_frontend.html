@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUHS Antibiotic Steward - Simple</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.1/marked.min.js"></script>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .form-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        #results { margin-top: 20px; padding: 15px; border-radius: 5px; }
+        .success { border-color: #28a745; background: #d4edda; }
+        .error { border-color: #dc3545; background: #f8d7da; }
+        .loading { border-color: #ffc107; background: #fff3cd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-3xl font-bold mb-8">TUHS Antibiotic Steward</h1>
+
+        <form id="abxForm" class="space-y-6">
+            <!-- Patient Demographics -->
+            <div class="form-section">
+                <h2 class="text-xl font-semibold mb-4">Patient Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Age</span></label>
+                        <input type="number" id="age" class="input input-bordered" value="65" required>
+                    </div>
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Gender</span></label>
+                        <select id="gender" class="select select-bordered" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Weight (kg)</span></label>
+                        <input type="number" id="weight" class="input input-bordered" value="70" required>
+                    </div>
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">GFR (mL/min)</span></label>
+                        <input type="number" id="gfr" class="input input-bordered" value="80" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location & Infection -->
+            <div class="form-section">
+                <h2 class="text-xl font-semibold mb-4">Clinical Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Location</span></label>
+                        <select id="location" class="select select-bordered" required>
+                            <option value="Ward">Ward</option>
+                            <option value="ICU">ICU</option>
+                            <option value="ED">Emergency Department</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Infection Type</span></label>
+                        <select id="infection_type" class="select select-bordered" required>
+                            <option value="pneumonia">Pneumonia</option>
+                            <option value="uti">Urinary Tract Infection</option>
+                            <option value="skin_soft_tissue">Skin/Soft Tissue</option>
+                            <option value="bacteremia">Bacteremia</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="form-section">
+                <h2 class="text-xl font-semibold mb-4">Additional Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Allergies</span></label>
+                        <input type="text" id="allergies" class="input input-bordered" placeholder="none" value="none">
+                    </div>
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Current Outpatient Antibiotics</span></label>
+                        <input type="text" id="current_outpt_abx" class="input input-bordered" placeholder="none" value="none">
+                    </div>
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Current Inpatient Antibiotics</span></label>
+                        <input type="text" id="current_inp_abx" class="input input-bordered" placeholder="none" value="none">
+                    </div>
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Culture Status</span></label>
+                        <select id="culture_status" class="select select-bordered">
+                            <option value="Pending">Pending</option>
+                            <option value="Available">Available</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-control mt-4">
+                    <label class="label"><span class="label-text">Culture Results/Details</span></label>
+                    <textarea id="culture_details" class="textarea textarea-bordered" rows="2" placeholder="Enter culture results if available"></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex gap-4">
+                <button type="submit" id="submitBtn" class="btn btn-primary flex-1">
+                    Generate Recommendation
+                </button>
+                <button type="button" id="resetBtn" class="btn btn-ghost">
+                    Reset Form
+                </button>
+            </div>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results" class="hidden">
+            <h2 class="text-xl font-semibold mb-4">Recommendation</h2>
+            <div id="resultsContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Form handling
+        document.getElementById('abxForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const resultsDiv = document.getElementById('results');
+            const resultsContent = document.getElementById('resultsContent');
+
+            // Update UI for loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Generating...';
+            resultsDiv.className = 'loading';
+            resultsDiv.classList.remove('hidden');
+            resultsContent.innerHTML = '<p class="text-center">Analyzing patient data and generating recommendation...</p>';
+
+            try {
+                // Collect form data
+                const formData = {
+                    age: document.getElementById('age').value,
+                    gender: document.getElementById('gender').value,
+                    weight_kg: document.getElementById('weight').value,
+                    gfr: document.getElementById('gfr').value,
+                    location: document.getElementById('location').value,
+                    infection_type: document.getElementById('infection_type').value,
+                    allergies: document.getElementById('allergies').value || 'none',
+                    current_outpt_abx: document.getElementById('current_outpt_abx').value || 'none',
+                    current_inp_abx: document.getElementById('current_inp_abx').value || 'none',
+                    culture_results: `${document.getElementById('culture_status').value}: ${document.getElementById('culture_details').value || 'No details'}`.trim()
+                };
+
+                console.log('Sending data:', formData);
+
+                // Make API call
+                const response = await fetch('/api/recommendation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                console.log('Received result:', result);
+
+                // Display results
+                resultsDiv.className = 'success';
+                resultsDiv.classList.remove('hidden');
+
+                const tuhsHtml = marked.parse(result.tuhs_recommendation || 'No recommendation available');
+
+                resultsContent.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="stat">
+                            <div class="stat-title">Category</div>
+                            <div class="stat-value text-primary">${result.category || 'Unknown'}</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-title">TUHS Confidence</div>
+                            <div class="stat-value text-secondary">${Math.round((result.tuhs_confidence || 0) * 100)}%</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-title">Final Confidence</div>
+                            <div class="stat-value text-accent">${Math.round((result.final_confidence || 0) * 100)}%</div>
+                        </div>
+                    </div>
+
+                    <div class="prose max-w-none">
+                        <h3>TUHS Antibiotic Recommendation</h3>
+                        ${tuhsHtml}
+                    </div>
+
+                    ${result.reputable_sources && result.reputable_sources.length > 0 ? `
+                    <div class="mt-6">
+                        <h4>Sources Consulted (${result.reputable_sources.length})</h4>
+                        <ul class="list-disc list-inside">
+                            ${result.reputable_sources.map(source =>
+                                `<li><strong>${source.source}</strong>: ${source.title}</li>`
+                            ).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                `;
+
+            } catch (error) {
+                console.error('Error:', error);
+                resultsDiv.className = 'error';
+                resultsDiv.classList.remove('hidden');
+                resultsContent.innerHTML = `
+                    <h3 class="text-error">❌ Error Generating Recommendation</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p class="text-sm opacity-75 mt-2">Check the browser console for more details.</p>
+                `;
+            } finally {
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Generate Recommendation';
+            }
+        });
+
+        // Reset form
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            document.getElementById('abxForm').reset();
+            document.getElementById('results').classList.add('hidden');
+
+            // Reset default values
+            document.getElementById('age').value = '65';
+            document.getElementById('weight').value = '70';
+            document.getElementById('gfr').value = '80';
+            document.getElementById('allergies').value = 'none';
+            document.getElementById('current_outpt_abx').value = 'none';
+            document.getElementById('current_inp_abx').value = 'none';
+        });
+
+        // Initialize marked options
+        marked.setOptions({
+            breaks: true,
+            gfm: true
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple API Test</title>
+</head>
+<body>
+    <h1>API Test</h1>
+    <button onclick="testAPI()">Test API Call</button>
+    <div id="result"></div>
+
+    <script>
+        async function testAPI() {
+            console.log('Testing API...');
+
+            const testData = {
+                age: "65",
+                gender: "male",
+                gfr: "80",
+                location: "Ward",
+                infection_type: "pneumonia",
+                allergies: "none"
+            };
+
+            console.log('Sending:', testData);
+
+            try {
+                const response = await fetch('/api/recommendation', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testData)
+                });
+
+                console.log('Response status:', response.status);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                console.log('Received result:', result);
+
+                document.getElementById('result').innerHTML =
+                    '<h2>✅ SUCCESS!</h2>' +
+                    '<p>Category: ' + (result.category || 'none') + '</p>' +
+                    '<p>Confidence: ' + (result.tuhs_confidence || 'none') + '</p>' +
+                    '<p>Recommendation: ' + (result.tuhs_recommendation?.substring(0, 100) + '...' || 'none') + '</p>';
+
+            } catch (error) {
+                console.error('API test failed:', error);
+                document.getElementById('result').innerHTML =
+                    '<h2>❌ FAILED</h2>' +
+                    '<p>Error: ' + error.message + '</p>' +
+                    '<p>Check browser console for details</p>';
+            }
+        }
+    </script>
+</body>
+</html>
