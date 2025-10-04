@@ -173,6 +173,7 @@ class TUHSGuidelineLoader:
         instructions.append("- State confidence level (high/moderate/low) based on how well the case matches these guidelines")
         instructions.append("- If case doesn't match guidelines, state 'LOW CONFIDENCE' and recommend ID consultation")
         instructions.append("- Always consider patient allergies, renal function, and prior resistance")
+        instructions.append("- Always select an IV formulation. The only indication for selecting an Oral formulation is in addition to an IV formulation, or for uncomplicated cystitis")
         instructions.append("- Use COMMUNITY-ACQUIRED regimens unless patient has been hospitalized >48 hours or has healthcare-associated risk factors")
         instructions.append("- Match allergy severity correctly: Rash/Itching = Mild-moderate, Anaphylaxis/SJS/DRESS = Severe")
 
