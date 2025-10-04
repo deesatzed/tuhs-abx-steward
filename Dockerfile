@@ -21,7 +21,6 @@ COPY evidence_coordinator_full.py .
 COPY audit_logger.py .
 COPY ABXguideInp.json .
 COPY alpine_frontend.html .
-COPY ABXguideInp.json .
 COPY .env .
 COPY scripts/* .
 COPY public/* .
