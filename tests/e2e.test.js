@@ -130,14 +130,14 @@ test('E2E - Complex ICU case with penicillin allergy and MRSA', async () => {
   console.log('✅ E2E Complex ICU: All checks passed');
 });
 
-test('E2E - Renal impairment with ESBL resistance', async () => {
+test('E2E - Renal impairment with ESBL resistance (Pyelonephritis)', async () => {
   // 1. Patient input
   const rawInput = {
     age: '68',
     weight_kg: '78',
     gfr: '22',
     acuity: 'Ward',
-    source_category: 'UTI',
+    source_category: 'Pyelonephritis/Complicated UTI',
     allergies: 'None',
     culture_results: 'E. coli ESBL+',
     prior_resistance: 'ESBL',
@@ -177,6 +177,34 @@ test('E2E - Renal impairment with ESBL resistance', async () => {
   assert.ok(dosingCheck.monitoring, 'Should monitor renal function');
 
   console.log('✅ E2E Renal + ESBL: All checks passed');
+});
+
+test('E2E - Simple Cystitis (uncomplicated UTI)', async () => {
+  // 1. Patient input
+  const rawInput = {
+    age: '32',
+    weight_kg: '68',
+    gfr: '95',
+    acuity: 'Ward',
+    source_category: 'Afebrile/Non-Complicated Cystitis',
+    allergies: 'None',
+    culture_results: 'Pending',
+    prior_resistance: 'None',
+    inf_risks: 'None',
+  };
+
+  // 2. Normalize input
+  const variables = buildPromptVariables(rawInput);
+
+  // 3. Calculate complexity (should be low)
+  const complexity = calculateComplexity(variables);
+  assert.ok(complexity.score < 3, 'Simple cystitis should have low complexity');
+
+  // 4. Select model (should use standard)
+  const model = selectModel(variables, complexity.score);
+  assert.equal(model, process.env.DEFAULT_MODEL || 'google/gemini-2.5-flash-lite-preview-09-2025', 'Should use default model for simple case');
+
+  console.log('✅ E2E Simple Cystitis: All checks passed');
 });
 
 test('E2E - Multiple allergies and CRE resistance (highest complexity)', async () => {
