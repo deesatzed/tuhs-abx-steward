@@ -188,10 +188,13 @@ class TUHSGuidelineLoader:
         instructions.append("")
         instructions.append("🚨 ALLERGY HANDLING (CRITICAL - APPLIES TO ALL INFECTIONS):")
         instructions.append("- NEVER recommend drugs the patient is allergic to, even to 'mention' or 'consider' them")
-        instructions.append("- If patient has SEVERE PCN allergy (anaphylaxis/SJS/DRESS): SKIP all penicillin and cephalosporin regimens entirely")
-        instructions.append("- Do NOT say 'Drug X is contraindicated, use Drug Y instead' - just recommend Drug Y directly")
-        instructions.append("- Go directly to the appropriate allergy-specific regimen from the guidelines")
-        instructions.append("- If anaphylaxis to PCN: Use aztreonam-based or fluoroquinolone-based regimens (infection-dependent)")
+        instructions.append("- ANAPHYLAXIS = SEVERE ALLERGY: If patient has anaphylaxis, treat as 'Severe PCN Allergy' in guidelines")
+        instructions.append("- Severe PCN allergy includes: Anaphylaxis, SJS, DRESS, angioedema, severe hives")
+        instructions.append("- Mild-moderate PCN allergy: Rash only, itching, mild hives")
+        instructions.append("- If SEVERE PCN allergy: SKIP ALL penicillin AND cephalosporin regimens completely")
+        instructions.append("- Cefepime, Ceftriaxone, Cefazolin = ALL CEPHALOSPORINS = CONTRAINDICATED in severe PCN allergy")
+        instructions.append("- For severe PCN allergy, use ONLY: Aztreonam, Fluoroquinolones, Vancomycin, Aminoglycosides")
+        instructions.append("- Do NOT say 'Drug X is contraindicated' - just go directly to the Severe PCN Allergy regimen")
         instructions.append("- NEVER include contraindicated drugs in your recommendation, not even as alternatives or crossed-out options")
 
         # Add PYELONEPHRITIS-SPECIFIC warnings to prevent ciprofloxacin misuse
