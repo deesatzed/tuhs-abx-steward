@@ -11,6 +11,7 @@ from typing import Optional, Dict, Any
 from datetime import datetime
 import os
 import asyncio
+import time
 
 # Optional: load .env locally; harmless in container if not present
 try:
@@ -22,6 +23,7 @@ except Exception:
 # ✅ FIX: import from the updated file name
 # was: from agno_bridge import AgnoBackendBridge
 from agno_bridge_v2 import AgnoBackendBridge
+from audit_logger import record_audit_entry, get_log_summary
 
 app = FastAPI(
     title="TUHS Antibiotic Steward API",
@@ -141,11 +143,15 @@ async def health_check():
 @app.post("/api/recommendation", response_model=RecommendationResponse)
 async def get_recommendation(patient_data: PatientData):
     """Generate antibiotic recommendation based on patient data."""
+    # Generate unique request ID
+    request_id = f"req_{int(time.time() * 1000)}_{os.urandom(4).hex()}"
+    start_time = time.time()
+
     try:
         bridge = get_bridge()  # may raise RuntimeError if no API key
         patient_dict = patient_data.model_dump()
         print(
-            f"📥 Processing recommendation for {patient_dict.get('age')}yo "
+            f"📥 [{request_id}] Processing recommendation for {patient_dict.get('age')}yo "
             f"{patient_dict.get('gender')} with {patient_dict.get('infection_type')}"
         )
 
@@ -158,18 +164,59 @@ async def get_recommendation(patient_data: PatientData):
         result.setdefault("search_history", [])
         result.setdefault("search_decision", {})
 
+        # Calculate duration
+        duration_ms = (time.time() - start_time) * 1000
+
         print(
-            f"✅ Recommendation generated: {result.get('category')} "
-            f"(confidence: {result.get('final_confidence', 0):.0%})"
+            f"✅ [{request_id}] Recommendation generated: {result.get('category')} "
+            f"(confidence: {result.get('final_confidence', 0):.0%}) in {duration_ms:.0f}ms"
         )
+
+        # Audit log the successful request
+        all_sources = result.get('reputable_sources', []) + result.get('broader_sources', [])
+        record_audit_entry(
+            request_id=request_id,
+            input_data=patient_dict,
+            recommendation=result.get('tuhs_recommendation', ''),
+            category=result.get('category'),
+            tuhs_confidence=result.get('tuhs_confidence'),
+            final_confidence=result.get('final_confidence'),
+            sources=all_sources,
+            duration_ms=duration_ms,
+            status="success",
+        )
+
         return JSONResponse(content=result)
 
     except RuntimeError as e:
         # Configuration problems (like missing OPENROUTER_API_KEY)
+        duration_ms = (time.time() - start_time) * 1000
+
+        # Audit log the error
+        record_audit_entry(
+            request_id=request_id,
+            input_data=patient_data.model_dump(),
+            duration_ms=duration_ms,
+            status="error",
+            error=f"Configuration error: {str(e)}",
+        )
+
         raise HTTPException(status_code=503, detail=str(e)) from e
     except Exception as e:
         import traceback
         traceback.print_exc()
+
+        duration_ms = (time.time() - start_time) * 1000
+
+        # Audit log the error
+        record_audit_entry(
+            request_id=request_id,
+            input_data=patient_data.model_dump(),
+            duration_ms=duration_ms,
+            status="error",
+            error=f"Processing error: {str(e)}",
+        )
+
         raise HTTPException(status_code=500, detail=f"Error generating recommendation: {e}") from e
 
 @app.get("/api/models")
@@ -195,6 +242,24 @@ async def list_models():
             "icu_cases": icu_model,
         },
     }
+
+@app.get("/api/audit/summary")
+async def get_audit_summary(date: Optional[str] = None):
+    """Get audit log summary for a specific date (defaults to today)"""
+    try:
+        if date:
+            # Parse date string (YYYY-MM-DD format)
+            target_date = datetime.strptime(date, "%Y-%m-%d")
+        else:
+            target_date = None
+
+        summary = get_log_summary(date=target_date)
+        return summary
+
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=f"Invalid date format. Use YYYY-MM-DD: {e}") from e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving audit summary: {e}") from e
 
 class EvidenceSearchRequest(BaseModel):
     query: str
