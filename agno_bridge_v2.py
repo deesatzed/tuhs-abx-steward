@@ -28,7 +28,8 @@ CORS(app)  # Enable CORS for Express frontend
 # Infection categories
 class InfectionCategory:
     PNEUMONIA = "pneumonia"
-    UTI = "uti"
+    CYSTITIS = "cystitis"
+    PYELONEPHRITIS = "pyelonephritis"
     SKIN_SOFT_TISSUE = "skin_soft_tissue"
     INTRA_ABDOMINAL = "intra_abdominal"
     BACTEREMIA_SEPSIS = "bacteremia_sepsis"
@@ -63,35 +64,46 @@ class TUHSGuidelineLoader:
                 return guideline
         return {}
     
-    def build_agent_instructions(self, infection_name: str) -> List[str]:
-        """Build detailed instructions from JSON guidelines"""
+    def build_agent_instructions(self, infection_name: str, subsection_filter: str = None) -> List[str]:
+        """Build detailed instructions from JSON guidelines
+
+        Args:
+            infection_name: Name of infection (e.g., "Pneumonia", "Urinary Tract")
+            subsection_filter: Optional filter to include only matching subsections (e.g., "Cystitis", "Pyelonephritis")
+        """
         guideline = self.get_infection_guideline(infection_name)
-        
+
         if not guideline:
             return [
                 f"You are a TUHS {infection_name} treatment expert.",
                 "Follow TUHS antibiotic guidelines strictly.",
                 "Provide evidence-based recommendations."
             ]
-        
+
         instructions = [
             f"You are a TUHS {guideline['infection']} treatment expert.",
             "Follow these EXACT TUHS institutional guidelines:",
             "",
             "GENERAL INSTRUCTIONS:",
         ]
-        
+
         # Add general instructions
         for gen_inst in self.guidelines.get('general_instructions', []):
             instructions.append(f"- {gen_inst}")
-        
+
         instructions.append("")
         instructions.append(f"SPECIFIC {guideline['infection'].upper()} GUIDELINES:")
         instructions.append("")
-        
-        # Add infection-specific guidelines
+
+        # Add infection-specific guidelines (with optional filtering)
         for subsection in guideline.get('sub_sections', []):
-            instructions.append(f"## {subsection.get('type', 'Standard Treatment')}")
+            subsection_type = subsection.get('type', 'Standard Treatment')
+
+            # If filter is specified, only include matching subsections
+            if subsection_filter and subsection_filter.lower() not in subsection_type.lower():
+                continue
+
+            instructions.append(f"## {subsection_type}")
             
             # Add review history note
             if 'review_history_note' in subsection:
@@ -103,25 +115,57 @@ class TUHSGuidelineLoader:
             
             instructions.append("")
             instructions.append("EMPIRIC REGIMENS:")
-            
-            # Add each regimen
-            for regimen in subsection.get('empiric_regimens', []):
-                allergy_status = regimen.get('pcp_allergy_status', 'Standard')
-                instructions.append(f"\n### {allergy_status}")
-                
-                if regimen.get('allergy_details'):
-                    instructions.append(f"   ({regimen['allergy_details']})")
-                
-                instructions.append("   Regimen:")
-                for drug in regimen.get('regimen', []):
-                    instructions.append(f"   • {drug}")
-                
-                if regimen.get('duration'):
-                    instructions.append(f"   Duration: {regimen['duration']}")
-                
-                if regimen.get('notes'):
-                    instructions.append(f"   Notes: {regimen['notes']}")
-            
+
+            # Handle direct empiric_regimens (e.g., Cystitis)
+            if 'empiric_regimens' in subsection:
+                for regimen in subsection.get('empiric_regimens', []):
+                    allergy_status = regimen.get('pcp_allergy_status', 'Standard')
+                    instructions.append(f"\n### {allergy_status}")
+
+                    if regimen.get('allergy_details'):
+                        instructions.append(f"   ({regimen['allergy_details']})")
+
+                    instructions.append("   Regimen:")
+                    regimen_list = regimen.get('regimen', [])
+                    if isinstance(regimen_list, str):
+                        instructions.append(f"   • {regimen_list}")
+                    else:
+                        for drug in regimen_list:
+                            instructions.append(f"   • {drug}")
+
+                    if regimen.get('duration'):
+                        instructions.append(f"   Duration: {regimen['duration']}")
+
+                    if regimen.get('notes'):
+                        instructions.append(f"   Notes: {regimen['notes']}")
+
+            # Handle nested sub_groups with empiric_regimens (e.g., Pyelonephritis, Catheter-associated UTI)
+            if 'sub_groups' in subsection:
+                for sub_group in subsection.get('sub_groups', []):
+                    group_name = sub_group.get('group', 'Standard')
+                    instructions.append(f"\n## {group_name}")
+
+                    for regimen in sub_group.get('empiric_regimens', []):
+                        allergy_status = regimen.get('pcp_allergy_status', 'Standard')
+                        instructions.append(f"\n### {allergy_status}")
+
+                        if regimen.get('allergy_details'):
+                            instructions.append(f"   ({regimen['allergy_details']})")
+
+                        instructions.append("   Regimen:")
+                        regimen_list = regimen.get('regimen', [])
+                        if isinstance(regimen_list, str):
+                            instructions.append(f"   • {regimen_list}")
+                        else:
+                            for drug in regimen_list:
+                                instructions.append(f"   • {drug}")
+
+                        if regimen.get('duration'):
+                            instructions.append(f"   Duration: {regimen['duration']}")
+
+                        if regimen.get('notes'):
+                            instructions.append(f"   Notes: {regimen['notes']}")
+
             instructions.append("")
         
         instructions.append("")
@@ -129,7 +173,31 @@ class TUHSGuidelineLoader:
         instructions.append("- State confidence level (high/moderate/low) based on how well the case matches these guidelines")
         instructions.append("- If case doesn't match guidelines, state 'LOW CONFIDENCE' and recommend ID consultation")
         instructions.append("- Always consider patient allergies, renal function, and prior resistance")
-        
+        instructions.append("- Use COMMUNITY-ACQUIRED regimens unless patient has been hospitalized >48 hours or has healthcare-associated risk factors")
+        instructions.append("- Match allergy severity correctly: Rash/Itching = Mild-moderate, Anaphylaxis/SJS/DRESS = Severe")
+
+        # Add UNIVERSAL pregnancy-specific guidance for ALL infection types
+        instructions.append("")
+        instructions.append("🤰 PREGNANCY CONSIDERATIONS (CRITICAL FOR ALL INFECTIONS):")
+        instructions.append("- If patient is pregnant or pregnancy is mentioned, antibiotic selection is CRITICAL for fetal safety")
+        instructions.append("- If pregnancy is present and these guidelines lack pregnancy-specific regimens:")
+        instructions.append("  → State 'LOW CONFIDENCE - Pregnancy requires specialized review'")
+        instructions.append("  → Recommend evidence search and OB/ID consultation")
+        instructions.append("- Generally SAFE antibiotics in pregnancy: Beta-lactams (Penicillins, Cephalosporins), Aztreonam, Vancomycin")
+        instructions.append("- Generally CONTRAINDICATED in pregnancy: Fluoroquinolones, Tetracyclines, TMP/SMX (1st & 3rd trimester), Aminoglycosides")
+        instructions.append("- ALWAYS explicitly address pregnancy safety in your recommendation if patient is pregnant")
+        instructions.append("- Recommend OB/GYN or Maternal-Fetal Medicine consultation for any pregnant patient with serious infection")
+
+        # Add infection-specific pregnancy guidance for UTI
+        if infection_name == "Urinary Tract" or (subsection_filter and "pyelonephritis" in subsection_filter.lower()):
+            instructions.append("")
+            instructions.append("🤰 UTI-SPECIFIC PREGNANCY GUIDANCE:")
+            instructions.append("- Pregnant + Pyelonephritis: Ceftriaxone IV is first-line (safe, effective)")
+            instructions.append("- Pregnant + PCN allergy (severe): Aztreonam IV ± Vancomycin IV")
+            instructions.append("- Pregnant + Cystitis: Nitrofurantoin PO (avoid near term), Cephalexin PO, Fosfomycin PO")
+            instructions.append("- AVOID in pregnancy: Fluoroquinolones, TMP/SMX (teratogenic in 1st trimester)")
+            instructions.append("- Duration in pregnancy: Usually 7-14 days (longer than non-pregnant)")
+
         return instructions
 
 
@@ -175,15 +243,25 @@ class AgnoBackendBridge:
         )
         print(f"✅ Pneumonia agent: {len(pneumonia_instructions)} instruction lines from JSON")
         
-        # UTI Agent - LOAD FROM JSON
-        uti_instructions = self.guideline_loader.build_agent_instructions("Urinary Tract")
-        agents[InfectionCategory.UTI] = Agent(
+        # Cystitis Agent - LOAD FROM JSON (filter for Cystitis subsection only)
+        cystitis_instructions = self.guideline_loader.build_agent_instructions("Urinary Tract", subsection_filter="Cystitis")
+        agents[InfectionCategory.CYSTITIS] = Agent(
             model=base_model,
-            name="TUHS_UTI_Expert",
-            description="TUHS UTI treatment specialist with institutional guidelines",
-            instructions=uti_instructions
+            name="TUHS_Cystitis_Expert",
+            description="TUHS afebrile/non-complicated cystitis specialist with institutional guidelines",
+            instructions=cystitis_instructions
         )
-        print(f"✅ UTI agent: {len(uti_instructions)} instruction lines from JSON")
+        print(f"✅ Cystitis agent: {len(cystitis_instructions)} instruction lines from JSON")
+
+        # Pyelonephritis/Complicated UTI Agent - LOAD FROM JSON (filter for Pyelonephritis subsection only)
+        pyelo_instructions = self.guideline_loader.build_agent_instructions("Urinary Tract", subsection_filter="Pyelonephritis")
+        agents[InfectionCategory.PYELONEPHRITIS] = Agent(
+            model=base_model,
+            name="TUHS_Pyelonephritis_Expert",
+            description="TUHS pyelonephritis/complicated UTI specialist with institutional guidelines",
+            instructions=pyelo_instructions
+        )
+        print(f"✅ Pyelonephritis agent: {len(pyelo_instructions)} instruction lines from JSON")
         
         # Skin/Soft Tissue Agent - LOAD FROM JSON
         ssti_instructions = self.guideline_loader.build_agent_instructions("Skin and Soft Tissue")
@@ -250,9 +328,15 @@ class AgnoBackendBridge:
             'cap': InfectionCategory.PNEUMONIA,
             'hap': InfectionCategory.PNEUMONIA,
             'vap': InfectionCategory.PNEUMONIA,
-            'uti': InfectionCategory.UTI,
-            'cystitis': InfectionCategory.UTI,
-            'pyelonephritis': InfectionCategory.UTI,
+            'cystitis': InfectionCategory.CYSTITIS,
+            'afebrile_uti': InfectionCategory.CYSTITIS,
+            'uncomplicated_uti': InfectionCategory.CYSTITIS,
+            'afebrile/non-complicated cystitis': InfectionCategory.CYSTITIS,
+            'pyelonephritis': InfectionCategory.PYELONEPHRITIS,
+            'febrile_uti': InfectionCategory.PYELONEPHRITIS,
+            'complicated_uti': InfectionCategory.PYELONEPHRITIS,
+            'pyelonephritis/complicated uti': InfectionCategory.PYELONEPHRITIS,
+            'uti': InfectionCategory.PYELONEPHRITIS,  # Default UTI to pyelonephritis for safety
             'skin': InfectionCategory.SKIN_SOFT_TISSUE,
             'cellulitis': InfectionCategory.SKIN_SOFT_TISSUE,
             'skin_soft_tissue': InfectionCategory.SKIN_SOFT_TISSUE,
@@ -300,9 +384,19 @@ class AgnoBackendBridge:
             gfr = float(gfr_value) if gfr_value else 100
         except (ValueError, TypeError):
             gfr = 100
-        
+
         if gfr < 30:
             confidence -= 0.15
+
+        # Check for pregnancy - reduce confidence if pregnancy not explicitly addressed
+        inf_risks = patient_data.get('inf_risks', '')
+        if inf_risks and 'pregnan' in inf_risks.lower():
+            # Check if pregnancy was addressed in the response
+            if 'pregnan' not in category_response.lower():
+                confidence -= 0.25  # Major reduction if pregnancy ignored
+            # Even if addressed, reduce slightly as guidelines may lack pregnancy-specific regimens
+            elif 'low confidence' not in category_response.lower():
+                confidence -= 0.1
 
         return max(min(confidence, 1.0), 0.0)  # Clamp to [0, 1]
 
@@ -388,7 +482,7 @@ class AgnoBackendBridge:
 
     def _build_tuhs_query(self, patient_data: Dict[str, Any], category: str) -> str:
         """Build query for TUHS agent"""
-        
+
         # Extract and format key fields
         age = patient_data.get('age', 'unknown')
         gender = patient_data.get('gender', 'unknown')
@@ -398,7 +492,13 @@ class AgnoBackendBridge:
         allergies = patient_data.get('allergies') or 'none'
         prior_resistance = patient_data.get('prior_resistance', '')
         culture_results = patient_data.get('culture_results', '')
-        
+        inf_risks = patient_data.get('inf_risks', '')
+
+        # Check for pregnancy in multiple fields
+        is_pregnant = False
+        if inf_risks and 'pregnan' in inf_risks.lower():
+            is_pregnant = True
+
         query = f"""
         Patient: {age}yo {gender}
         Location: {location}
@@ -407,13 +507,21 @@ class AgnoBackendBridge:
         Allergies: {allergies}
         Culture Results: {culture_results}
         """
-        
+
         if prior_resistance:
             query += f"Prior Resistance: {prior_resistance}\n"
-        
+
+        if inf_risks:
+            query += f"Infection-specific Risks: {inf_risks}\n"
+
+        # Explicitly flag pregnancy if present
+        if is_pregnant:
+            query += "\n⚠️  PREGNANCY ALERT: This patient is PREGNANT - antibiotic selection must consider fetal safety!\n"
+            query += "You MUST address pregnancy-specific safety in your recommendation.\n"
+
         query += f"\nProvide TUHS {category} guideline recommendation following the EXACT protocols loaded from ABXguideInp.json.\n"
         query += "Include specific drug names, doses, routes, and duration as specified in TUHS guidelines.\n"
-        
+
         return query
 
     def _build_evidence_query(self, patient_data: Dict[str, Any]) -> str:
