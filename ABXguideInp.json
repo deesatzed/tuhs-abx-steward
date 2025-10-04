@@ -109,7 +109,7 @@
       ],
       "sub_sections": [
         {
-          "type": "Cystitis (Urinary symptoms only!! no fever or other systemic signs/symptoms suggestive of upper tract infection)",
+          "type": "Cystitis (Urinary symptoms only!! and no source or infection-specific risk factors. Never for systemic signs/symptoms suggestive of upper tract infection)",
           "empiric_regimens": [
             {
               "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
@@ -147,15 +147,15 @@
               "empiric_regimens": [
                 {
                   "pcp_allergy_status": "NO Penicillin (PCN) ALLERGY",
-                  "regimen": "Observation off antibiotic and await culture results. OR Fosfomycin PO"
+                  "regimen": "Piperacillin-tazobactam IV PLUS Vancomycin IV. If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock"
                 },
                 {
                   "pcp_allergy_status": "Mild to moderate PCN allergy",
-                  "regimen": "Observation off antibiotic and await culture results. OR Fosfomycin PO OR Ceftriaxone IV"
+                  "regimen": "Ceftriaxone IV PLUS Vancomycin IV. Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock"
                 },
                 {
                   "pcp_allergy_status": "Severe PCN Allergy",
-                  "regimen": "Observation off antibiotic and await culture results. OR Fosfomycin PO OR Ceftriaxone IV OR Ciprofloxacin IV/PO"
+                  "regimen": "Aztreonam IV PLUS Vancomycin IV. Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months, Septic shock, History of severe IgE mediated PCN reactions (Benefit of using carbapenem should be weighed), History of non-IgE mediated PCN reactions (SJS/DRESS) (discuss with ID)"
                 }
               ],
               "duration": "5-7 days"
