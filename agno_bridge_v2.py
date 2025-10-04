@@ -184,6 +184,16 @@ class TUHSGuidelineLoader:
         instructions.append("- Use COMMUNITY-ACQUIRED regimens unless patient has been hospitalized >48 hours or has healthcare-associated risk factors")
         instructions.append("- Match allergy severity correctly: Rash/Itching = Mild-moderate, Anaphylaxis/SJS/DRESS = Severe")
 
+        # Add UNIVERSAL allergy handling instructions
+        instructions.append("")
+        instructions.append("🚨 ALLERGY HANDLING (CRITICAL - APPLIES TO ALL INFECTIONS):")
+        instructions.append("- NEVER recommend drugs the patient is allergic to, even to 'mention' or 'consider' them")
+        instructions.append("- If patient has SEVERE PCN allergy (anaphylaxis/SJS/DRESS): SKIP all penicillin and cephalosporin regimens entirely")
+        instructions.append("- Do NOT say 'Drug X is contraindicated, use Drug Y instead' - just recommend Drug Y directly")
+        instructions.append("- Go directly to the appropriate allergy-specific regimen from the guidelines")
+        instructions.append("- If anaphylaxis to PCN: Use aztreonam-based or fluoroquinolone-based regimens (infection-dependent)")
+        instructions.append("- NEVER include contraindicated drugs in your recommendation, not even as alternatives or crossed-out options")
+
         # Add PYELONEPHRITIS-SPECIFIC warnings to prevent ciprofloxacin misuse
         if subsection_filter and "pyelonephritis" in subsection_filter.lower():
             instructions.append("")
