@@ -18,8 +18,11 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY fastapi_server.py .
 COPY agno_bridge_v2.py .
 COPY evidence_coordinator_full.py .
+COPY audit_logger.py .
 COPY alpine_frontend.html .
 COPY .env .
+COPY scripts/* .
+COPY public/* .
 EXPOSE 8080
 
 # Healthcheck hits /health
