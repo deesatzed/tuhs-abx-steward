@@ -173,9 +173,26 @@ class TUHSGuidelineLoader:
         instructions.append("- State confidence level (high/moderate/low) based on how well the case matches these guidelines")
         instructions.append("- If case doesn't match guidelines, state 'LOW CONFIDENCE' and recommend ID consultation")
         instructions.append("- Always consider patient allergies, renal function, and prior resistance")
-        instructions.append("- Always select an IV formulation. The only indication for selecting an Oral formulation is in addition to an IV formulation, or for uncomplicated cystitis")
+
+        # Route-specific formulation guidance
+        if subsection_filter and "pyelonephritis" in subsection_filter.lower():
+            instructions.append("- PYELONEPHRITIS REQUIRES IV ANTIBIOTICS. Never use oral-only therapy for pyelonephritis.")
+            instructions.append("- You are treating PYELONEPHRITIS (febrile UTI), NOT simple cystitis. Use IV ceftriaxone as first-line.")
+        else:
+            instructions.append("- Always select an IV formulation. The only indication for selecting an Oral formulation is in addition to an IV formulation, or for uncomplicated cystitis")
+
         instructions.append("- Use COMMUNITY-ACQUIRED regimens unless patient has been hospitalized >48 hours or has healthcare-associated risk factors")
         instructions.append("- Match allergy severity correctly: Rash/Itching = Mild-moderate, Anaphylaxis/SJS/DRESS = Severe")
+
+        # Add PYELONEPHRITIS-SPECIFIC warnings to prevent ciprofloxacin misuse
+        if subsection_filter and "pyelonephritis" in subsection_filter.lower():
+            instructions.append("")
+            instructions.append("🚨 PYELONEPHRITIS-SPECIFIC WARNINGS:")
+            instructions.append("- NEVER use Ciprofloxacin (oral or IV) as first-line for pyelonephritis")
+            instructions.append("- NEVER use oral antibiotics as first-line for pyelonephritis")
+            instructions.append("- Community-acquired pyelonephritis: Ceftriaxone IV is MANDATORY first-line")
+            instructions.append("- Hospital-acquired pyelonephritis: Piperacillin-tazobactam IV OR Cefepime IV")
+            instructions.append("- Fluoroquinolones are NOT recommended for pyelonephritis in TUHS guidelines")
 
         # Add UNIVERSAL pregnancy-specific guidance for ALL infection types
         instructions.append("")
@@ -189,15 +206,22 @@ class TUHSGuidelineLoader:
         instructions.append("- ALWAYS explicitly address pregnancy safety in your recommendation if patient is pregnant")
         instructions.append("- Recommend OB/GYN or Maternal-Fetal Medicine consultation for any pregnant patient with serious infection")
 
-        # Add infection-specific pregnancy guidance for UTI
-        if infection_name == "Urinary Tract" or (subsection_filter and "pyelonephritis" in subsection_filter.lower()):
-            instructions.append("")
-            instructions.append("🤰 UTI-SPECIFIC PREGNANCY GUIDANCE:")
-            instructions.append("- Pregnant + Pyelonephritis: Ceftriaxone IV is first-line (safe, effective)")
-            instructions.append("- Pregnant + PCN allergy (severe): Aztreonam IV ± Vancomycin IV")
-            instructions.append("- Pregnant + Cystitis: Nitrofurantoin PO (avoid near term), Cephalexin PO, Fosfomycin PO")
-            instructions.append("- AVOID in pregnancy: Fluoroquinolones, TMP/SMX (teratogenic in 1st trimester)")
-            instructions.append("- Duration in pregnancy: Usually 7-14 days (longer than non-pregnant)")
+        # Add infection-specific pregnancy guidance for UTI (separated by infection type to prevent confusion)
+        if infection_name == "Urinary Tract":
+            if subsection_filter and "pyelonephritis" in subsection_filter.lower():
+                instructions.append("")
+                instructions.append("🤰 PYELONEPHRITIS-SPECIFIC PREGNANCY GUIDANCE:")
+                instructions.append("- Pregnant + Pyelonephritis: Ceftriaxone IV is MANDATORY first-line (safe, effective, IV ONLY)")
+                instructions.append("- Pregnant + PCN allergy (severe): Aztreonam IV ± Vancomycin IV (IV ONLY)")
+                instructions.append("- NEVER use oral ciprofloxacin for pyelonephritis in pregnancy")
+                instructions.append("- AVOID in pregnancy: Fluoroquinolones, TMP/SMX (teratogenic in 1st trimester)")
+                instructions.append("- Duration in pregnancy: Usually 7-14 days (longer than non-pregnant)")
+            elif subsection_filter and "cystitis" in subsection_filter.lower():
+                instructions.append("")
+                instructions.append("🤰 CYSTITIS-SPECIFIC PREGNANCY GUIDANCE:")
+                instructions.append("- Pregnant + Cystitis: Nitrofurantoin PO (avoid near term), Cephalexin PO, Fosfomycin PO")
+                instructions.append("- AVOID in pregnancy: Fluoroquinolones, TMP/SMX (teratogenic in 1st trimester)")
+                instructions.append("- Duration in pregnancy: Usually 7 days")
 
         return instructions
 
@@ -226,6 +250,7 @@ class AgnoBackendBridge:
             id="gpt-4o-mini",
             api_key=api_key,
             base_url="https://openrouter.ai/api/v1",
+            temperature=0.1,  # Low temperature for more deterministic, guideline-adherent responses
             extra_headers={
                 "HTTP-Referer": "https://tuhs-abx.local",
                 "X-Title": "TUHS Antibiotic Steward"
