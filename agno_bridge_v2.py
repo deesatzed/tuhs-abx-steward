@@ -40,22 +40,66 @@ class InfectionCategory:
 
 
 class TUHSGuidelineLoader:
-    """Loads and parses TUHS guidelines from JSON"""
-    
-    def __init__(self, json_path: str = "ABXguideInp.json"):
-        self.json_path = json_path
-        self.guidelines = self._load_guidelines()
-    
-    def _load_guidelines(self) -> Dict:
-        """Load JSON guidelines"""
+    """Loads and parses TUHS guidelines from split JSON files"""
+
+    def __init__(self,
+                 selection_json: str = "ABX_Selection.json",
+                 dosing_json: str = "ABX_Dosing.json",
+                 legacy_json: str = "ABXguideInp.json"):
+        """
+        Initialize with split files or fallback to legacy single file
+
+        Args:
+            selection_json: Drug selection guidelines file
+            dosing_json: Dosing tables file
+            legacy_json: Original combined file (fallback)
+        """
+        self.selection_json = selection_json
+        self.dosing_json = dosing_json
+        self.legacy_json = legacy_json
+
+        # Try loading split files first, fallback to legacy
+        self.selection_guidelines, self.dosing_guidelines = self._load_split_guidelines()
+
+        # For backward compatibility, merge into single structure
+        self.guidelines = {
+            **self.selection_guidelines,
+            "dosing_and_renal_adjustment": self.dosing_guidelines.get("dosing_and_renal_adjustment", {})
+        }
+
+    def _load_split_guidelines(self) -> tuple[Dict, Dict]:
+        """Load split selection and dosing JSON files, fallback to legacy"""
         try:
-            with open(self.json_path, 'r') as f:
-                data = json.load(f)
-                print(f"✅ Loaded TUHS guidelines from {self.json_path}")
-                return data
+            # Try loading split files
+            with open(self.selection_json, 'r') as f:
+                selection_data = json.load(f)
+            with open(self.dosing_json, 'r') as f:
+                dosing_data = json.load(f)
+
+            print(f"✅ Loaded split TUHS guidelines:")
+            print(f"   - {self.selection_json}")
+            print(f"   - {self.dosing_json}")
+            return selection_data, dosing_data
+
+        except FileNotFoundError:
+            # Fallback to legacy single file
+            print(f"⚠️  Split files not found, falling back to {self.legacy_json}")
+            try:
+                with open(self.legacy_json, 'r') as f:
+                    data = json.load(f)
+                print(f"✅ Loaded legacy TUHS guidelines from {self.legacy_json}")
+
+                # Split the legacy data into selection and dosing
+                selection_data = {k: v for k, v in data.items() if k != "dosing_and_renal_adjustment"}
+                dosing_data = {"dosing_and_renal_adjustment": data.get("dosing_and_renal_adjustment", {})}
+                return selection_data, dosing_data
+
+            except Exception as e:
+                print(f"❌ Error loading guidelines: {e}")
+                return {}, {}
         except Exception as e:
-            print(f"❌ Error loading guidelines: {e}")
-            return {}
+            print(f"❌ Error loading split guidelines: {e}")
+            return {}, {}
     
     def get_infection_guideline(self, infection_name: str) -> Dict:
         """Get specific infection guideline"""
@@ -173,6 +217,14 @@ class TUHSGuidelineLoader:
         instructions.append("- State confidence level (high/moderate/low) based on how well the case matches these guidelines")
         instructions.append("- If case doesn't match guidelines, state 'LOW CONFIDENCE' and recommend ID consultation")
         instructions.append("- Always consider patient allergies, renal function, and prior resistance")
+        instructions.append("")
+        instructions.append("🎯 DRUG SELECTION ONLY (DO NOT SPECIFY DOSES):")
+        instructions.append("- Your role is to SELECT the appropriate antibiotics based on guidelines")
+        instructions.append("- DO NOT specify exact doses, frequencies, or durations - these will be calculated separately")
+        instructions.append("- Output format: 'Recommended antibiotics: [Drug A] + [Drug B]'")
+        instructions.append("- Include the indication (e.g., 'for meningitis', 'for bacteremia with MRSA coverage')")
+        instructions.append("- Example: 'Vancomycin + Ceftriaxone for bacterial meningitis'")
+        instructions.append("- DO NOT say '1g IV q12h' or specific dosing - just the drug names and routes (IV/PO)")
 
         # Route-specific formulation guidance
         if subsection_filter and "pyelonephritis" in subsection_filter.lower():

@@ -19,6 +19,8 @@ COPY fastapi_server.py .
 COPY agno_bridge_v2.py .
 COPY evidence_coordinator_full.py .
 COPY audit_logger.py .
+COPY ABX_Selection.json .
+COPY ABX_Dosing.json .
 COPY ABXguideInp.json .
 COPY alpine_frontend.html .
 COPY .env .

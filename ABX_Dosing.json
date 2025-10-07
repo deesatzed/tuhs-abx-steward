@@ -1,0 +1,495 @@
+{
+  "document_title": "TUH INC-ADMIN-MM-GUIDELINES-36-Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults - Dosing Tables",
+  "document_type": "Antibiotic Dosing Guidelines",
+  "origin_date": "November 2020",
+  "caveat": "This document is intended as a guideline only & should NOT replace sound clinical judgement.",
+  "dosing_and_renal_adjustment": {
+    "calculation_notes": {
+      "CrCl_formula": "[(140-age) x weight*] / [72 x SCr] (x0.85 if female)",
+      "weight_use": "*weight: Use IBW unless a) TBW<IBW \u2192 use TBW or b) TBW is >120%IBW \u2192 use AdjBW. eGFR is typically NOT recommended for drug dosing unless noted otherwise.",
+      "CVVHDF_note": "Literature on dosing for CVVHDF is limited. Consider the severity/site of infection and the toxicity profile of the drug to determine dosing, and consider TDM (therapeutic drug monitoring) if available."
+    },
+    "renal_dosing_table": [
+      {
+        "drug": "Acyclovir IV (HSV encephalitis/meningitis or Varicella or Herpes Zoster infection, If BMI \u226535 kg/m\u00b2 use AdjBW)",
+        "ed_once_dose": "10 mg/kg",
+        "crcl_gt_50": "10 mg/kg q8h",
+        "crcl_50_30": "10 mg/kg q12h",
+        "crcl_29_10": "10 mg/kg q24h",
+        "crcl_lt_10_no_hd": "5 mg/kg q24h",
+        "hd": "5 mg/kg q24h AD",
+        "cvvhdf": "10 mg/kg q12h"
+      },
+      {
+        "drug": "Amoxicillin/Clavulanate PO (Standard dose: 875 mg)",
+        "ed_once_dose": "Standard dose",
+        "crcl_gt_50": "875mg q12h or 500mg q8h",
+        "crcl_50_30": "250-500mg q12h",
+        "crcl_29_10": "500mg q24h AD or 250-500mg q24h",
+        "crcl_lt_10_no_hd": "",
+        "hd": "500 mg q12h",
+        "cvvhdf": "No data"
+      },
+      {
+        "drug": "Ampicillin IV (Standard dose: 2 gram)",
+        "ed_once_dose": "Standard dose",
+        "crcl_gt_50": "1-2g q8h or 1-2g q6h",
+        "crcl_50_30": "1-2g q12h",
+        "crcl_29_10": "1-2g q24h AD or 1-2g q24h",
+        "crcl_lt_10_no_hd": "",
+        "hd": "1-2g q8h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ampicillin IV (Meningitis dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q6h or 2g q4h",
+        "crcl_50_30": "2g q8h",
+        "crcl_29_10": "2g q12h AD or 2g q12h",
+        "crcl_lt_10_no_hd": "",
+        "hd": "2g q6h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ampicillin/Sulbactam IV (Standard dose: 1.5-3 gram)",
+        "ed_once_dose": "Standard dose",
+        "crcl_gt_50": "1.5g q6h or 1.5-3g q6h or 3g q8h",
+        "crcl_50_30": "1.5-3g q12h",
+        "crcl_29_10": "1.5g q12h AD or 1.5-3g q24h or 3g q24h AD",
+        "crcl_lt_10_no_hd": "",
+        "hd": "1.5-3g q8h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ampicillin/Sulbactam IV (High dose regimen for Carbapenem resistant Acinetobacter spp. infections: 9 gram over 4 hours)",
+        "ed_once_dose": "9 gram over 4 hours",
+        "crcl_gt_50": "9g q8h over 4 hours (CrCl 50-60 is a gray zone. Can be dosed as >60 or 30-60.)",
+        "crcl_50_30": "6g q8h over 4 hours",
+        "crcl_29_10": "4.5g q12h over 4 hours",
+        "crcl_lt_10_no_hd": "CrCl <30 (6g q8h over 4 hours - no data)",
+        "hd": "",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Azithromycin IV/PO (Standard dose: 500 mg)",
+        "ed_once_dose": "500 mg",
+        "crcl_gt_50": "3-day regimen: 500mg q24h. 5-day regimen: 500mg q24h x 1day, then 250mg q24h x 4 days",
+        "crcl_50_30": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)",
+        "crcl_29_10": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)",
+        "hd": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)",
+        "cvvhdf": "NO RENAL ADJUSTMENT NECESSARY (NOT dialyzed)"
+      },
+      {
+        "drug": "Aztreonam IV (Mild to moderate systemic infections/UTI - Standard dose: 1 gram)",
+        "ed_once_dose": "1 gram",
+        "crcl_gt_50": "1g q8-12h",
+        "crcl_50_30": "1g q12h",
+        "crcl_29_10": "1g q24h AD or 1g q24h",
+        "crcl_lt_10_no_hd": "500mg q12h AD or 500mg q12h",
+        "hd": "1g q12h",
+        "cvvhdf": "1g q12h"
+      },
+      {
+        "drug": "Aztreonam IV (Serious systemic gram-negative infections including Pseudomonas aeruginosa - Standard dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q8h",
+        "crcl_50_30": "2g q12h",
+        "crcl_29_10": "2g q24h AD or 2g q24h or 1g q12h AD or 1g q12h",
+        "crcl_lt_10_no_hd": "2g q8h",
+        "hd": "2g q12h or 1gm q8h",
+        "cvvhdf": "2g q12h or 1gm q8h"
+      },
+      {
+        "drug": "Aztreonam IV (Meningitis - Standard dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q6h",
+        "crcl_50_30": "2g q8h",
+        "crcl_29_10": "2g q12h AD or 2g q12h",
+        "crcl_lt_10_no_hd": "2g q8h",
+        "hd": "2g q6-8h",
+        "cvvhdf": "2g q8h"
+      },
+      {
+        "drug": "Cefazolin IV (Standard dose: 1-2 gram)",
+        "ed_once_dose": "1-2 gram",
+        "crcl_gt_50": "1-2g q8h",
+        "crcl_50_30": "1g q8h",
+        "crcl_29_10": "1g q12h",
+        "crcl_lt_10_no_hd": "1g q24h",
+        "hd": "1g q24h AD or 2g after each HD (Can give 3g AD if next HD to occur in 3 days)",
+        "cvvhdf": "1g q8h or 2g q12h"
+      },
+      {
+        "drug": "Cefepime IV (Standard dose: 2 gram over 30 minutes)",
+        "ed_once_dose": "2 gram over 30 minutes",
+        "crcl_gt_50": "1g q8h",
+        "crcl_50_30": "1g q12h",
+        "crcl_29_10": "1g q24h",
+        "crcl_lt_10_no_hd": "1g q6h",
+        "hd": "2g loading dose, followed by: 1g q24h AD or 2g after each HD",
+        "cvvhdf": "1g q8h"
+      },
+      {
+        "drug": "Cefepime IV (Neutropenic fever, CNS infections - Standard dose: 2 gram over 30 minutes)",
+        "ed_once_dose": "2 gram over 30 minutes",
+        "crcl_gt_50": "2g q8h",
+        "crcl_50_30": "2g q12h",
+        "crcl_29_10": "2g q24h",
+        "crcl_lt_10_no_hd": "1g q24h",
+        "hd": "2g loading dose, followed by: 1g q24h AD or 2g after each HD",
+        "cvvhdf": "2g q12h"
+      },
+      {
+        "drug": "Cefepime IV (Intensive pharmacodynamically optimized dosing - 2g loading dose over 30 min, then infused over 4 hours)",
+        "ed_once_dose": "2g loading dose over 30 min",
+        "crcl_gt_50": "2g q8h over 4 hrs",
+        "crcl_50_30": "2g q12h over 4 hrs",
+        "crcl_29_10": "2g q24h over 4 hrs",
+        "crcl_lt_10_no_hd": "1g q24h over 4 hrs",
+        "hd": "1g q24h AD or 2g after each HD over 4 hrs",
+        "cvvhdf": "2g q12h over 4 hrs"
+      },
+      {
+        "drug": "Cefpodoxime PO (Standard dose: 200 mg)",
+        "ed_once_dose": "200 mg",
+        "crcl_gt_50": "200mg q12h",
+        "crcl_50_30": "200mg q12h",
+        "crcl_29_10": "200mg q24h",
+        "crcl_lt_10_no_hd": "200mg q24h",
+        "hd": "daily or 200mg 3x/wk AD",
+        "cvvhdf": "No data"
+      },
+      {
+        "drug": "Ceftriaxone IV (Standard dose: 1-2 gram)",
+        "ed_once_dose": "1-2 gram",
+        "crcl_gt_50": "1-2g q24h",
+        "crcl_50_30": "1-2g q24h",
+        "crcl_29_10": "1-2g q24h",
+        "crcl_lt_10_no_hd": "1-2g q24h",
+        "hd": "1-2g q24h AD",
+        "cvvhdf": "2g q24h"
+      },
+      {
+        "drug": "Ceftriaxone IV (Meningitis, Enterococcal infective endocarditis - Standard dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q12h",
+        "crcl_50_30": "NO RENAL ADJUSTMENT NECESSARY",
+        "crcl_29_10": "NO RENAL ADJUSTMENT NECESSARY",
+        "crcl_lt_10_no_hd": "NO RENAL ADJUSTMENT NECESSARY",
+        "hd": "2g q12h AD",
+        "cvvhdf": "2g q12h"
+      },
+      {
+        "drug": "Cephalexin PO (Uncomplicated Urinary Tract Infections - Standard dose: 500 mg)",
+        "ed_once_dose": "500 mg",
+        "crcl_gt_50": "500mg q12h",
+        "crcl_50_30": "500mg q12h",
+        "crcl_29_10": "500mg q24h",
+        "crcl_lt_10_no_hd": "500mg q24h AD",
+        "hd": "Consider alternative agent",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin IV (Uncomplicated Urinary Tract Infections - Standard dose: 200 mg)",
+        "ed_once_dose": "200 mg",
+        "crcl_gt_50": "200mg q12h",
+        "crcl_50_30": "200mg q12h",
+        "crcl_29_10": "200mg q24h",
+        "crcl_lt_10_no_hd": "200mg q24h AD",
+        "hd": "200mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin IV (Standard dose: 400 mg)",
+        "ed_once_dose": "400 mg",
+        "crcl_gt_50": "400mg q12h",
+        "crcl_50_30": "400mg q12h",
+        "crcl_29_10": "400mg q24h",
+        "crcl_lt_10_no_hd": "400mg q24h AD",
+        "hd": "400mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin IV (Severe systemic infection including Pseudomonas aeruginosa - Standard dose: 400 mg)",
+        "ed_once_dose": "400 mg",
+        "crcl_gt_50": "400mg q8h",
+        "crcl_50_30": "400mg q12h",
+        "crcl_29_10": "400mg q24h",
+        "crcl_lt_10_no_hd": "400mg q24h AD",
+        "hd": "400mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin PO (Uncomplicated Urinary Tract Infections - Standard dose: 250 mg)",
+        "ed_once_dose": "250 mg",
+        "crcl_gt_50": "250mg q12h",
+        "crcl_50_30": "250mg q12h",
+        "crcl_29_10": "250mg q24h",
+        "crcl_lt_10_no_hd": "250mg q24h AD",
+        "hd": "250mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin PO (Standard dose: 500 mg)",
+        "ed_once_dose": "500 mg",
+        "crcl_gt_50": "500mg q12h",
+        "crcl_50_30": "500mg q12h",
+        "crcl_29_10": "500mg q24h",
+        "crcl_lt_10_no_hd": "500mg q24h AD",
+        "hd": "500mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Ciprofloxacin PO (Severe systemic infection including Pseudomonas aeruginosa - Standard dose: 750 mg)",
+        "ed_once_dose": "750 mg",
+        "crcl_gt_50": "750mg q12h",
+        "crcl_50_30": "750mg q12h",
+        "crcl_29_10": "750mg q24h",
+        "crcl_lt_10_no_hd": "750mg q24h AD",
+        "hd": "750mg q12h",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Clindamycin IV (Standard dose: 600 mg)",
+        "ed_once_dose": "600 mg",
+        "crcl_gt_50": "600mg q8h",
+        "crcl_50_30": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_29_10": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "cvvhdf": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)"
+      },
+      {
+        "drug": "Clindamycin IV (Maximum dose: 900 mg)",
+        "ed_once_dose": "900 mg",
+        "crcl_gt_50": "900mg q8h",
+        "crcl_50_30": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_29_10": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "cvvhdf": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)"
+      },
+      {
+        "drug": "Clindamycin PO (Standard dose: 300-450 mg)",
+        "ed_once_dose": "300-450 mg",
+        "crcl_gt_50": "300-450mg q6-8h",
+        "crcl_50_30": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_29_10": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "cvvhdf": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)"
+      },
+      {
+        "drug": "Daptomycin IV (Skin and soft tissue infection, simple cystitis - 4 mg/kg. If BMI \u226535 kg/m\u00b2 use AdjBW)",
+        "ed_once_dose": "4 mg/kg",
+        "crcl_gt_50": "4 mg/kg q24h",
+        "crcl_50_30": "4 mg/kg q24h",
+        "crcl_29_10": "4 mg/kg q48h",
+        "crcl_lt_10_no_hd": "4 mg/kg q48h",
+        "hd": "4 mg/kg q48h AD or 4 mg/kg after each HD",
+        "cvvhdf": "4 mg/kg q48h"
+      },
+      {
+        "drug": "Daptomycin IV (Bacteremia - 6 mg/kg)",
+        "ed_once_dose": "6 mg/kg",
+        "crcl_gt_50": "6 mg/kg q24h",
+        "crcl_50_30": "6 mg/kg q24h",
+        "crcl_29_10": "6 mg/kg q48h",
+        "crcl_lt_10_no_hd": "6 mg/kg q48h",
+        "hd": "6 mg/kg q48h AD or 6 mg/kg after each HD (Can give 9mg/kg AD if next HD to occur in 3 days)",
+        "cvvhdf": "6 mg/kg q24h"
+      },
+      {
+        "drug": "Doxycycline IV/PO (Standard dose: 100 mg)",
+        "ed_once_dose": "100 mg",
+        "crcl_gt_50": "100mg q12h",
+        "crcl_50_30": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_29_10": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "crcl_lt_10_no_hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "hd": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)",
+        "cvvhdf": "NO RENAL DOSAGE ADJUSTMENT NECESSARY (Not dialyzed)"
+      },
+      {
+        "drug": "Ertapenem IV (Standard dose: 1 gram)",
+        "ed_once_dose": "1 gram",
+        "crcl_gt_50": "1gm q24h",
+        "crcl_50_30": "1gm q24h",
+        "crcl_29_10": "500mg q24h",
+        "crcl_lt_10_no_hd": "500mg q24h",
+        "hd": "500mg q24h AD or 1gm 3x/wk (off label)",
+        "cvvhdf": "1gm q24h (Limited data)"
+      },
+      {
+        "drug": "Fosfomycin PO (Uncomplicated cystitis - 3 gram PO. >3 doses requires ID approval)",
+        "ed_once_dose": "3 gram PO",
+        "crcl_gt_50": "3g x 1 dose",
+        "crcl_50_30": "3g x 1 dose",
+        "crcl_29_10": "3g x 1 dose",
+        "crcl_lt_10_no_hd": "3g x 1 dose",
+        "hd": "3g x 1 dose",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Fosfomycin PO (Complicated cystitis - 3 gram PO. Off-label)",
+        "ed_once_dose": "3 gram PO",
+        "crcl_gt_50": "3g every other day x 3 doses",
+        "crcl_50_30": "3g every other day x 3 doses",
+        "crcl_29_10": "3g every other day x 3 doses",
+        "crcl_lt_10_no_hd": "3g every other day x 3 doses",
+        "hd": "3g every other day x 3 doses",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Levofloxacin IV/PO (750mg based regimen)",
+        "ed_once_dose": "750 mg IV/PO",
+        "crcl_gt_50": "750mg q24h",
+        "crcl_50_30": "750mg x1, then 750mg q48h",
+        "crcl_29_10": "750mg x1, then 500mg q48h AD or 250mg q24h",
+        "crcl_lt_10_no_hd": "CrCl <20, on HD (750mg x1, then 500mg q48h AD or 250mg q24h)",
+        "hd": "CrCl <20, on HD (750mg x1, then 500mg q48h AD or 250mg q24h)",
+        "cvvhdf": "750mg q24h"
+      },
+      {
+        "drug": "Levofloxacin IV/PO (500mg based regimen)",
+        "ed_once_dose": "500 mg IV/PO",
+        "crcl_gt_50": "500mg q24h",
+        "crcl_50_30": "500mg x1, then 250mg q24h",
+        "crcl_29_10": "500mg x1, then 250mg q48h AD",
+        "crcl_lt_10_no_hd": "CrCl <20, on HD (500mg x1, then 250mg q48h AD)",
+        "hd": "CrCl <20, on HD (500mg x1, then 250mg q48h AD)",
+        "cvvhdf": "500mg q24h"
+      },
+      {
+        "drug": "Levofloxacin IV/PO (250mg based regimen)",
+        "ed_once_dose": "250 mg IV/PO",
+        "crcl_gt_50": "250mg q24h",
+        "crcl_50_30": "250mg q24h",
+        "crcl_29_10": "250mg q48h AD",
+        "crcl_lt_10_no_hd": "CrCl <20, on HD (250mg q48h AD)",
+        "hd": "CrCl <20, on HD (250mg q48h AD)",
+        "cvvhdf": "250mg q24h"
+      },
+      {
+        "drug": "Linezolid IV/PO (Standard dose: 600 mg IV/PO)",
+        "ed_once_dose": "600 mg IV/PO",
+        "crcl_gt_50": "600mg q12h",
+        "crcl_50_30": "600mg q12h",
+        "crcl_29_10": "NO RENAL ADJUSTMENT NECESSARY",
+        "crcl_lt_10_no_hd": "NO RENAL ADJUSTMENT NECESSARY",
+        "hd": "600mg q12h AD",
+        "cvvhdf": "600mg q12h"
+      },
+      {
+        "drug": "Meropenem IV (Standard dose: 1 gram)",
+        "ed_once_dose": "1 gram",
+        "crcl_gt_50": "1g q8h",
+        "crcl_50_30": "1g q12h",
+        "crcl_29_10": "500mg q12h",
+        "crcl_lt_10_no_hd": "500mg q24h",
+        "hd": "500mg q24h AD",
+        "cvvhdf": "1g q8-12h"
+      },
+      {
+        "drug": "Meropenem IV (Meningitis, Treatment of Gram-negative organisms with meropenem mic=2 - Standard dose: 2 gram)",
+        "ed_once_dose": "2 gram",
+        "crcl_gt_50": "2g q8h",
+        "crcl_50_30": "2g q12h",
+        "crcl_29_10": "1g q12h",
+        "crcl_lt_10_no_hd": "1g q24h",
+        "hd": "1g q24h AD",
+        "cvvhdf": "2g q8-12h"
+      },
+      {
+        "drug": "Metronidazole IV/PO (General anaerobic coverage: 500 mg IV/PO)",
+        "ed_once_dose": "500 mg IV/PO",
+        "crcl_gt_50": "500mg q12h",
+        "crcl_50_30": "500mg q12h",
+        "crcl_29_10": "500mg q12h",
+        "crcl_lt_10_no_hd": "500mg q12h",
+        "hd": "500mg q12h AD",
+        "cvvhdf": "500mg q12h"
+      },
+      {
+        "drug": "Metronidazole IV/PO (C. difficile, H. pylori, CNS infections, Amebiasis: 500 mg IV/PO)",
+        "ed_once_dose": "500 mg IV/PO",
+        "crcl_gt_50": "500mg q8h",
+        "crcl_50_30": "500mg q8h",
+        "crcl_29_10": "500mg q8h",
+        "crcl_lt_10_no_hd": "500mg q8h",
+        "hd": "500mg q8h AD",
+        "cvvhdf": "500mg q8h"
+      },
+      {
+        "drug": "Micafungin IV (Standard dose: 100-150 mg q24h)",
+        "ed_once_dose": "100-150 mg q24h",
+        "crcl_gt_50": "100mg q24h",
+        "crcl_50_30": "100mg q24h",
+        "crcl_29_10": "100mg q24h",
+        "crcl_lt_10_no_hd": "100mg q24h",
+        "hd": "100mg q24h",
+        "cvvhdf": "CRRT data is limited and conflicting. Weigh risks and benefits."
+      },
+      {
+        "drug": "Nitrofurantoin SR (MacroBID\u2122) (Standard dose: 100 mg q12h)",
+        "ed_once_dose": "100 mg",
+        "crcl_gt_50": "100mg q12h",
+        "crcl_50_30": "CONTRAINDICATED in CrCl \u226460ml/min",
+        "crcl_29_10": "CONTRAINDICATED in CrCl \u226460ml/min",
+        "crcl_lt_10_no_hd": "CONTRAINDICATED in CrCl \u226460ml/min",
+        "hd": "CONTRAINDICATED in CrCl \u226460ml/min",
+        "cvvhdf": ""
+      },
+      {
+        "drug": "Piperacillin/tazobactam IV (Extended infusion - Loading dose: 4.5gm over 30min x1)",
+        "ed_once_dose": "4.5 gram over 30 minutes",
+        "crcl_gt_50": "CrCl \u2265220: 3.375g q8h, infuse over 4 hours (CrCl 50-220 is a gray zone. Use clinical judgement.)",
+        "crcl_50_30": "CrCl 50-220: 3.375g q8h, infuse over 4 hours (CrCl 50-220 is a gray zone. Use clinical judgement.)",
+        "crcl_29_10": "4.5g q12h, infuse over 30min",
+        "crcl_lt_10_no_hd": "CrCl <20: Refer to HD dosing",
+        "hd": "4.5g q8h, infuse over 30min",
+        "cvvhdf": "4.5g q12h, infuse over 30min"
+      },
+      {
+        "drug": "Piperacillin/tazobactam IV (Intermittent infusion)",
+        "ed_once_dose": "4.5 gram over 30 minutes",
+        "crcl_gt_50": "4.5g q6h, infuse over 30min",
+        "crcl_50_30": "4.5g q8h, infuse over 30min",
+        "crcl_29_10": "4.5g q12h, infuse over 30min",
+        "crcl_lt_10_no_hd": "CrCl <20: Refer to HD dosing",
+        "hd": "4.5g q8h, infuse over 30min",
+        "cvvhdf": "4.5g q12h, infuse over 30min"
+      },
+      {
+        "drug": "Trimethoprim/sulfamethoxazole (TMP/SMX) IV (PCP treatment - Dose based on TMP component)",
+        "ed_once_dose": "Calculate daily dose & divide by 2-4 (max 500mg TMP)",
+        "crcl_gt_50": "15-20mg/kg/DAY divided q6-8h x 48h, then 7-10mg/kg/day divided q12-24h",
+        "crcl_50_30": "CrCl 15-30: 7-10mg/kg/DAY divided q6-12h",
+        "crcl_29_10": "CrCl 15-30: 7-10mg/kg/DAY divided q6-12h",
+        "crcl_lt_10_no_hd": "CrCl <15: 7-10mg/kg/DAY divided q12-24h",
+        "hd": "15-20mg/kg/DAY divided q6-12h or 5mg/kg q24h AD",
+        "cvvhdf": "10-15mg/kg/DAY divided q6-12h (Limited data)"
+      },
+      {
+        "drug": "Trimethoprim/sulfamethoxazole (TMP/SMX) IV (Other indications - Dose based on TMP component)",
+        "ed_once_dose": "If renal function unknown, give 5mg/kg (max 500mg TMP)",
+        "crcl_gt_50": "8-12mg/kg/DAY divided q6-12h",
+        "crcl_50_30": "CrCl 30-15: 8-12mg/kg/DAY divided q12h x 48h, then 4-6mg/kg/day divided q12-24h",
+        "crcl_29_10": "CrCl 30-15: 8-12mg/kg/DAY divided q12h x 48h, then 4-6mg/kg/day divided q12-24h",
+        "crcl_lt_10_no_hd": "CrCl <15: 4-6mg/kg/DAY divided q12-24h",
+        "hd": "4-6mg/kg after each HD or 2.5mg/kg q24h AD",
+        "cvvhdf": "8-10mg/kg/DAY divided q6-12h (Limited data)"
+      },
+      {
+        "drug": "Trimethoprim/sulfamethoxazole (TMP/SMX) PO (Urinary Tract Infection, AECOPD, SSTI - Standard dose: 1 DS PO)",
+        "ed_once_dose": "1 DS PO",
+        "crcl_gt_50": "TBW \u226490 kg: 1 DS q12h. TBW >90 kg: 2DS q12h.",
+        "crcl_50_30": "TBW \u226490 kg: 1 DS q12h. TBW >90 kg: 2DS q12h.",
+        "crcl_29_10": "CrCl 30-15: 1 SS q12h. CrCl <15: Generally not recommended (1 SS-DS q24h - Limited data).",
+        "crcl_lt_10_no_hd": "CrCl 30-15: 1 SS q12h. CrCl <15: Generally not recommended (1 SS-DS q24h - Limited data).",
+        "hd": "1 SS-DS q24h AD",
+        "cvvhdf": "1 DS q12h (Limited data)"
+      }
+    ]
+  }
+}
