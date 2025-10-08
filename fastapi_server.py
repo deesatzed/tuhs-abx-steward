@@ -27,7 +27,6 @@ except Exception:
 # was: from agno_bridge import AgnoBackendBridge
 from agno_bridge_v2 import AgnoBackendBridge
 from audit_logger import record_audit_entry, get_log_summary
-from feedback_collector import router as feedback_router
 
 app = FastAPI(
     title="TUHS Antibiotic Steward API",
@@ -45,9 +44,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Include feedback collection router
-app.include_router(feedback_router)
 
 # Error report storage directory
 ERROR_REPORTS_DIR = Path("logs/error_reports")
