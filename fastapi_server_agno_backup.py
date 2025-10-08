@@ -23,14 +23,15 @@ try:
 except Exception:
     pass
 
-# ✅ V3 Architecture: Using modular guideline system
-from lib.recommendation_engine import RecommendationEngine
+# ✅ FIX: import from the updated file name
+# was: from agno_bridge import AgnoBackendBridge
+from agno_bridge_v2 import AgnoBackendBridge
 from audit_logger import record_audit_entry, get_log_summary
 
 app = FastAPI(
     title="TUHS Antibiotic Steward API",
-    description="AI-powered antibiotic recommendation system using v3 modular architecture",
-    version="3.0.0",
+    description="AI-powered antibiotic recommendation system using Agno agents",
+    version="2.0.0",
     docs_url="/api/docs",
     redoc_url="/api/redoc",
 )
@@ -48,21 +49,37 @@ app.add_middleware(
 ERROR_REPORTS_DIR = Path("logs/error_reports")
 ERROR_REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
-# ---- V3 Engine Initialization ----
-_engine: Optional[RecommendationEngine] = None
+# ---- Lazy bridge init (so startup doesn't crash if env missing) ----
+_bridge: Optional[AgnoBackendBridge] = None
 
-def get_engine() -> RecommendationEngine:
-    """Lazy initialization of v3 recommendation engine"""
-    global _engine
-    if _engine is None:
-        print("🔧 Initializing v3 Recommendation Engine...")
-        try:
-            _engine = RecommendationEngine()
-            print("✅ v3 Engine ready (using modular JSON guidelines)")
-        except Exception as e:
-            print(f"❌ Failed to initialize v3 engine: {e}")
-            raise RuntimeError(f"Failed to initialize recommendation engine: {e}")
-    return _engine
+def get_bridge() -> AgnoBackendBridge:
+    global _bridge
+    if _bridge is None:
+        api_key = os.getenv("OPENROUTER_API_KEY")
+        if not api_key:
+            # For Fly.io deployment, return a mock bridge that doesn't crash
+            print("⚠️  OPENROUTER_API_KEY not set - using mock mode")
+            _bridge = MockBridge()  # Create a mock bridge for deployment
+        else:
+            print("🔧 Initializing Agno Backend Bridge…")
+            _bridge = AgnoBackendBridge(api_key)
+            print("✅ Agno Bridge ready")
+    return _bridge
+
+# Mock bridge for deployment without API key
+class MockBridge:
+    async def process_request(self, patient_dict):
+        return {
+            "category": "System",
+            "tuhs_recommendation": "System is running but API key not configured. Please set OPENROUTER_API_KEY in Fly.io secrets.",
+            "tuhs_confidence": 0.0,
+            "final_confidence": 0.0,
+            "reputable_sources": [],
+            "broader_sources": [],
+            "search_decision": {"reasoning": "API key not configured"},
+            "search_history": ["System running - configure API key for full functionality"],
+            "timestamp": datetime.now().isoformat()
+        }
 
 # ---------------------- Models ----------------------
 class PatientData(BaseModel):
@@ -125,101 +142,64 @@ async def health_check():
     """Fly HEALTHCHECK hits this."""
     return {
         "status": "healthy",
-        "backend": "FastAPI v3",
-        "version": "3.0.0",
-        "architecture": "modular_json_guidelines",
+        "backend": "FastAPI",
+        "version": "2.0.0",
         "timestamp": datetime.now().isoformat(),
     }
 
-@app.post("/api/recommendation")
+@app.post("/api/recommendation", response_model=RecommendationResponse)
 async def get_recommendation(patient_data: PatientData):
-    """Generate antibiotic recommendation using v3 modular architecture."""
+    """Generate antibiotic recommendation based on patient data."""
     # Generate unique request ID
     request_id = f"req_{int(time.time() * 1000)}_{os.urandom(4).hex()}"
     start_time = time.time()
 
     try:
-        engine = get_engine()
+        bridge = get_bridge()  # may raise RuntimeError if no API key
         patient_dict = patient_data.model_dump()
-
         print(
-            f"📥 [{request_id}] Processing v3 recommendation for {patient_dict.get('age')}yo "
+            f"📥 [{request_id}] Processing recommendation for {patient_dict.get('age')}yo "
             f"{patient_dict.get('gender')} with {patient_dict.get('infection_type')}"
         )
 
-        # Convert FastAPI model to v3 engine format
-        v3_input = {
-            'age': int(patient_dict.get('age', 0)),
-            'infection_type': patient_dict.get('infection_type', '').lower().replace(' ', '_').replace('/', '_'),
-            'allergies': patient_dict.get('allergies', 'none'),
-            'weight': float(patient_dict.get('weight_kg', 70)) if patient_dict.get('weight_kg') else 70,
-            'crcl': float(patient_dict.get('gfr', 100)) if patient_dict.get('gfr') else 100,  # Using GFR as proxy for CrCl
-            'fever': 'fever' in patient_dict.get('inf_risks', '').lower() or 'fever' in patient_dict.get('infection_type', '').lower(),
-            'severity': 'icu' if patient_dict.get('location', '').lower() == 'icu' else 'moderate',
-            'pregnancy': 'pregnan' in patient_dict.get('inf_risks', '').lower(),
-        }
+        result = await bridge.process_request(patient_dict)
 
-        # Call v3 engine (synchronous)
-        result = engine.get_recommendation(v3_input)
+        # Make sure required keys exist; add defaults if bridge omits some
+        result.setdefault("timestamp", datetime.now().isoformat())
+        result.setdefault("reputable_sources", [])
+        result.setdefault("broader_sources", [])
+        result.setdefault("search_history", [])
+        result.setdefault("search_decision", {})
 
         # Calculate duration
         duration_ms = (time.time() - start_time) * 1000
 
-        if result['success']:
-            print(
-                f"✅ [{request_id}] v3 Recommendation: {result.get('infection_category')} "
-                f"({len(result.get('drugs', []))} drugs) in {duration_ms:.0f}ms"
-            )
+        print(
+            f"✅ [{request_id}] Recommendation generated: {result.get('category')} "
+            f"(confidence: {result.get('final_confidence', 0):.0%}) in {duration_ms:.0f}ms"
+        )
 
-            # Convert v3 format to FastAPI response format
-            response = {
-                "category": result.get('infection_category', 'Unknown'),
-                "tuhs_recommendation": result.get('recommendation', ''),
-                "tuhs_confidence": 1.0,  # v3 uses rule-based, not confidence scoring
-                "final_confidence": 1.0,
-                "reputable_sources": [],  # v3 doesn't use external sources
-                "broader_sources": [],
-                "search_decision": {"reasoning": "v3 modular architecture uses local JSON guidelines"},
-                "search_history": result.get('warnings', []),
-                "timestamp": datetime.now().isoformat(),
-                "drugs": result.get('drugs', []),
-                "warnings": result.get('warnings', []),
-                "monitoring": result.get('monitoring', []),
-                "rationale": result.get('rationale', ''),
-                "metadata": result.get('metadata', {})
-            }
+        # Audit log the successful request
+        all_sources = result.get('reputable_sources', []) + result.get('broader_sources', [])
+        record_audit_entry(
+            request_id=request_id,
+            input_data=patient_dict,
+            recommendation=result.get('tuhs_recommendation', ''),
+            category=result.get('category'),
+            tuhs_confidence=result.get('tuhs_confidence'),
+            final_confidence=result.get('final_confidence'),
+            sources=all_sources,
+            duration_ms=duration_ms,
+            status="success",
+        )
 
-            # Audit log
-            record_audit_entry(
-                request_id=request_id,
-                input_data=patient_dict,
-                recommendation=result.get('recommendation', ''),
-                category=result.get('infection_category'),
-                tuhs_confidence=1.0,
-                final_confidence=1.0,
-                sources=[],
-                duration_ms=duration_ms,
-                status="success",
-            )
-
-            return JSONResponse(content=response)
-        else:
-            # v3 returned errors
-            errors = result.get('errors', ['Unknown error'])
-            print(f"❌ [{request_id}] v3 Errors: {errors}")
-
-            record_audit_entry(
-                request_id=request_id,
-                input_data=patient_dict,
-                duration_ms=duration_ms,
-                status="error",
-                error=f"v3 engine errors: {', '.join(errors)}",
-            )
-
-            raise HTTPException(status_code=400, detail=f"Recommendation errors: {', '.join(errors)}")
+        return JSONResponse(content=result)
 
     except RuntimeError as e:
+        # Configuration problems (like missing OPENROUTER_API_KEY)
         duration_ms = (time.time() - start_time) * 1000
+
+        # Audit log the error
         record_audit_entry(
             request_id=request_id,
             input_data=patient_data.model_dump(),
@@ -227,13 +207,15 @@ async def get_recommendation(patient_data: PatientData):
             status="error",
             error=f"Configuration error: {str(e)}",
         )
-        raise HTTPException(status_code=503, detail=str(e)) from e
 
+        raise HTTPException(status_code=503, detail=str(e)) from e
     except Exception as e:
         import traceback
         traceback.print_exc()
 
         duration_ms = (time.time() - start_time) * 1000
+
+        # Audit log the error
         record_audit_entry(
             request_id=request_id,
             input_data=patient_data.model_dump(),
@@ -241,6 +223,7 @@ async def get_recommendation(patient_data: PatientData):
             status="error",
             error=f"Processing error: {str(e)}",
         )
+
         raise HTTPException(status_code=500, detail=f"Error generating recommendation: {e}") from e
 
 @app.get("/api/models")
