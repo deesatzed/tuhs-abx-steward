@@ -1,0 +1,223 @@
+{
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+  "description": "Allergy classification and drug filtering rules",
+
+  "allergy_classification": {
+    "mild": {
+      "severity": "mild",
+      "keywords": [
+        "rash",
+        "rash only",
+        "mild rash",
+        "itching",
+        "mild hives",
+        "urticaria",
+        "pruritus",
+        "mild reaction"
+      ],
+      "excluded_keywords": [
+        "anaphylaxis",
+        "anaphylactic",
+        "sjs",
+        "stevens-johnson",
+        "dress",
+        "angioedema",
+        "shortness of breath",
+        "wheezing",
+        "hypotension",
+        "severe"
+      ],
+      "allowed_drug_classes": [
+        "cephalosporins",
+        "carbapenems"
+      ],
+      "forbidden_drug_classes": [
+        "penicillins"
+      ],
+      "cross_reactivity_risk": "low",
+      "cross_reactivity_percentage": "<1%",
+      "clinical_note": "Mild PCN allergy (rash only) CAN safely use cephalosporins and carbapenems",
+      "evidence": "IDSA Guidelines on Penicillin Allergy, Cross-reactivity studies 2019"
+    },
+    "severe": {
+      "severity": "severe",
+      "keywords": [
+        "anaphylaxis",
+        "anaphylactic",
+        "sjs",
+        "stevens-johnson",
+        "stevens johnson",
+        "dress",
+        "drug reaction with eosinophilia",
+        "angioedema",
+        "shortness of breath",
+        "wheezing",
+        "hypotension",
+        "severe hives",
+        "severe reaction",
+        "throat swelling",
+        "tongue swelling",
+        "difficulty breathing"
+      ],
+      "allowed_drug_classes": [
+        "aztreonam",
+        "fluoroquinolones",
+        "aminoglycosides",
+        "vancomycin",
+        "linezolid",
+        "daptomycin"
+      ],
+      "forbidden_drug_classes": [
+        "penicillins",
+        "cephalosporins",
+        "carbapenems"
+      ],
+      "cross_reactivity_risk": "high",
+      "cross_reactivity_percentage": "up to 10%",
+      "clinical_note": "Severe PCN allergy MUST avoid ALL beta-lactams (penicillins, cephalosporins, carbapenems)",
+      "evidence": "Anaphylaxis guidelines, SJS/DRESS contraindications"
+    },
+    "unknown": {
+      "severity": "unknown",
+      "default_behavior": "treat as severe",
+      "note": "If allergy description is unclear or incomplete, err on side of safety and treat as severe"
+    }
+  },
+
+  "drug_class_mappings": {
+    "penicillins": {
+      "drugs": [
+        "penicillin",
+        "penicillin_g",
+        "penicillin_v",
+        "ampicillin",
+        "amoxicillin",
+        "piperacillin",
+        "piperacillin_tazobactam",
+        "ticarcillin",
+        "nafcillin",
+        "oxacillin"
+      ],
+      "note": "All penicillin-class antibiotics"
+    },
+    "cephalosporins": {
+      "drugs": [
+        "ceftriaxone",
+        "cefepime",
+        "cefazolin",
+        "ceftazidime",
+        "cefotaxime",
+        "cefuroxime",
+        "cephalexin",
+        "cefpodoxime",
+        "cefdinir"
+      ],
+      "note": "All generations of cephalosporins"
+    },
+    "carbapenems": {
+      "drugs": [
+        "meropenem",
+        "ertapenem",
+        "imipenem",
+        "doripenem"
+      ],
+      "note": "Carbapenem-class antibiotics"
+    },
+    "fluoroquinolones": {
+      "drugs": [
+        "ciprofloxacin",
+        "levofloxacin",
+        "moxifloxacin",
+        "ofloxacin"
+      ],
+      "note": "No cross-reactivity with beta-lactams"
+    },
+    "aminoglycosides": {
+      "drugs": [
+        "gentamicin",
+        "tobramycin",
+        "amikacin"
+      ],
+      "note": "No cross-reactivity with beta-lactams"
+    },
+    "aztreonam": {
+      "drugs": ["aztreonam"],
+      "note": "Monobactam - safe for severe PCN allergy (no cross-reactivity)"
+    },
+    "glycopeptides": {
+      "drugs": ["vancomycin", "teicoplanin"],
+      "note": "No cross-reactivity with beta-lactams"
+    }
+  },
+
+  "classification_algorithm": {
+    "step_1": "Extract allergy description from patient data",
+    "step_2": "Search for severe allergy keywords first (anaphylaxis, SJS, DRESS)",
+    "step_3": "If severe keyword found → classify as SEVERE",
+    "step_4": "If no severe keywords, search for mild keywords (rash, itching)",
+    "step_5": "If mild keyword found AND no severe keywords → classify as MILD",
+    "step_6": "If unclear or no keywords → default to SEVERE (err on side of safety)",
+    "step_7": "Apply appropriate drug filtering based on classification"
+  },
+
+  "examples": {
+    "mild_examples": [
+      "Penicillin (rash)",
+      "Penicillin (mild rash)",
+      "PCN - rash only",
+      "Ampicillin (itching)",
+      "Penicillin allergy - rash as a child"
+    ],
+    "severe_examples": [
+      "Penicillin (anaphylaxis)",
+      "PCN (anaphylactic reaction)",
+      "Penicillin - SJS",
+      "Ampicillin (Stevens-Johnson Syndrome)",
+      "Penicillin (DRESS)",
+      "PCN - angioedema",
+      "Penicillin (shortness of breath)"
+    ]
+  },
+
+  "special_cases": {
+    "sulfa_allergy": {
+      "description": "Sulfonamide allergy",
+      "forbidden_drugs": [
+        "trimethoprim_sulfamethoxazole",
+        "sulfadiazine",
+        "sulfasalazine"
+      ],
+      "note": "No cross-reactivity with beta-lactams"
+    },
+    "vancomycin_red_man_syndrome": {
+      "description": "Rate-related infusion reaction, NOT true allergy",
+      "management": "Slow infusion rate",
+      "can_still_use": true,
+      "note": "Red Man Syndrome is not a contraindication - just slow the infusion"
+    }
+  },
+
+  "clinical_rules": {
+    "rule_1": {
+      "description": "Mild PCN allergy (rash only) CAN use cephalosporins",
+      "rationale": "Cross-reactivity <1%",
+      "evidence": "Multiple studies, IDSA guidance"
+    },
+    "rule_2": {
+      "description": "Mild PCN allergy (rash only) CAN use piperacillin-tazobactam if needed",
+      "rationale": "If no better alternative for critical infection",
+      "caution": "Preferably avoid, but acceptable with careful monitoring"
+    },
+    "rule_3": {
+      "description": "Severe PCN allergy MUST avoid ALL beta-lactams",
+      "rationale": "Cross-reactivity up to 10% with cephalosporins/carbapenems",
+      "critical": true
+    },
+    "rule_4": {
+      "description": "Anaphylaxis to ANY beta-lactam → use aztreonam",
+      "rationale": "Aztreonam has different structure, no cross-reactivity",
+      "critical": true
+    }
+  }
+}

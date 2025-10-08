@@ -1,0 +1,81 @@
+{
+  "infection_name": "Bacterial Meningitis",
+  "infection_code": "meningitis",
+  "description": "Central nervous system infection requiring immediate treatment",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "critical_note": "MENINGITIS IS A MEDICAL EMERGENCY - Higher doses required for CNS penetration",
+
+  "categories": [
+    {
+      "category": "Community-Acquired Bacterial Meningitis",
+      "infection_subtype": "community",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "Vancomycin for S. pneumoniae (including resistant), ceftriaxone for N. meningitidis and H. influenzae",
+          "evidence": "IDSA Bacterial Meningitis Guidelines 2017",
+          "note": "HIGHER DOSES required: Ceftriaxone 2g q12h (not q24h), Vancomycin loading dose",
+          "duration": "10-14 days minimum"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "Cephalosporins safe for mild PCN allergy, critical for meningitis"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "moxifloxacin"],
+          "reasoning": "Vancomycin + respiratory fluoroquinolone for severe allergy",
+          "note": "Consult ID - meningitis with severe PCN allergy is complex",
+          "alternative": "Chloramphenicol + vancomycin (rare, ID consult required)"
+        }
+      ]
+    },
+    {
+      "category": "Post-Neurosurgical Meningitis",
+      "infection_subtype": "post_surgical",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "risk_factors": ["recent neurosurgery", "VP shunt", "EVD"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "cefepime"],
+          "reasoning": "Vancomycin for S. epidermidis/aureus, cefepime for Pseudomonas",
+          "note": "Post-surgical meningitis requires Pseudomonas coverage"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "cefepime"],
+          "reasoning": "Cefepime safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam", "moxifloxacin"],
+          "reasoning": "Complex regimen - ID consult mandatory",
+          "note": "May need intrathecal therapy"
+        }
+      ]
+    }
+  ],
+
+  "special_considerations": {
+    "adjunctive_therapy": "Dexamethasone recommended for pneumococcal meningitis",
+    "lumbar_puncture": "Obtain before antibiotics if safe; do NOT delay antibiotics if LP delayed",
+    "duration": "Minimum 10-14 days, longer if complications",
+    "monitoring": "Serial LPs may be needed in post-surgical cases"
+  },
+
+  "pregnancy_considerations": {
+    "safe_drugs": ["ceftriaxone", "cefepime", "vancomycin", "aztreonam"],
+    "contraindicated_drugs": ["moxifloxacin", "levofloxacin"],
+    "notes": "Most beta-lactams safe. Avoid fluoroquinolones. Consult MFM."
+  }
+}

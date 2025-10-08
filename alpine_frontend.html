@@ -9,6 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/marked@12.0.1/marked.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
+    [x-cloak] { display: none !important; }
     .clinical-response { line-height: 1.6; font-size: 0.95rem; }
     .clinical-response h2, .clinical-response h3, .clinical-response h4 {
       color: #1f2937; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 600;
@@ -265,10 +266,18 @@
                   <h2 class="card-title">TUHS Antibiotic Recommendation</h2>
                   <div class="clinical-response" x-html="formatRecommendation(result?.tuhs_recommendation)"></div>
                   
-                  <!-- Search Evidence Button -->
-                  <div class="card-actions justify-end mt-4">
-                    <button 
-                      @click="searchEvidence()" 
+                  <!-- Action Buttons -->
+                  <div class="card-actions justify-between mt-4">
+                    <button
+                      @click="openErrorReportModal()"
+                      class="btn btn-warning btn-sm gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
+                      </svg>
+                      Flag Error
+                    </button>
+                    <button
+                      @click="searchEvidence()"
                       :disabled="searchingEvidence"
                       class="btn btn-primary btn-sm gap-2">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -381,6 +390,94 @@
         </div>
       </div>
     </div>
+
+    <!-- Error Report Modal -->
+    <div x-show="showErrorReportModal" x-cloak class="modal modal-open">
+      <div class="modal-box max-w-2xl">
+        <h3 class="font-bold text-lg mb-4">Report Recommendation Error</h3>
+
+        <div class="space-y-4">
+          <!-- Error Type -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text font-semibold">Error Type *</span>
+            </label>
+            <select x-model="errorReport.errorType" class="select select-bordered w-full">
+              <option value="">Select error type...</option>
+              <option value="contraindicated">Contraindicated Drug Given</option>
+              <option value="wrong_drug">Wrong Drug Selected</option>
+              <option value="wrong_dose">Wrong Dose/Frequency</option>
+              <option value="missed_allergy">Allergy Not Considered</option>
+              <option value="missed_interaction">Drug Interaction Missed</option>
+              <option value="wrong_route">Wrong Route (IV vs PO)</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Severity -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text font-semibold">Severity *</span>
+            </label>
+            <select x-model="errorReport.severity" class="select select-bordered w-full">
+              <option value="low">Low - Minor error, no patient harm</option>
+              <option value="medium">Medium - Potential for adverse event</option>
+              <option value="high">High - Likely adverse event</option>
+              <option value="critical">Critical - Life-threatening</option>
+            </select>
+          </div>
+
+          <!-- Error Description -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text font-semibold">What was wrong with the recommendation? *</span>
+            </label>
+            <textarea
+              x-model="errorReport.errorDescription"
+              class="textarea textarea-bordered h-24"
+              placeholder="Describe what was incorrect about the recommendation...">
+            </textarea>
+          </div>
+
+          <!-- Expected Recommendation -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text font-semibold">What should have been recommended? *</span>
+            </label>
+            <textarea
+              x-model="errorReport.expectedRecommendation"
+              class="textarea textarea-bordered h-24"
+              placeholder="e.g., Aztreonam instead of ceftriaxone due to severe PCN allergy...">
+            </textarea>
+          </div>
+
+          <!-- Reporter Name -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text font-semibold">Your Name/ID (optional)</span>
+            </label>
+            <input
+              x-model="errorReport.reporterName"
+              type="text"
+              class="input input-bordered w-full"
+              placeholder="Pharmacist name or ID"
+            />
+          </div>
+        </div>
+
+        <!-- Modal Actions -->
+        <div class="modal-action">
+          <button @click="closeErrorReportModal()" class="btn btn-ghost">Cancel</button>
+          <button
+            @click="submitErrorReport()"
+            class="btn btn-error"
+            :disabled="!canSubmitErrorReport()">
+            <span x-show="!submittingError">Submit Error Report</span>
+            <span x-show="submittingError" class="loading loading-spinner loading-sm"></span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -448,6 +545,17 @@
         loading: false,
         searchingEvidence: false,
         evidenceResults: null,
+
+        // Error Reporting
+        showErrorReportModal: false,
+        submittingError: false,
+        errorReport: {
+          errorType: '',
+          severity: 'medium',
+          errorDescription: '',
+          expectedRecommendation: '',
+          reporterName: ''
+        },
 
         // Methods
         async submitForm() {
@@ -558,6 +666,104 @@
             this.error = `Evidence search failed: ${err.message}`;
           } finally {
             this.searchingEvidence = false;
+          }
+        },
+
+        // Error Reporting Methods
+        openErrorReportModal() {
+          if (!this.result) {
+            alert('Please generate a recommendation first before reporting an error.');
+            return;
+          }
+          this.showErrorReportModal = true;
+        },
+
+        closeErrorReportModal() {
+          this.showErrorReportModal = false;
+          this.resetErrorReport();
+        },
+
+        resetErrorReport() {
+          this.errorReport = {
+            errorType: '',
+            severity: 'medium',
+            errorDescription: '',
+            expectedRecommendation: '',
+            reporterName: ''
+          };
+        },
+
+        canSubmitErrorReport() {
+          return this.errorReport.errorType &&
+                 this.errorReport.errorDescription &&
+                 this.errorReport.expectedRecommendation &&
+                 !this.submittingError;
+        },
+
+        async submitErrorReport() {
+          if (!this.canSubmitErrorReport()) return;
+
+          this.submittingError = true;
+
+          try {
+            // Prepare de-identified patient data
+            const patientData = {
+              age: this.age,
+              gender: this.gender,
+              weight_kg: this.weight_kg,
+              gfr: this.gfr,
+              location: this.location,
+              infection_type: this.infection_type,
+              allergies: [...this.allergies, this.allergiesNotes].filter(Boolean).join('; '),
+              prior_resistance: [...this.priorResistance, this.resistanceNotes].filter(Boolean).join('; '),
+              source_risk: [...this.sourceRisks, this.sourceRiskNotes].filter(Boolean).join('; '),
+              inf_risks: [...this.infRisks, this.infRiskNotes].filter(Boolean).join('; ')
+            };
+
+            // Prepare error report payload
+            const payload = {
+              error_type: this.errorReport.errorType,
+              severity: this.errorReport.severity,
+              error_description: this.errorReport.errorDescription,
+              expected_recommendation: this.errorReport.expectedRecommendation,
+              reporter_name: this.errorReport.reporterName || 'Anonymous',
+              patient_data: patientData,
+              recommendation_given: {
+                category: this.result?.category,
+                tuhs_recommendation: this.result?.tuhs_recommendation,
+                tuhs_confidence: this.result?.tuhs_confidence,
+                final_confidence: this.result?.final_confidence
+              }
+            };
+
+            console.log('Submitting error report:', payload);
+
+            // Submit error report
+            const response = await fetch('/api/error-report', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(errorData.detail || 'Failed to submit error report');
+            }
+
+            const result = await response.json();
+            console.log('Error report submitted:', result);
+
+            // Show success message
+            alert(`Error report submitted successfully!\n\nError ID: ${result.error_id}\n\nThank you for helping improve the system.`);
+
+            // Close modal and reset
+            this.closeErrorReportModal();
+
+          } catch (error) {
+            console.error('Error submitting report:', error);
+            alert(`Failed to submit error report: ${error.message}`);
+          } finally {
+            this.submittingError = false;
           }
         },
 

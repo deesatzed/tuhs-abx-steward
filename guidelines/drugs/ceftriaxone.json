@@ -1,0 +1,138 @@
+{
+  "drug_name": "Ceftriaxone",
+  "drug_id": "ceftriaxone",
+  "generic_name": "ceftriaxone",
+  "brand_names": ["Rocephin"],
+  "class": "Cephalosporin (3rd generation)",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["IV", "IM"],
+  "default_route": "IV",
+
+  "contraindications": {
+    "absolute": [
+      "severe_pcn_allergy_with_anaphylaxis",
+      "severe_pcn_allergy_with_sjs",
+      "severe_pcn_allergy_with_dress"
+    ],
+    "relative": [],
+    "note": "SAFE for mild PCN allergy (rash only). Cross-reactivity <1%."
+  },
+
+  "allergy_considerations": {
+    "mild_pcn_allergy": {
+      "safe": true,
+      "note": "Cephalosporins safe with PCN rash-only allergy. Cross-reactivity <1% per IDSA."
+    },
+    "severe_pcn_allergy": {
+      "safe": false,
+      "contraindicated": true,
+      "note": "Avoid in anaphylaxis, SJS, DRESS. Use aztreonam instead."
+    }
+  },
+
+  "pregnancy_category": "B",
+  "pregnancy_safe": true,
+  "pregnancy_notes": "Safe in all trimesters. Preferred agent for pyelonephritis in pregnancy.",
+
+  "renal_adjustment": {
+    "required": false,
+    "note": "No dose adjustment needed for renal impairment. Primarily hepatic clearance."
+  },
+
+  "dosing": {
+    "by_indication": {
+      "pyelonephritis": {
+        "dose": "1 g IV",
+        "frequency": "q24h",
+        "duration": "7-14 days",
+        "note": "First-line IV therapy for community-acquired pyelonephritis",
+        "route": "IV",
+        "loading_dose": null
+      },
+      "pneumonia_cap": {
+        "dose": "1-2 g IV",
+        "frequency": "q24h",
+        "duration": "5-7 days",
+        "note": "Standard dose for community-acquired pneumonia",
+        "route": "IV"
+      },
+      "meningitis": {
+        "dose": "2 g IV",
+        "frequency": "q12h",
+        "duration": "10-14 days",
+        "note": "HIGHER DOSE for CNS penetration in meningitis",
+        "route": "IV",
+        "loading_dose": null,
+        "critical_note": "Meningitis requires q12h dosing, NOT q24h"
+      },
+      "bacteremia": {
+        "dose": "2 g IV",
+        "frequency": "q24h",
+        "duration": "Varies by source",
+        "route": "IV"
+      },
+      "intra_abdominal": {
+        "dose": "1-2 g IV",
+        "frequency": "q24h",
+        "note": "Often combined with metronidazole for anaerobic coverage",
+        "route": "IV"
+      },
+      "hap": {
+        "dose": "2 g IV",
+        "frequency": "q24h",
+        "duration": "7-14 days",
+        "note": "Hospital-acquired pneumonia - consider MRSA coverage",
+        "route": "IV"
+      },
+      "vap": {
+        "dose": "2 g IV",
+        "frequency": "q24h",
+        "duration": "7-14 days",
+        "note": "Ventilator-associated pneumonia - often needs anti-pseudomonal coverage",
+        "route": "IV"
+      }
+    },
+    "pediatric": {
+      "note": "50-100 mg/kg/day divided q12-24h (max 2-4 g/day depending on indication)"
+    }
+  },
+
+  "monitoring": {
+    "required": ["clinical response", "resolution of fever"],
+    "optional": ["CBC if prolonged therapy"]
+  },
+
+  "drug_interactions": {
+    "major": ["calcium-containing IV solutions (neonates)"],
+    "moderate": []
+  },
+
+  "adverse_effects": {
+    "common": ["diarrhea", "injection site reaction"],
+    "serious": ["C. difficile colitis", "hypersensitivity reactions"],
+    "rare": ["hemolytic anemia", "biliary sludging"]
+  },
+
+  "spectrum": {
+    "gram_positive": "Good (except MRSA, Enterococcus)",
+    "gram_negative": "Excellent (E. coli, Klebsiella, Proteus)",
+    "anaerobes": "Limited (combine with metronidazole if needed)",
+    "atypicals": "No coverage"
+  },
+
+  "notes": [
+    "First-line for community-acquired pyelonephritis",
+    "Once-daily dosing improves compliance",
+    "No renal adjustment needed",
+    "Safe in pregnancy",
+    "Higher dose (2g q12h) for meningitis"
+  ],
+
+  "evidence": [
+    "IDSA Complicated UTI Guidelines 2019",
+    "IDSA Meningitis Guidelines 2017",
+    "IDSA/ATS CAP Guidelines 2019"
+  ]
+}

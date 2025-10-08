@@ -1,0 +1,121 @@
+{
+  "drug_name": "Piperacillin-Tazobactam",
+  "drug_id": "piperacillin_tazobactam",
+  "generic_name": "piperacillin-tazobactam",
+  "brand_names": ["Zosyn"],
+  "class": "Extended-spectrum penicillin + Beta-lactamase inhibitor",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["IV"],
+  "default_route": "IV",
+
+  "contraindications": {
+    "absolute": ["severe_pcn_allergy_with_anaphylaxis", "severe_pcn_allergy_with_sjs"],
+    "relative": [],
+    "note": "SAFE for mild PCN allergy (rash only). Avoid in severe allergy."
+  },
+
+  "allergy_considerations": {
+    "mild_pcn_allergy": {
+      "safe": true,
+      "note": "Mild PCN allergy (rash only) CAN use piperacillin-tazobactam with caution",
+      "evidence": "If no better alternative for critical infection, can be used carefully"
+    },
+    "severe_pcn_allergy": {
+      "safe": false,
+      "contraindicated": true,
+      "note": "Absolute contraindication in anaphylaxis/SJS/DRESS. Use aztreonam instead."
+    }
+  },
+
+  "pregnancy_category": "B",
+  "pregnancy_safe": true,
+  "pregnancy_notes": "Safe in pregnancy. Good option for intra-abdominal infections in pregnancy.",
+
+  "renal_adjustment": {
+    "required": true,
+    "note": "Dose adjustment based on CrCl",
+    "adjustments": {
+      "crcl_gt_40": "3.375 g IV q6h OR 4.5 g IV q8h",
+      "crcl_20_40": "2.25 g IV q6h",
+      "crcl_lt_20": "2.25 g IV q8h",
+      "dialysis": "2.25 g IV q8h + 0.75 g after each dialysis"
+    }
+  },
+
+  "dosing": {
+    "by_indication": {
+      "pneumonia_hap_vap": {
+        "dose": "4.5 g IV",
+        "frequency": "q6h",
+        "infusion": "extended infusion (4 hour) preferred",
+        "duration": "7-14 days",
+        "route": "IV",
+        "note": "Higher dose for Pseudomonas coverage"
+      },
+      "intra_abdominal": {
+        "dose": "3.375 g IV",
+        "frequency": "q6h",
+        "duration": "4-7 days (source control dependent)",
+        "route": "IV",
+        "note": "Has anaerobic coverage built-in"
+      },
+      "bacteremia": {
+        "dose": "3.375-4.5 g IV",
+        "frequency": "q6-8h",
+        "duration": "14+ days",
+        "route": "IV"
+      },
+      "pyelonephritis_complicated": {
+        "dose": "3.375 g IV",
+        "frequency": "q6h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "note": "For hospital-acquired or complicated pyelonephritis"
+      }
+    }
+  },
+
+  "extended_infusion": {
+    "recommended": true,
+    "rationale": "Time-dependent killing. Extended infusion improves outcomes for Pseudomonas",
+    "method": "Infuse over 4 hours instead of 30 minutes",
+    "indications": ["Pseudomonas infection", "critically ill", "resistant organisms"]
+  },
+
+  "spectrum": {
+    "gram_positive": "Good (including Strep, some Staph - not MRSA)",
+    "gram_negative": "Excellent (including Pseudomonas)",
+    "anaerobes": "Excellent",
+    "atypicals": "No coverage",
+    "critical_strength": "Broad-spectrum with Pseudomonas and anaerobic coverage"
+  },
+
+  "monitoring": {
+    "required": ["renal function", "clinical response"],
+    "optional": ["CBC (prolonged therapy)"]
+  },
+
+  "adverse_effects": {
+    "common": ["diarrhea", "nausea", "injection site phlebitis"],
+    "serious": ["C. difficile colitis", "neutropenia (prolonged therapy)"],
+    "rare": ["interstitial nephritis", "seizures (high dose + renal failure)"]
+  },
+
+  "notes": [
+    "Broad-spectrum antibiotic with Pseudomonas coverage",
+    "Has built-in anaerobic coverage (tazobactam)",
+    "Extended infusion preferred for critical illness",
+    "Safe for mild PCN allergy (rash only)",
+    "CONTRAINDICATED for severe PCN allergy",
+    "Requires renal adjustment",
+    "Safe in pregnancy"
+  ],
+
+  "evidence": [
+    "IDSA HAP/VAP Guidelines",
+    "IDSA Complicated Intra-Abdominal Infection Guidelines",
+    "Extended infusion studies for Pseudomonas"
+  ]
+}

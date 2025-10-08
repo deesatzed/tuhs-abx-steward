@@ -1,0 +1,180 @@
+{
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+  "description": "Renal dose adjustment rules for antibiotics",
+
+  "crcl_categories": {
+    "normal": {
+      "crcl_min": 60,
+      "crcl_max": 999,
+      "description": "Normal renal function"
+    },
+    "mild_impairment": {
+      "crcl_min": 30,
+      "crcl_max": 59,
+      "description": "Mild renal impairment"
+    },
+    "moderate_impairment": {
+      "crcl_min": 15,
+      "crcl_max": 29,
+      "description": "Moderate renal impairment"
+    },
+    "severe_impairment": {
+      "crcl_min": 0,
+      "crcl_max": 14,
+      "description": "Severe renal impairment"
+    },
+    "dialysis": {
+      "description": "Hemodialysis or peritoneal dialysis",
+      "keywords": ["hemodialysis", "HD", "dialysis", "ESRD"]
+    }
+  },
+
+  "drugs_requiring_adjustment": {
+    "cefepime": {
+      "adjustment_required": true,
+      "normal": "2 g IV q8h",
+      "crcl_30_60": "2 g IV q12h",
+      "crcl_15_29": "1 g IV q12h",
+      "crcl_lt_15": "1 g IV q24h",
+      "dialysis": "1 g IV after each dialysis session",
+      "note": "Dose reduction critical to prevent neurotoxicity"
+    },
+    "piperacillin_tazobactam": {
+      "adjustment_required": true,
+      "normal": "3.375-4.5 g IV q6-8h",
+      "crcl_20_40": "2.25 g IV q6h",
+      "crcl_lt_20": "2.25 g IV q8h",
+      "dialysis": "2.25 g IV q8h + 0.75 g after each dialysis",
+      "note": "Extended infusion dosing may differ"
+    },
+    "aztreonam": {
+      "adjustment_required": true,
+      "normal": "2 g IV q8h",
+      "crcl_10_30": "1 g IV q8h (50% reduction)",
+      "crcl_lt_10": "500 mg IV q8h (75% reduction)",
+      "dialysis": "Give after dialysis",
+      "note": "Significant dose reduction needed"
+    },
+    "vancomycin": {
+      "adjustment_required": true,
+      "monitoring": "trough levels",
+      "normal": "15-20 mg/kg IV q8-12h",
+      "crcl_30_60": "15-20 mg/kg IV q12-24h",
+      "crcl_10_29": "15-20 mg/kg IV q24-48h",
+      "crcl_lt_10": "15-20 mg/kg IV q48-72h OR based on levels",
+      "dialysis": "Give after dialysis, dose by levels",
+      "note": "MUST monitor trough levels. Nephrotoxic."
+    },
+    "ceftriaxone": {
+      "adjustment_required": false,
+      "normal": "1-2 g IV q24h",
+      "note": "NO renal adjustment needed. Hepatic clearance."
+    },
+    "metronidazole": {
+      "adjustment_required": false,
+      "normal": "500 mg IV q8h",
+      "dialysis": "Give after dialysis",
+      "note": "NO renal adjustment for impairment. Hepatic metabolism."
+    },
+    "levofloxacin": {
+      "adjustment_required": true,
+      "normal": "750 mg IV q24h",
+      "crcl_20_49": "750 mg IV x1, then 750 mg IV q48h",
+      "crcl_10_19": "750 mg IV x1, then 500 mg IV q48h",
+      "dialysis": "750 mg IV x1, then 500 mg q48h",
+      "note": "Complex dosing schedule for renal impairment"
+    },
+    "azithromycin": {
+      "adjustment_required": false,
+      "note": "NO renal adjustment needed"
+    }
+  },
+
+  "drugs_no_adjustment": [
+    "ceftriaxone",
+    "metronidazole",
+    "azithromycin",
+    "doxycycline",
+    "linezolid"
+  ],
+
+  "nephrotoxic_antibiotics": {
+    "high_risk": [
+      "vancomycin",
+      "aminoglycosides",
+      "amphotericin_b"
+    ],
+    "moderate_risk": [
+      "cefepime",
+      "piperacillin_tazobactam"
+    ],
+    "monitoring": "Monitor SCr/BUN daily if on nephrotoxic agents",
+    "avoid_combinations": "Avoid vancomycin + aminoglycoside if possible"
+  },
+
+  "calculation_methods": {
+    "cockcroft_gault": {
+      "formula": "((140-age) × IBW × (0.85 if female)) / (72 × SCr)",
+      "units": "mL/min",
+      "note": "Most commonly used for antibiotic dosing"
+    },
+    "mdrd": {
+      "note": "Less commonly used for antibiotic dosing, reports as mL/min/1.73m2"
+    }
+  },
+
+  "special_populations": {
+    "obesity": {
+      "note": "Use adjusted body weight for hydrophilic drugs (vancomycin, aminoglycosides)",
+      "formula": "IBW + 0.4 × (TBW - IBW)"
+    },
+    "critical_illness": {
+      "note": "Augmented renal clearance may occur. Higher doses may be needed.",
+      "monitoring": "Consider therapeutic drug monitoring"
+    },
+    "elderly": {
+      "note": "Age >65 → assume some renal impairment even if SCr normal",
+      "recommendation": "Calculate CrCl using Cockcroft-Gault"
+    },
+    "dialysis": {
+      "hemodialysis": {
+        "note": "Dose after dialysis session. Check if drug is dialyzable.",
+        "timing": "Give supplemental dose after HD"
+      },
+      "peritoneal_dialysis": {
+        "note": "Different dosing than HD. Consult pharmacy."
+      }
+    }
+  },
+
+  "dose_adjustment_algorithm": {
+    "step_1": "Calculate CrCl using Cockcroft-Gault",
+    "step_2": "Determine CrCl category (normal, mild, moderate, severe, dialysis)",
+    "step_3": "Look up drug in adjustment table",
+    "step_4": "If adjustment required, apply appropriate dose/frequency change",
+    "step_5": "If nephrotoxic drug, add monitoring recommendation",
+    "step_6": "Return adjusted dose"
+  },
+
+  "consultation_triggers": {
+    "pharmacist": [
+      "Dialysis patients",
+      "Multiple nephrotoxic agents",
+      "Vancomycin dosing",
+      "CrCl <15 mL/min"
+    ],
+    "nephrologist": [
+      "Acute kidney injury on antibiotics",
+      "Rapidly changing renal function"
+    ]
+  },
+
+  "notes": [
+    "Ceftriaxone and metronidazole do NOT require renal adjustment",
+    "Vancomycin REQUIRES trough monitoring and dose adjustment",
+    "Cefepime must be dose-adjusted to prevent neurotoxicity",
+    "Dialysis patients need post-dialysis dosing",
+    "Elderly patients should have CrCl calculated (may be impaired despite normal SCr)"
+  ]
+}

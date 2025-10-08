@@ -1,0 +1,99 @@
+{
+  "drug_id": "azithromycin",
+  "drug_name": "Azithromycin",
+  "class": "Macrolide",
+  "spectrum": {
+    "gram_positive": "Good (Strep pneumo, some Staph)",
+    "gram_negative": "Limited (Haemophilus, Moraxella)",
+    "atypicals": "Excellent (Mycoplasma, Chlamydophila, Legionella)",
+    "anaerobes": "NO COVERAGE"
+  },
+  "primary_uses": [
+    "Community-acquired pneumonia (atypical coverage)",
+    "Mycoplasma pneumoniae",
+    "Chlamydophila pneumoniae",
+    "Legionella pneumophila"
+  ],
+  "dosing": {
+    "by_indication": {
+      "cap": {
+        "dose": "500 mg IV",
+        "frequency": "q24h",
+        "duration": "5-7 days",
+        "route": "IV",
+        "notes": [
+          "Usually combined with ceftriaxone for CAP",
+          "Can switch to PO after clinical improvement"
+        ],
+        "oral_dose": "500 mg PO day 1, then 250 mg PO days 2-5"
+      },
+      "pneumonia": {
+        "dose": "500 mg IV",
+        "frequency": "q24h",
+        "duration": "5-7 days",
+        "route": "IV",
+        "notes": [
+          "Atypical coverage essential for CAP",
+          "Can switch to PO after 48hrs if improved"
+        ]
+      },
+      "hap": {
+        "dose": "500 mg IV",
+        "frequency": "q24h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "notes": [
+          "Usually not first-line for HAP",
+          "Consider if Legionella suspected"
+        ]
+      },
+      "vap": {
+        "dose": "500 mg IV",
+        "frequency": "q24h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "notes": [
+          "Usually not first-line for VAP",
+          "Consider if Legionella suspected"
+        ]
+      }
+    }
+  },
+  "renal_adjustment": {
+    "required": false,
+    "note": "No dose adjustment needed for renal impairment (hepatic clearance)"
+  },
+  "pregnancy_safe": true,
+  "pregnancy_category": "B",
+  "pregnancy_notes": "Safe in all trimesters",
+  "allergy_considerations": {
+    "contraindications": [
+      "Macrolide allergy",
+      "Azithromycin hypersensitivity"
+    ],
+    "pcn_allergy": {
+      "safe": true,
+      "note": "NO cross-reactivity with penicillins - safe alternative"
+    }
+  },
+  "warnings": [
+    "QT prolongation risk",
+    "Monitor ECG if QTc >450ms",
+    "Avoid with other QT-prolonging drugs"
+  ],
+  "monitoring": [
+    "ECG if baseline QT prolongation",
+    "Clinical response"
+  ],
+  "interactions": {
+    "major": [
+      "QT-prolonging drugs (fluoroquinolones, amiodarone)",
+      "Warfarin (monitor INR)"
+    ]
+  },
+  "side_effects": [
+    "GI upset (nausea, diarrhea)",
+    "QT prolongation",
+    "Hepatotoxicity (rare)"
+  ]
+}

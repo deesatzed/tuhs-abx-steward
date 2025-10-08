@@ -1,0 +1,105 @@
+{
+  "drug_name": "Metronidazole",
+  "drug_id": "metronidazole",
+  "generic_name": "metronidazole",
+  "brand_names": ["Flagyl"],
+  "class": "Nitroimidazole",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["IV", "PO"],
+  "default_route": "IV",
+
+  "contraindications": {
+    "absolute": ["first trimester pregnancy (relative)", "alcohol use (disulfiram reaction)"],
+    "relative": [],
+    "note": "Avoid alcohol during treatment and 72 hours after (disulfiram-like reaction)"
+  },
+
+  "allergy_considerations": {
+    "pcn_allergy": {
+      "safe": true,
+      "note": "No cross-reactivity with any antibiotics. Safe for all allergy types."
+    }
+  },
+
+  "pregnancy_category": "B",
+  "pregnancy_safe": "avoid first trimester if possible",
+  "pregnancy_notes": "Avoid in 1st trimester. Safe in 2nd/3rd trimester if needed.",
+
+  "renal_adjustment": {
+    "required": false,
+    "note": "No dose adjustment for renal impairment (hepatic metabolism)",
+    "dialysis": "Give dose after dialysis"
+  },
+
+  "dosing": {
+    "by_indication": {
+      "intra_abdominal": {
+        "dose": "500 mg IV",
+        "frequency": "q8h",
+        "duration": "4-7 days",
+        "route": "IV",
+        "note": "For anaerobic coverage in combination with other agents"
+      },
+      "aspiration_pneumonia": {
+        "dose": "500 mg IV",
+        "frequency": "q8h",
+        "duration": "7-10 days",
+        "route": "IV",
+        "note": "Combined with ceftriaxone or fluoroquinolone"
+      },
+      "c_difficile": {
+        "dose": "500 mg PO",
+        "frequency": "q8h",
+        "duration": "10-14 days",
+        "route": "PO",
+        "note": "Second-line for C. diff (vancomycin PO preferred)"
+      },
+      "bacteremia_anaerobic_source": {
+        "dose": "500 mg IV",
+        "frequency": "q8h",
+        "duration": "Variable",
+        "route": "IV"
+      }
+    }
+  },
+
+  "spectrum": {
+    "gram_positive": "Limited (C. difficile)",
+    "gram_negative": "Limited (anaerobes only)",
+    "anaerobes": "Excellent (Bacteroides, Prevotella, etc.)",
+    "atypicals": "No coverage",
+    "critical_use": "ANAEROBIC COVERAGE"
+  },
+
+  "monitoring": {
+    "required": ["clinical response"],
+    "optional": ["CBC if prolonged therapy"]
+  },
+
+  "adverse_effects": {
+    "common": ["metallic taste", "nausea", "headache"],
+    "serious": ["peripheral neuropathy (prolonged use)", "disulfiram reaction with alcohol"],
+    "rare": ["seizures", "encephalopathy"]
+  },
+
+  "drug_interactions": {
+    "major": ["alcohol (disulfiram reaction)", "warfarin (increases INR)"],
+    "moderate": []
+  },
+
+  "notes": [
+    "Essential for anaerobic coverage",
+    "Often combined with aztreonam for severe PCN allergy + intra-abdominal infection",
+    "AVOID ALCOHOL during treatment and 72 hours after",
+    "No renal adjustment needed",
+    "Avoid 1st trimester pregnancy if possible",
+    "Metallic taste common but not dangerous"
+  ],
+
+  "evidence": [
+    "IDSA Intra-Abdominal Infection Guidelines",
+    "IDSA C. difficile Guidelines"
+  ]
+}

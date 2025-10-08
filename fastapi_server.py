@@ -7,11 +7,14 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 from datetime import datetime
+from pathlib import Path
 import os
 import asyncio
 import time
+import json
+import uuid
 
 # Optional: load .env locally; harmless in container if not present
 try:
@@ -24,6 +27,7 @@ except Exception:
 # was: from agno_bridge import AgnoBackendBridge
 from agno_bridge_v2 import AgnoBackendBridge
 from audit_logger import record_audit_entry, get_log_summary
+from feedback_collector import router as feedback_router
 
 app = FastAPI(
     title="TUHS Antibiotic Steward API",
@@ -41,6 +45,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include feedback collection router
+app.include_router(feedback_router)
+
+# Error report storage directory
+ERROR_REPORTS_DIR = Path("logs/error_reports")
+ERROR_REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---- Lazy bridge init (so startup doesn't crash if env missing) ----
 _bridge: Optional[AgnoBackendBridge] = None
@@ -267,6 +278,36 @@ class EvidenceSearchRequest(BaseModel):
     tuhs_recommendation: str
     tuhs_confidence: float
 
+class ErrorReport(BaseModel):
+    error_type: str = Field(..., description="Type of error: contraindicated|wrong_drug|wrong_dose|missed_allergy|missed_interaction|wrong_route|other")
+    severity: str = Field(..., description="Severity: low|medium|high|critical")
+    error_description: str = Field(..., description="Description of the error")
+    expected_recommendation: str = Field(..., description="What should have been recommended")
+    reporter_name: Optional[str] = Field(None, description="Name or ID of reporter (optional)")
+    patient_data: Dict[str, Any] = Field(..., description="De-identified patient data")
+    recommendation_given: Dict[str, Any] = Field(..., description="The recommendation that was given")
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "error_type": "contraindicated",
+                "severity": "high",
+                "error_description": "System gave ceftriaxone to patient with severe PCN allergy (anaphylaxis)",
+                "expected_recommendation": "Should have given aztreonam instead",
+                "reporter_name": "Dr. Smith",
+                "patient_data": {
+                    "age": 55,
+                    "infection_type": "uti",
+                    "fever": True,
+                    "allergies": "Penicillin (anaphylaxis)"
+                },
+                "recommendation_given": {
+                    "drugs": ["Ceftriaxone"],
+                    "route": "IV"
+                }
+            }
+        }
+
 @app.post("/api/search-evidence")
 async def search_evidence(request: EvidenceSearchRequest):
     """Manual evidence search across reputable sources."""
@@ -317,6 +358,191 @@ async def search_evidence(request: EvidenceSearchRequest):
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Evidence search failed: {e}") from e
 
+@app.post("/api/error-report")
+async def submit_error_report(error_report: ErrorReport):
+    """
+    Submit an error report from a pilot user (pharmacist)
+    """
+    try:
+        # Generate unique error ID
+        error_id = f"ERR-{datetime.now().strftime('%Y%m%d')}-{str(uuid.uuid4())[:8]}"
+
+        # Convert to dict and add metadata
+        report_dict = error_report.model_dump()
+        report_dict['error_id'] = error_id
+        report_dict['status'] = 'new'
+        report_dict['created_at'] = datetime.now().isoformat()
+
+        # Validate severity
+        valid_severities = ['low', 'medium', 'high', 'critical']
+        if report_dict['severity'] not in valid_severities:
+            raise ValueError(f"Invalid severity. Must be one of: {valid_severities}")
+
+        # Validate error_type
+        valid_types = ['contraindicated', 'wrong_drug', 'wrong_dose', 'missed_allergy',
+                       'missed_interaction', 'wrong_route', 'other']
+        if report_dict['error_type'] not in valid_types:
+            raise ValueError(f"Invalid error_type. Must be one of: {valid_types}")
+
+        # Save to JSONL file (one report per line)
+        today = datetime.now().strftime('%Y-%m-%d')
+        report_file = ERROR_REPORTS_DIR / f"{today}.jsonl"
+
+        with open(report_file, 'a') as f:
+            f.write(json.dumps(report_dict) + '\n')
+
+        print(f"📝 Error report submitted: {error_id} (severity: {report_dict['severity']})")
+
+        # Log critical errors prominently
+        if report_dict.get('severity') == 'critical':
+            print(f"🚨 CRITICAL ERROR REPORT: {error_id}")
+            print(f"   Description: {report_dict['error_description'][:100]}")
+
+        return {
+            "success": True,
+            "error_id": error_id,
+            "message": "Error report submitted successfully. Thank you for helping improve the system."
+        }
+
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except Exception as e:
+        print(f"❌ Failed to save error report: {e}")
+        raise HTTPException(status_code=500, detail=f"Error saving report: {e}") from e
+
+
+@app.get("/api/error-reports")
+async def get_error_reports(
+    status: Optional[str] = None,
+    severity: Optional[str] = None,
+    limit: Optional[int] = 50
+):
+    """
+    Retrieve error reports (for admin dashboard)
+
+    Query Parameters:
+    - status: Filter by status (new, verified, in_progress, fixed, closed)
+    - severity: Filter by severity (low, medium, high, critical)
+    - limit: Maximum number of reports to return (default: 50)
+    """
+    try:
+        all_reports = []
+
+        # Read all JSONL files (most recent first)
+        report_files = sorted(ERROR_REPORTS_DIR.glob("*.jsonl"), reverse=True)
+
+        for report_file in report_files:
+            with open(report_file, 'r') as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    report = json.loads(line)
+
+                    # Filter by status if provided
+                    if status and report.get('status') != status:
+                        continue
+
+                    # Filter by severity if provided
+                    if severity and report.get('severity') != severity:
+                        continue
+
+                    all_reports.append(report)
+
+                    # Stop if we've hit the limit
+                    if len(all_reports) >= limit:
+                        break
+
+            if len(all_reports) >= limit:
+                break
+
+        # Sort by timestamp (newest first)
+        all_reports.sort(key=lambda x: x.get('created_at', ''), reverse=True)
+
+        # Apply limit
+        all_reports = all_reports[:limit]
+
+        # Calculate summary stats
+        stats = {
+            'total': len(all_reports),
+            'by_status': {},
+            'by_severity': {},
+            'by_type': {}
+        }
+
+        for report in all_reports:
+            status_val = report.get('status', 'unknown')
+            severity_val = report.get('severity', 'unknown')
+            type_val = report.get('error_type', 'unknown')
+
+            stats['by_status'][status_val] = stats['by_status'].get(status_val, 0) + 1
+            stats['by_severity'][severity_val] = stats['by_severity'].get(severity_val, 0) + 1
+            stats['by_type'][type_val] = stats['by_type'].get(type_val, 0) + 1
+
+        return {
+            "success": True,
+            "count": len(all_reports),
+            "reports": all_reports,
+            "stats": stats
+        }
+
+    except Exception as e:
+        print(f"❌ Failed to retrieve error reports: {e}")
+        raise HTTPException(status_code=500, detail=f"Error retrieving reports: {e}") from e
+
+
+@app.patch("/api/error-report/{error_id}/status")
+async def update_error_status(error_id: str, new_status: str):
+    """
+    Update error report status
+
+    Valid statuses: new, verified, in_progress, fixed, closed, wont_fix, not_reproduced
+    """
+    try:
+        valid_statuses = ['new', 'verified', 'in_progress', 'fixed', 'closed', 'wont_fix', 'not_reproduced']
+        if new_status not in valid_statuses:
+            raise ValueError(f"Invalid status. Must be one of: {valid_statuses}")
+
+        # Find and update the error report
+        updated = False
+        for report_file in ERROR_REPORTS_DIR.glob("*.jsonl"):
+            reports = []
+            with open(report_file, 'r') as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    report = json.loads(line)
+                    if report['error_id'] == error_id:
+                        old_status = report.get('status')
+                        report['status'] = new_status
+                        report['status_updated_at'] = datetime.now().isoformat()
+                        updated = True
+                        print(f"📝 Updated {error_id}: {old_status} → {new_status}")
+                    reports.append(report)
+
+            # Rewrite file with updated report
+            if updated:
+                with open(report_file, 'w') as f:
+                    for report in reports:
+                        f.write(json.dumps(report) + '\n')
+                break
+
+        if not updated:
+            raise HTTPException(status_code=404, detail=f"Error report {error_id} not found")
+
+        return {
+            "success": True,
+            "message": f"Error {error_id} status updated to {new_status}"
+        }
+
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ Failed to update error status: {e}")
+        raise HTTPException(status_code=500, detail=f"Error updating status: {e}") from e
+
+
 @app.on_event("startup")
 async def startup_event():
     print("🚀 TUHS Antibiotic Steward - FastAPI Server")
@@ -324,6 +550,7 @@ async def startup_event():
     print("📡 API Docs:     /api/docs")
     print("🌐 Frontend:     /")
     print("❤️  Health:      /health")
+    print("📝 Error Reports: /api/error-reports")
     print("=" * 50)
 
 if __name__ == "__main__":

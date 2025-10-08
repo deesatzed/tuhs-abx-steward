@@ -1,0 +1,132 @@
+{
+  "drug_name": "Aztreonam",
+  "drug_id": "aztreonam",
+  "generic_name": "aztreonam",
+  "brand_names": ["Azactam", "Cayston"],
+  "class": "Monobactam",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["IV", "IM"],
+  "default_route": "IV",
+
+  "unique_property": "SAFE FOR SEVERE PCN ALLERGY - No cross-reactivity with beta-lactams",
+
+  "contraindications": {
+    "absolute": [],
+    "relative": [],
+    "note": "NO cross-reactivity with penicillins or cephalosporins. Safe for severe PCN allergy including anaphylaxis."
+  },
+
+  "allergy_considerations": {
+    "severe_pcn_allergy": {
+      "safe": true,
+      "critical_note": "Aztreonam is the PREFERRED beta-lactam alternative for severe PCN allergy",
+      "evidence": "Monobactam structure different from penicillins/cephalosporins. No cross-reactivity."
+    },
+    "mild_pcn_allergy": {
+      "safe": true,
+      "note": "Also safe for mild allergy, but cephalosporins are usually first choice"
+    }
+  },
+
+  "pregnancy_category": "B",
+  "pregnancy_safe": true,
+  "pregnancy_notes": "Safe in pregnancy. Good alternative when fluoroquinolones contraindicated.",
+
+  "renal_adjustment": {
+    "required": true,
+    "note": "Dose reduction needed for CrCl <30",
+    "adjustments": {
+      "normal": "Full dose",
+      "crcl_30_50": "Reduce by 25%",
+      "crcl_10_29": "Reduce by 50%",
+      "crcl_lt_10": "Reduce by 75%",
+      "dialysis": "Give after dialysis"
+    }
+  },
+
+  "dosing": {
+    "by_indication": {
+      "pyelonephritis": {
+        "dose": "1-2 g IV",
+        "frequency": "q8h",
+        "duration": "7-14 days",
+        "note": "For severe PCN allergy",
+        "route": "IV"
+      },
+      "pneumonia": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "duration": "7-10 days",
+        "note": "For severe PCN allergy with atypical coverage from another agent",
+        "route": "IV"
+      },
+      "bacteremia": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "duration": "14+ days",
+        "note": "Often combined with vancomycin",
+        "route": "IV"
+      },
+      "intra_abdominal": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "duration": "Variable",
+        "note": "MUST combine with metronidazole for anaerobic coverage + vancomycin for gram-positive",
+        "route": "IV",
+        "critical_note": "Aztreonam has NO anaerobic or gram-positive coverage"
+      },
+      "meningitis": {
+        "dose": "2 g IV",
+        "frequency": "q6-8h",
+        "duration": "14+ days",
+        "note": "Higher frequency for CNS penetration",
+        "route": "IV"
+      }
+    }
+  },
+
+  "spectrum": {
+    "gram_positive": "NO COVERAGE",
+    "gram_negative": "Excellent (including Pseudomonas)",
+    "anaerobes": "NO COVERAGE",
+    "atypicals": "NO COVERAGE",
+    "critical_gap": "Must combine with other agents for gram-positive and anaerobic coverage"
+  },
+
+  "combination_therapy": {
+    "required": true,
+    "typical_combinations": [
+      "Aztreonam + Vancomycin (for gram-positive coverage)",
+      "Aztreonam + Metronidazole (for anaerobic coverage)",
+      "Aztreonam + Vancomycin + Metronidazole (broad-spectrum for severe allergy)"
+    ]
+  },
+
+  "monitoring": {
+    "required": ["renal function", "clinical response"],
+    "optional": []
+  },
+
+  "adverse_effects": {
+    "common": ["diarrhea", "nausea", "injection site reaction"],
+    "serious": ["C. difficile colitis"],
+    "rare": ["hepatotoxicity"]
+  },
+
+  "notes": [
+    "FIRST-LINE for severe PCN allergy (anaphylaxis, SJS, DRESS)",
+    "NO cross-reactivity with beta-lactams",
+    "Covers Pseudomonas and gram-negatives",
+    "NO gram-positive or anaerobic coverage - needs combination therapy",
+    "Renal adjustment required",
+    "Safe in pregnancy"
+  ],
+
+  "evidence": [
+    "Monobactam structure studies",
+    "No cross-reactivity with penicillins/cephalosporins",
+    "FDA approved for severe beta-lactam allergy"
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "infection_name": "Urinary Tract Infection",
+  "infection_code": "uti",
+  "description": "Includes both lower tract (cystitis) and upper tract (pyelonephritis) infections",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "classification_rules": {
+    "cystitis": {
+      "description": "Lower tract infection (bladder)",
+      "clinical_features": ["dysuria", "frequency", "urgency"],
+      "no_systemic_symptoms": true,
+      "route_allowed": ["PO", "IV"],
+      "note": "Oral antibiotics are appropriate for uncomplicated cystitis"
+    },
+    "pyelonephritis": {
+      "description": "Upper tract infection (kidney) - REQUIRES IV ANTIBIOTICS",
+      "clinical_features": ["fever", "flank pain", "CVA tenderness", "systemic symptoms"],
+      "fever_present": true,
+      "route_required": "IV",
+      "critical_rule": "PYELONEPHRITIS ALWAYS REQUIRES IV ANTIBIOTICS - NEVER USE ORAL THERAPY AS FIRST-LINE",
+      "recognition_keywords": [
+        "fever",
+        "febrile",
+        "pyelonephritis",
+        "upper tract",
+        "flank pain",
+        "CVA tenderness",
+        "systemic symptoms",
+        "rigors"
+      ]
+    }
+  },
+
+  "categories": [
+    {
+      "category": "Cystitis - Uncomplicated",
+      "infection_subtype": "cystitis",
+      "location": "Outpatient",
+      "severity": "mild",
+      "route": "PO",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["nitrofurantoin", "trimethoprim_sulfamethoxazole"],
+          "reasoning": "First-line oral agents for uncomplicated cystitis",
+          "evidence": "IDSA Uncomplicated UTI Guidelines 2019"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["nitrofurantoin", "trimethoprim_sulfamethoxazole"],
+          "reasoning": "No cross-reactivity concern with these agents"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["nitrofurantoin", "trimethoprim_sulfamethoxazole"],
+          "reasoning": "No cross-reactivity concern with these agents"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["nitrofurantoin", "fosfomycin"],
+          "reasoning": "Avoid TMP/SMX due to sulfa allergy"
+        }
+      ]
+    },
+    {
+      "category": "Pyelonephritis - Community Acquired",
+      "infection_subtype": "pyelonephritis",
+      "location": "Ward",
+      "severity": "moderate_to_severe",
+      "route": "IV",
+      "critical_warnings": [
+        "🚨 PYELONEPHRITIS REQUIRES IV ANTIBIOTICS",
+        "🚨 NEVER USE ORAL CIPROFLOXACIN AS FIRST-LINE",
+        "🚨 NEVER USE ORAL ANTIBIOTICS FOR FEBRILE UTI",
+        "🚨 IV CEFTRIAXONE IS MANDATORY FIRST-LINE FOR COMMUNITY-ACQUIRED PYELONEPHRITIS"
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ceftriaxone"],
+          "route": "IV",
+          "reasoning": "IV ceftriaxone is first-line for community-acquired pyelonephritis",
+          "evidence": "IDSA Complicated UTI Guidelines, TUHS Protocol",
+          "note": "NEVER use oral ciprofloxacin for pyelonephritis"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ceftriaxone"],
+          "route": "IV",
+          "reasoning": "Cephalosporins safe with mild PCN allergy (cross-reactivity <1%)",
+          "note": "Rash-only allergy allows cephalosporin use"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam"],
+          "route": "IV",
+          "reasoning": "Aztreonam safe for severe PCN allergy (no cross-reactivity)",
+          "alternative": "levofloxacin IV (reserve for severe allergy)",
+          "note": "Anaphylaxis/SJS/DRESS requires aztreonam, NOT cephalosporins"
+        }
+      ]
+    },
+    {
+      "category": "Pyelonephritis - Hospital Acquired",
+      "infection_subtype": "pyelonephritis",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["catheter", "recent hospitalization", "recent antibiotics"],
+      "critical_warnings": [
+        "🚨 BROADER SPECTRUM IV THERAPY REQUIRED",
+        "🚨 NEVER USE ORAL ANTIBIOTICS"
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["piperacillin_tazobactam"],
+          "route": "IV",
+          "reasoning": "Broader spectrum for hospital-acquired infection with Pseudomonas risk",
+          "alternative": "cefepime IV"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["cefepime"],
+          "route": "IV",
+          "reasoning": "Cefepime safe for mild PCN allergy, covers Pseudomonas"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "aminoglycoside"],
+          "route": "IV",
+          "reasoning": "Combination therapy for severe allergy + Pseudomonas coverage"
+        }
+      ]
+    },
+    {
+      "category": "Febrile UTI (Presumed Pyelonephritis)",
+      "infection_subtype": "pyelonephritis",
+      "location": "Ward",
+      "severity": "moderate_to_severe",
+      "route": "IV",
+      "recognition_rule": "ANY UTI WITH FEVER = PYELONEPHRITIS = IV ANTIBIOTICS REQUIRED",
+      "critical_warnings": [
+        "🚨 FEVER + UTI = PYELONEPHRITIS = IV THERAPY MANDATORY",
+        "🚨 DO NOT TREAT FEBRILE UTI WITH ORAL ANTIBIOTICS",
+        "🚨 CEFTRIAXONE IV IS FIRST-LINE"
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ceftriaxone"],
+          "route": "IV",
+          "reasoning": "Fever indicates upper tract infection (pyelonephritis) requiring IV therapy"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ceftriaxone"],
+          "route": "IV",
+          "reasoning": "Safe for mild PCN allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam"],
+          "route": "IV",
+          "reasoning": "Aztreonam for severe PCN allergy"
+        }
+      ]
+    }
+  ],
+
+  "pregnancy_considerations": {
+    "safe_drugs": ["ceftriaxone", "cefepime", "aztreonam", "nitrofurantoin"],
+    "contraindicated_drugs": ["ciprofloxacin", "levofloxacin", "trimethoprim_sulfamethoxazole"],
+    "notes": "Fluoroquinolones contraindicated in pregnancy. TMP/SMX avoid in 1st trimester."
+  },
+
+  "de_escalation": {
+    "criteria": "Culture results available, patient clinically improved, afebrile >24h",
+    "note": "May transition pyelonephritis from IV to PO after clinical improvement"
+  }
+}

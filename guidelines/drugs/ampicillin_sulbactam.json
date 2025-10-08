@@ -1,0 +1,105 @@
+{
+  "drug_id": "ampicillin_sulbactam",
+  "drug_name": "Ampicillin-Sulbactam",
+  "class": "Penicillin + Beta-lactamase inhibitor",
+  "spectrum": {
+    "gram_positive": "Excellent (Strep, most Staph, Enterococcus)",
+    "gram_negative": "Good (E. coli, Klebsiella, Proteus)",
+    "anaerobes": "EXCELLENT (Bacteroides, Prevotella)",
+    "special": "Oral flora coverage (Strep viridans, Fusobacterium)"
+  },
+  "primary_uses": [
+    "Aspiration pneumonia",
+    "Intra-abdominal infections",
+    "Skin and soft tissue infections",
+    "Mixed aerobic/anaerobic infections"
+  ],
+  "dosing": {
+    "by_indication": {
+      "aspiration_pneumonia": {
+        "dose": "3 g IV",
+        "frequency": "q6h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "notes": [
+          "EXCELLENT coverage for oral flora + anaerobes",
+          "First-line for aspiration pneumonia",
+          "Covers Strep viridans, Bacteroides, Prevotella"
+        ]
+      },
+      "pneumonia": {
+        "dose": "3 g IV",
+        "frequency": "q6h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "notes": [
+          "Good for aspiration risk (dementia, dysphagia)",
+          "Anaerobic coverage essential"
+        ]
+      },
+      "intra_abdominal": {
+        "dose": "3 g IV",
+        "frequency": "q6h",
+        "duration": "4-7 days",
+        "route": "IV",
+        "notes": [
+          "Good anaerobic coverage",
+          "Alternative to pip-tazo"
+        ]
+      }
+    }
+  },
+  "renal_adjustment": {
+    "required": true,
+    "adjustments": {
+      "normal": "3 g IV q6h",
+      "crcl_30_59": "3 g IV q6h (no adjustment)",
+      "crcl_15_29": "3 g IV q12h",
+      "crcl_below_15": "3 g IV q24h",
+      "hemodialysis": "3 g IV q24h (give after dialysis)",
+      "note": "Significant renal adjustment required"
+    }
+  },
+  "pregnancy_safe": true,
+  "pregnancy_category": "B",
+  "pregnancy_notes": "Safe in all trimesters",
+  "allergy_considerations": {
+    "contraindications": [
+      "Penicillin allergy",
+      "Beta-lactam allergy"
+    ],
+    "mild_pcn_allergy": {
+      "safe": false,
+      "note": "Ampicillin-sulbactam IS a penicillin - DO NOT use in PCN allergy"
+    },
+    "severe_pcn_allergy": {
+      "safe": false,
+      "note": "⚠️ CONTRAINDICATED - This is a penicillin derivative"
+    }
+  },
+  "warnings": [
+    "⚠️ PENICILLIN ALLERGY: Absolutely contraindicated in PCN allergy",
+    "Rash common (10-15%)",
+    "Eosinophilia",
+    "Hepatotoxicity (monitor LFTs)"
+  ],
+  "monitoring": [
+    "Renal function (adjust dose)",
+    "Liver function tests",
+    "Rash",
+    "Clinical response"
+  ],
+  "interactions": {
+    "major": [
+      "Warfarin (monitor INR)",
+      "Methotrexate (increased toxicity)",
+      "Allopurinol (increased rash risk)"
+    ]
+  },
+  "side_effects": [
+    "Rash (common)",
+    "GI upset (nausea, diarrhea)",
+    "Hepatotoxicity",
+    "Eosinophilia"
+  ]
+}

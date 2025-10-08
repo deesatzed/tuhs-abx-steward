@@ -1,0 +1,144 @@
+{
+  "drug_name": "Vancomycin",
+  "drug_id": "vancomycin",
+  "generic_name": "vancomycin",
+  "brand_names": ["Vancocin"],
+  "class": "Glycopeptide",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["IV", "PO"],
+  "default_route": "IV",
+  "oral_indication": "C. difficile colitis only (not absorbed systemically)",
+
+  "contraindications": {
+    "absolute": [],
+    "relative": [],
+    "note": "Red Man Syndrome is rate-related infusion reaction, NOT true allergy. Slow infusion rate."
+  },
+
+  "allergy_considerations": {
+    "pcn_allergy": {
+      "safe": true,
+      "note": "No cross-reactivity with beta-lactams. Safe for any PCN allergy severity."
+    },
+    "red_man_syndrome": {
+      "management": "NOT a contraindication. Slow infusion rate to 2+ hours. Pre-medicate with antihistamine if needed.",
+      "note": "Histamine release, not IgE-mediated allergy"
+    }
+  },
+
+  "pregnancy_category": "C",
+  "pregnancy_safe": "use with caution",
+  "pregnancy_notes": "Use only if benefits outweigh risks. Monitor levels closely.",
+
+  "renal_adjustment": {
+    "required": true,
+    "critical": true,
+    "note": "Nephrotoxic. Dose adjustment MANDATORY based on CrCl and levels",
+    "monitoring": "Trough levels required",
+    "target_trough": {
+      "standard": "10-15 mcg/mL",
+      "serious_infection": "15-20 mcg/mL",
+      "meningitis": "15-20 mcg/mL"
+    }
+  },
+
+  "dosing": {
+    "by_indication": {
+      "bacteremia_mrsa": {
+        "loading_dose": "25-30 mg/kg IV once",
+        "maintenance_dose": "15-20 mg/kg IV",
+        "frequency": "q8-12h",
+        "duration": "14-42 days (depends on source)",
+        "route": "IV",
+        "note": "Loading dose recommended. Trough levels 15-20 mcg/mL"
+      },
+      "meningitis": {
+        "loading_dose": "25-30 mg/kg IV once",
+        "maintenance_dose": "15-20 mg/kg IV",
+        "frequency": "q8-12h",
+        "duration": "14+ days",
+        "route": "IV",
+        "note": "LOADING DOSE MANDATORY for meningitis. Higher target trough 15-20 mcg/mL"
+      },
+      "pneumonia_mrsa": {
+        "loading_dose": "25-30 mg/kg IV once",
+        "maintenance_dose": "15-20 mg/kg IV",
+        "frequency": "q8-12h",
+        "duration": "7-21 days",
+        "route": "IV"
+      },
+      "skin_soft_tissue": {
+        "loading_dose": "optional",
+        "maintenance_dose": "15-20 mg/kg IV",
+        "frequency": "q12h",
+        "duration": "7-14 days",
+        "route": "IV"
+      },
+      "intra_abdominal": {
+        "loading_dose": "optional",
+        "maintenance_dose": "15-20 mg/kg IV",
+        "frequency": "q8-12h",
+        "duration": "Variable",
+        "route": "IV",
+        "note": "For gram-positive coverage in severe PCN allergy. Combine with aztreonam + metronidazole."
+      },
+      "c_difficile": {
+        "dose": "125 mg PO",
+        "frequency": "q6h",
+        "duration": "10-14 days",
+        "route": "PO",
+        "note": "Oral vancomycin for C. diff (not absorbed systemically)"
+      }
+    }
+  },
+
+  "loading_dose": {
+    "indications": ["meningitis", "severe MRSA infection", "bacteremia", "critically ill"],
+    "dose": "25-30 mg/kg IV",
+    "max_dose": "3000 mg",
+    "rationale": "Achieves therapeutic levels faster in serious infections"
+  },
+
+  "spectrum": {
+    "gram_positive": "Excellent (MRSA, MRSE, Strep, Enterococcus)",
+    "gram_negative": "NO COVERAGE",
+    "anaerobes": "Some coverage",
+    "atypicals": "No coverage",
+    "critical_use": "MRSA coverage"
+  },
+
+  "monitoring": {
+    "required": ["trough levels", "renal function", "clinical response"],
+    "frequency": "Trough before 4th dose, then weekly if stable",
+    "target": "10-20 mcg/mL depending on indication"
+  },
+
+  "adverse_effects": {
+    "common": ["Red Man Syndrome (infusion-related)", "phlebitis"],
+    "serious": ["nephrotoxicity", "ototoxicity"],
+    "rare": ["neutropenia", "thrombocytopenia"]
+  },
+
+  "drug_interactions": {
+    "nephrotoxic": ["aminoglycosides", "NSAIDs", "contrast dye"],
+    "note": "Avoid concurrent nephrotoxic agents if possible"
+  },
+
+  "notes": [
+    "First-line for MRSA coverage",
+    "Loading dose MANDATORY for meningitis and severe infections",
+    "Trough monitoring required",
+    "Nephrotoxic - monitor renal function",
+    "Red Man Syndrome NOT true allergy - slow infusion",
+    "No cross-reactivity with beta-lactams",
+    "Requires renal dose adjustment"
+  ],
+
+  "evidence": [
+    "IDSA MRSA Guidelines",
+    "IDSA Meningitis Guidelines",
+    "Vancomycin therapeutic monitoring guidelines"
+  ]
+}

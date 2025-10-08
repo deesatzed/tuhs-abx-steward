@@ -1,0 +1,102 @@
+{
+  "drug_id": "moxifloxacin",
+  "drug_name": "Moxifloxacin",
+  "class": "Fluoroquinolone (4th generation)",
+  "spectrum": {
+    "gram_positive": "Excellent (Strep pneumo, MSSA)",
+    "gram_negative": "Good (E. coli, Klebsiella) - Limited Pseudomonas",
+    "atypicals": "Excellent (Mycoplasma, Chlamydophila, Legionella)",
+    "anaerobes": "GOOD (better than other fluoroquinolones)"
+  },
+  "primary_uses": [
+    "Community-acquired pneumonia",
+    "Intra-abdominal infections (with metronidazole)",
+    "Meningitis (alternative for severe PCN allergy)",
+    "Atypical pneumonia"
+  ],
+  "dosing": {
+    "by_indication": {
+      "meningitis": {
+        "dose": "400 mg IV",
+        "frequency": "q24h",
+        "duration": "10-14 days",
+        "route": "IV",
+        "notes": [
+          "Alternative for severe PCN allergy",
+          "Good CSF penetration",
+          "Usually combined with vancomycin"
+        ]
+      },
+      "cap": {
+        "dose": "400 mg IV",
+        "frequency": "q24h",
+        "duration": "5-7 days",
+        "route": "IV",
+        "notes": [
+          "Excellent atypical + anaerobic coverage",
+          "Can switch to PO (same dose)"
+        ]
+      },
+      "pneumonia": {
+        "dose": "400 mg IV",
+        "frequency": "q24h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "notes": [
+          "Broader spectrum than levofloxacin",
+          "Good anaerobic coverage"
+        ]
+      }
+    }
+  },
+  "renal_adjustment": {
+    "required": false,
+    "note": "NO renal adjustment needed (hepatic clearance)"
+  },
+  "pregnancy_safe": false,
+  "pregnancy_category": "C",
+  "pregnancy_notes": "CONTRAINDICATED - Cartilage damage in animal studies. Use only if no alternatives.",
+  "allergy_considerations": {
+    "contraindications": [
+      "Fluoroquinolone allergy",
+      "Moxifloxacin hypersensitivity"
+    ],
+    "pcn_allergy": {
+      "safe": true,
+      "note": "NO cross-reactivity with penicillins - excellent alternative for severe PCN allergy"
+    }
+  },
+  "warnings": [
+    "⚠️ BLACK BOX WARNING: Tendon rupture risk",
+    "⚠️ BLACK BOX WARNING: Peripheral neuropathy",
+    "⚠️ BLACK BOX WARNING: CNS effects",
+    "⚠️ QT PROLONGATION: HIGHEST risk among fluoroquinolones",
+    "Avoid in patients with QTc >450ms",
+    "Avoid in pregnancy/breastfeeding",
+    "CONTRAINDICATED in children/adolescents (cartilage damage)"
+  ],
+  "monitoring": [
+    "⚠️ ECG MANDATORY before starting (baseline QTc)",
+    "Tendon pain (discontinue immediately)",
+    "Neuropathy symptoms",
+    "Monitor QTc if prolonged baseline"
+  ],
+  "interactions": {
+    "major": [
+      "QT-prolonging drugs (AVOID - high risk)",
+      "Class IA/III antiarrhythmics (CONTRAINDICATED)",
+      "Warfarin (monitor INR)",
+      "NSAIDs (increased seizure risk)",
+      "Antacids/calcium (decreased absorption)"
+    ]
+  },
+  "side_effects": [
+    "Tendon rupture (SERIOUS)",
+    "Peripheral neuropathy (SERIOUS)",
+    "QT prolongation (SERIOUS - highest risk)",
+    "GI upset",
+    "Headache",
+    "Photosensitivity",
+    "Hepatotoxicity"
+  ]
+}

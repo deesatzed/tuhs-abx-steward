@@ -1,0 +1,117 @@
+{
+  "drug_id": "levofloxacin",
+  "drug_name": "Levofloxacin",
+  "class": "Fluoroquinolone",
+  "spectrum": {
+    "gram_positive": "Good (Strep pneumo, some MSSA)",
+    "gram_negative": "Excellent (E. coli, Klebsiella, Pseudomonas)",
+    "atypicals": "Excellent (Mycoplasma, Chlamydophila, Legionella)",
+    "anaerobes": "NO COVERAGE"
+  },
+  "primary_uses": [
+    "Community-acquired pneumonia",
+    "Hospital-acquired pneumonia",
+    "Alternative for severe PCN allergy",
+    "Atypical pneumonia coverage"
+  ],
+  "dosing": {
+    "by_indication": {
+      "cap": {
+        "dose": "750 mg IV",
+        "frequency": "q24h",
+        "duration": "5-7 days",
+        "route": "IV",
+        "notes": [
+          "Higher dose (750mg) for severe CAP",
+          "Can switch to PO (same dose)"
+        ]
+      },
+      "pneumonia": {
+        "dose": "750 mg IV",
+        "frequency": "q24h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "notes": [
+          "Excellent bioavailability (can use PO once stable)",
+          "Covers atypicals + typical bacteria"
+        ]
+      },
+      "hap": {
+        "dose": "750 mg IV",
+        "frequency": "q24h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "notes": [
+          "Good Pseudomonas coverage",
+          "Often combined with other agents"
+        ]
+      },
+      "pyelonephritis": {
+        "dose": "750 mg IV",
+        "frequency": "q24h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "notes": [
+          "Excellent renal tissue penetration",
+          "Can use PO for mild-moderate cases"
+        ]
+      }
+    }
+  },
+  "renal_adjustment": {
+    "required": true,
+    "adjustments": {
+      "normal": "750 mg IV q24h",
+      "crcl_50_80": "750 mg IV q24h (no adjustment)",
+      "crcl_20_49": "750 mg IV once, then 750 mg q48h",
+      "crcl_10_19": "750 mg IV once, then 500 mg q48h",
+      "crcl_below_10": "750 mg IV once, then 500 mg q48h",
+      "hemodialysis": "750 mg IV once, then 500 mg q48h",
+      "note": "Significant renal adjustment required"
+    }
+  },
+  "pregnancy_safe": false,
+  "pregnancy_category": "C",
+  "pregnancy_notes": "CONTRAINDICATED - Cartilage damage in animal studies. Use only if no alternatives.",
+  "allergy_considerations": {
+    "contraindications": [
+      "Fluoroquinolone allergy",
+      "Levofloxacin hypersensitivity"
+    ],
+    "pcn_allergy": {
+      "safe": true,
+      "note": "NO cross-reactivity with penicillins - excellent alternative for severe PCN allergy"
+    }
+  },
+  "warnings": [
+    "⚠️ BLACK BOX WARNING: Tendon rupture risk",
+    "⚠️ BLACK BOX WARNING: Peripheral neuropathy",
+    "⚠️ BLACK BOX WARNING: CNS effects",
+    "QT prolongation risk",
+    "Avoid in patients >60yo with tendon disorders",
+    "Avoid in pregnancy/breastfeeding",
+    "CONTRAINDICATED in children/adolescents (cartilage damage)"
+  ],
+  "monitoring": [
+    "Tendon pain (discontinue immediately)",
+    "Neuropathy symptoms",
+    "ECG if baseline QT prolongation",
+    "Renal function"
+  ],
+  "interactions": {
+    "major": [
+      "QT-prolonging drugs (azithromycin, amiodarone)",
+      "Warfarin (monitor INR)",
+      "NSAIDs (increased seizure risk)",
+      "Antacids/calcium (decreased absorption)"
+    ]
+  },
+  "side_effects": [
+    "Tendon rupture (SERIOUS)",
+    "Peripheral neuropathy (SERIOUS)",
+    "QT prolongation",
+    "GI upset",
+    "Headache",
+    "Photosensitivity"
+  ]
+}

@@ -1,0 +1,4781 @@
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-02.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "community_acquired_pneumonia",
+    "name": "Community Acquired Pneumonia (CAP)",
+    "setting": "community",
+    "synonyms": [
+      "CAP"
+    ]
+  },
+  "diagnostics": {
+    "orders": [
+      "mrsa_nares",
+      "sputum_culture"
+    ],
+    "timing": null,
+    "deescalationRules": [
+      {
+        "test": "mrsa_nares",
+        "result": "negative",
+        "action": "stop",
+        "target": "vancomycin",
+        "evidence": {
+          "npv": 0.95
+        },
+        "trace": {
+          "page": 1,
+          "sourceText": "Negative MRSA nares swab has a >95% negative predictive value for MRSA PNA.",
+          "confidence": null
+        }
+      },
+      {
+        "test": "sputum_culture",
+        "result": "no_mrsa_or_psa_confirmation",
+        "action": "narrow",
+        "target": "extended_mrsa_psa_coverage",
+        "evidence": null,
+        "trace": {
+          "page": 1,
+          "sourceText": "if no microbiologic confirmation of MRSA or PSA, discontinue extended coverage.",
+          "confidence": null
+        }
+      }
+    ]
+  },
+  "pathways": [
+    {
+      "id": "default",
+      "label": "Community Acquired Pneumonia (CAP)",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration"
+        ]
+      },
+      "durationDays": {
+        "min": 5,
+        "max": null,
+        "from": "start",
+        "notes": "Longer duration may be needed if: Severe CAP, Empyema, Complicated by extra-pulmonary infection.",
+        "bandsBySeverity": null
+      },
+      "stopRules": [
+        {
+          "condition": "azithromycin_dosed_500mg_daily",
+          "action": "Discontinue azithromycin at 3 days regardless of total antibiotic duration"
+        }
+      ],
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "azithromycin",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": [
+                "Use Doxycycline IV/PO if contraindication to azithromycin.",
+                "ADD Vancomycin IV if: ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ceftriaxone IV (1st) PLUS Azithromycin IV/PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "ampicillin-sulbactam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "azithromycin",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": [
+                "Preferred if aspiration related empyema or lung abscess suspected.",
+                "Use Doxycycline IV/PO if contraindication to azithromycin.",
+                "ADD Vancomycin IV if: ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ampicillin-sulbactam IV (1st) (preferred if aspiration related empyema or lung abscess suspected) PLUS Azithromycin IV/PO",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "azithromycin",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": [
+                "ADD Metronidazole IV/PO if: Aspiration related empyema or lung abscess suspected.",
+                "Use Doxycycline IV/PO if contraindication to azithromycin.",
+                "ADD Vancomycin IV if: ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ceftriaxone IV (1st) PLUS Azithromycin IV/PO",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "levofloxacin",
+                "variant": "IV/PO"
+              },
+              "adjuncts": null,
+              "notes": [
+                "ADD Vancomycin IV if: ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d.",
+                "ADD Aztreonam IV if: ICU admission.",
+                "ADD Metronidazole IV/PO If: Aspiration related empyema or lung abscess suspected."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Levofloxacin IV/PO (1st)",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+2. Hospital-Acquired / Ventilator-Associated Pneumonia (from abx-03.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-03.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "hospital_acquired_pneumonia",
+    "name": "Hospital-Acquired / Ventilator-Associated Pneumonia",
+    "setting": "hospital",
+    "synonyms": [
+      "HAP",
+      "VAP",
+      "CAP with MDRO risk factors"
+    ]
+  },
+  "diagnostics": {
+    "orders": [
+      "mrsa_nares",
+      "sputum_culture"
+    ],
+    "timing": null,
+    "deescalationRules": [
+      {
+        "test": "mrsa_nares",
+        "result": "negative",
+        "action": "stop",
+        "target": "vancomycin",
+        "evidence": {
+          "npv": 0.95
+        },
+        "trace": {
+          "page": 1,
+          "sourceText": "Negative MRSA nares swab has a >95% negative predictive value for MRSA PNA.",
+          "confidence": null
+        }
+      },
+      {
+        "test": "sputum_culture",
+        "result": "no_mrsa_or_psa_confirmation",
+        "action": "narrow",
+        "target": "extended_mrsa_psa_coverage",
+        "evidence": null,
+        "trace": {
+          "page": 1,
+          "sourceText": "if no microbiologic confirmation of MRSA or PSA, discontinue extended coverage.",
+          "confidence": null
+        }
+      }
+    ]
+  },
+  "pathways": [
+    {
+      "id": "mdro_risk",
+      "label": "CAP with risk factors for MDRO, Hospital-Acquired Pneumonia (HAP), or Ventilator-Associated Pneumonia (VAP)",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": [
+          "history_pseudomonas_or_mdro_last_year",
+          "iv_antibiotic_use_last_90_days",
+          "prolonged_mechanical_ventilation_or_tracheostomy",
+          "immunocompromised",
+          "advanced_structural_lung_disease"
+        ],
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration",
+          "if patient has a history of organisms that are resistant to the recommended empiric regimen"
+        ]
+      },
+      "durationDays": {
+        "min": 5,
+        "max": 7,
+        "from": "start",
+        "notes": "CAP: 5 days. HAP/VAP: 5-7 days. Ultra short course (≤3 days) can be considered in patients with suspected VAP but minimal and stable ventilator settings (PEEP ≤5 cm H₂O and FiO₂ ≤40%).",
+        "bandsBySeverity": null
+      },
+      "stopRules": [
+        {
+          "condition": "azithromycin_dosed_500mg_daily",
+          "action": "Discontinue azithromycin at 3 days regardless of total antibiotic duration"
+        }
+      ],
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "ADD Azithromycin IV/PO if CAP (Doxycycline IV/PO if contraindication)",
+                "ADD vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d"
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st)",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "Preferred in aspiration related empyema or lung abscess suspected",
+                "ADD Azithromycin IV/PO if CAP (Doxycycline IV/PO if contraindication)",
+                "ADD vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d"
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV (1st)",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": {
+            "drugRef": {
+              "name": "tobramycin",
+              "variant": "IV"
+            },
+            "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+          }
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "ADD Azithromycin IV/PO if CAP (Doxycycline IV/PO if contraindication)",
+                "ADD vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d"
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st)",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "Preferred in aspiration related empyema or lung abscess suspected",
+                "ADD Azithromycin IV/PO if CAP (Doxycycline IV/PO if contraindication)",
+                "ADD vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d"
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV (1st)",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "ADD Metronidazole IV/PO if: Aspiration related empyema or lung abscess suspected",
+                "ADD Azithromycin IV/PO if CAP (Doxycycline IV/PO if contraindication)",
+                "ADD vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d"
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st)",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": {
+            "drugRef": {
+              "name": "tobramycin",
+              "variant": "IV"
+            },
+            "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+          }
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "ADD Metronidazole IV/PO if: Aspiration related empyema or lung abscess suspected",
+                "ADD Azithromycin IV/PO if CAP (Doxycycline IV/PO if contraindication)",
+                "ADD vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d"
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st)",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "levofloxacin",
+                "variant": "IV/PO"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "aztreonam",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "ADD vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d",
+                "ADD Metronidazole IV/PO If: Aspiration related empyema or lung abscess suspected"
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Levofloxacin IV/PO (1st) PLUS Aztreonam IV (1st)",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": {
+            "drugRef": {
+              "name": "tobramycin",
+              "variant": "IV"
+            },
+            "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+          }
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "levofloxacin",
+                "variant": "IV/PO"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "aztreonam",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "ADD vancomycin IV if: HAP/VAP, ICU admission, History of MRSA in the last 12months, Suspected lung abscess, empyema, or septic emboli, Influenza/RSV diagnosis in the last 14d",
+                "ADD Metronidazole IV/PO If: Aspiration related empyema or lung abscess suspected"
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Levofloxacin IV/PO (1st) PLUS Aztreonam IV (1st)",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+3. Cystitis (from abx-04.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-04.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "cystitis",
+    "name": "Cystitis",
+    "setting": "community",
+    "synonyms": [
+      "uncomplicated UTI"
+    ]
+  },
+  "diagnostics": {
+    "orders": [
+      "urinalysis",
+      "urine_culture"
+    ],
+    "timing": [
+      {
+        "test": "urinalysis_and_culture",
+        "preAntibioticPreferred": true
+      }
+    ],
+    "deescalationRules": null
+  },
+  "pathways": [
+    {
+      "id": "default",
+      "label": "Cystitis with urinary symptoms only (no fever or other systemic signs)",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration",
+          "if alternative regimen needed"
+        ]
+      },
+      "durationDays": {
+        "min": 1,
+        "max": 7,
+        "from": "start",
+        "notes": "Nitrofurantoin: 5 days. TMP/SMX: 3 days. Fosfomycin: 1 day. Cefazolin: 3-5 days. Cephalexin/Cefpodoxime: 5-7 days. In patients with functional or structural GU abnormalities, 7 days of therapy is sufficient in most cases.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "nitrofurantoin",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Nitrofurantoin PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "fosfomycin",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Fosfomycin PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 3,
+              "drugRef": {
+                "name": "trimethoprim-sulfamethoxazole",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Trimethoprim/sulfamethoxazole PO (TMP/SMX)",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 4,
+              "drugRef": {
+                "name": "cefpodoxime",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": [
+                "Use if preferred regimens are contraindicated."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefpodoxime PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 5,
+              "drugRef": {
+                "name": "cefazolin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "If unable to take PO."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefazolin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "nitrofurantoin",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Nitrofurantoin PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "fosfomycin",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Fosfomycin PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 3,
+              "drugRef": {
+                "name": "trimethoprim-sulfamethoxazole",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "TMP/SMX PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 4,
+              "drugRef": {
+                "name": "ciprofloxacin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "If unable to take PO."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ciprofloxacin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+4. Catheter-Associated UTI (from abx-05.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-05.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "catheter_associated_uti",
+    "name": "Catheter-associated UTI",
+    "setting": "hospital",
+    "synonyms": [
+      "CAUTI"
+    ]
+  },
+  "diagnostics": {
+    "orders": [
+      "urinalysis",
+      "urine_culture"
+    ],
+    "timing": [
+      {
+        "test": "urinalysis_and_culture",
+        "preAntibioticPreferred": true
+      }
+    ],
+    "deescalationRules": null
+  },
+  "pathways": [
+    {
+      "id": "no_sepsis",
+      "label": "Catheter-associated UTI without sepsis and no evidence of upper tract disease",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": [
+          "stable"
+        ],
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": [
+        "Remove or replace catheter prior to UA/Ucx collection & initiation of antibiotic therapy whenever feasible"
+      ],
+      "consult": null,
+      "durationDays": {
+        "min": 5,
+        "max": 7,
+        "from": "start",
+        "notes": null,
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "observation",
+                "variant": null
+              },
+              "adjuncts": null,
+              "notes": [
+                "Observation off antibiotic and await culture results."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Observation off antibiotic and await culture results.",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "fosfomycin",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Fosfomycin PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 3,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ceftriaxone IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "observation",
+                "variant": null
+              },
+              "adjuncts": null,
+              "notes": [
+                "Observation off antibiotic and await culture results."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Observation off antibiotic and await culture results.",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "fosfomycin",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Fosfomycin PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 3,
+              "drugRef": {
+                "name": "ciprofloxacin",
+                "variant": "IV/PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ciprofloxacin IV/PO",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    },
+    {
+      "id": "with_sepsis",
+      "label": "Catheter-associated UTI with sepsis and/or with evidence of upper tract disease",
+      "firstLine": false,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": [
+          "sepsis",
+          "septic_shock"
+        ],
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": [
+        "Remove or replace catheter prior to UA/Ucx collection & initiation of antibiotic therapy whenever feasible"
+      ],
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "For non-IgE mediated PCN reactions (SJS/DRESS) to discuss carbapenem use."
+        ]
+      },
+      "durationDays": {
+        "min": 7,
+        "max": 14,
+        "from": "start",
+        "notes": null,
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": {
+            "when": {
+              "riskFlagsAny": [
+                "esbl_history",
+                "cephalosporin_resistant_organism_history"
+              ],
+              "clinicalStateIn": [
+                "septic_shock"
+              ]
+            },
+            "recommendations": [
+              {
+                "rank": 1,
+                "drugRef": {
+                  "name": "meropenem",
+                  "variant": "IV"
+                },
+                "notes": null,
+                "trace": {
+                  "page": 1,
+                  "sourceText": "Consider meropenem IV if:\n• History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months\n• Septic shock",
+                  "confidence": null
+                }
+              }
+            ]
+          },
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": {
+            "when": {
+              "riskFlagsAny": [
+                "esbl_history",
+                "cephalosporin_resistant_organism_history"
+              ],
+              "clinicalStateIn": [
+                "septic_shock"
+              ]
+            },
+            "recommendations": [
+              {
+                "rank": 1,
+                "drugRef": {
+                  "name": "meropenem",
+                  "variant": "IV"
+                },
+                "notes": null,
+                "trace": {
+                  "page": 1,
+                  "sourceText": "Consider meropenem IV if:\n• History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months\n• Septic shock",
+                  "confidence": null
+                }
+              }
+            ]
+          },
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: For severe IgE mediated PCN reactions, benefit of using carbapenem should be weighed. For non-IgE mediated PCN reactions (SJS/DRESS), discuss with ID."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+5. Febrile UTI / Pyelonephritis (from abx-06.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-06.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "pyelonephritis",
+    "name": "Febrile UTI / Pyelonephritis",
+    "setting": "hospital",
+    "synonyms": []
+  },
+  "diagnostics": {
+    "orders": [
+      "urinalysis",
+      "urine_culture"
+    ],
+    "timing": [
+      {
+        "test": "urinalysis_and_culture",
+        "preAntibioticPreferred": true
+      }
+    ],
+    "deescalationRules": null
+  },
+  "pathways": [
+    {
+      "id": "community_acquired",
+      "label": "Community-acquired Febrile UTI / Pyelonephritis",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration",
+          "if longer durations are clinically indicated",
+          "for non-IgE mediated PCN reactions (SJS/DRESS) to discuss carbapenem use"
+        ]
+      },
+      "durationDays": {
+        "min": 7,
+        "max": 7,
+        "from": "start",
+        "notes": "Most can be treated with 7 days if good clinical response (e.g. improvement within 3-5 days, afebrile >48 hrs).",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ceftriaxone IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": {
+            "when": {
+              "riskFlagsAny": [
+                "esbl_history",
+                "cephalosporin_resistant_organism_history"
+              ],
+              "clinicalStateIn": [
+                "septic_shock"
+              ]
+            },
+            "recommendations": [
+              {
+                "rank": 1,
+                "drugRef": {
+                  "name": "ertapenem",
+                  "variant": "IV"
+                },
+                "notes": null,
+                "trace": {
+                  "page": 1,
+                  "sourceText": "Consider ertapenem IV If:\n• History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months\n• Septic shock",
+                  "confidence": null
+                }
+              }
+            ]
+          },
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: For severe IgE mediated PCN reactions, benefit of using carbapenem should be weighed. For non-IgE mediated PCN reactions (SJS/DRESS), discuss with ID."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    },
+    {
+      "id": "hospital_acquired",
+      "label": "Hospital-acquired Febrile UTI / Pyelonephritis (>48 hrs after admission)",
+      "firstLine": false,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration",
+          "if longer durations are clinically indicated"
+        ]
+      },
+      "durationDays": {
+        "min": 7,
+        "max": 7,
+        "from": "start",
+        "notes": "Most can be treated with 7 days if good clinical response (e.g. improvement within 3-5 days, afebrile >48 hrs).",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": {
+            "when": {
+              "riskFlagsAny": [
+                "esbl_history",
+                "cephalosporin_resistant_organism_history"
+              ],
+              "clinicalStateIn": [
+                "septic_shock"
+              ]
+            },
+            "recommendations": [
+              {
+                "rank": 1,
+                "drugRef": {
+                  "name": "meropenem",
+                  "variant": "IV"
+                },
+                "notes": null,
+                "trace": {
+                  "page": 1,
+                  "sourceText": "Consider meropenem IV if:\n• History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months\n• Septic shock",
+                  "confidence": null
+                }
+              }
+            ]
+          },
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": {
+            "when": {
+              "riskFlagsAny": [
+                "esbl_history",
+                "cephalosporin_resistant_organism_history"
+              ],
+              "clinicalStateIn": [
+                "septic_shock"
+              ]
+            },
+            "recommendations": [
+              {
+                "rank": 1,
+                "drugRef": {
+                  "name": "meropenem",
+                  "variant": "IV"
+                },
+                "notes": null,
+                "trace": {
+                  "page": 1,
+                  "sourceText": "Consider meropenem IV if:\n• History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months\n• Septic shock",
+                  "confidence": null
+                }
+              }
+            ]
+          },
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": [
+      {
+        "type": "warn",
+        "code": "MISSING_RECOMMENDATION",
+        "message": "No recommendation provided for Hospital-acquired Pyelonephritis with severe PCN allergy.",
+        "trace": {
+          "page": 1
+        }
+      }
+    ]
+  }
+}
+6. Intra-abdominal Infection (from abx-07.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-07.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "intra_abdominal_infection",
+    "name": "Intra-abdominal Infection",
+    "setting": null,
+    "synonyms": []
+  },
+  "diagnostics": null,
+  "pathways": [
+    {
+      "id": "community_acquired",
+      "label": "Community Acquired Intra-abdominal Infection",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration",
+          "in patients who are hemodynamically unstable or have difficult to achieve source control"
+        ]
+      },
+      "durationDays": {
+        "min": 4,
+        "max": 4,
+        "from": "source_control",
+        "notes": null,
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ceftriaxone IV (1st) PLUS Metronidazole IV/PO",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    },
+    {
+      "id": "healthcare_associated",
+      "label": "Healthcare Associated Intra-abdominal Infection",
+      "firstLine": false,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": [
+          "recent_iv_antibiotics_within_90_days",
+          "intra_abdominal_surgery_in_last_year"
+        ],
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration",
+          "in patients who are hemodynamically unstable or have difficult to achieve source control",
+          "for non-IgE mediated PCN reactions (SJS/DRESS) to discuss carbapenem use"
+        ]
+      },
+      "durationDays": {
+        "min": 4,
+        "max": 4,
+        "from": "source_control",
+        "notes": null,
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "Preferred option as provides coverage for Enterococcus faecalis.",
+                "ADD or Replace vancomycin with Daptomycin IV if: Severe sepsis or Septic shock, or History of VRE in the past 12 months.",
+                "Consider anti-fungal therapy (i.e. micafungin) in severe sepsis or septic shock."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV (1st)",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "ADD or Replace vancomycin with Daptomycin IV if: Severe sepsis or Septic shock, or History of VRE in the past 12 months.",
+                "Consider anti-fungal therapy (i.e. micafungin) in severe sepsis or septic shock."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV#",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": {
+            "when": {
+              "riskFlagsAny": [
+                "esbl_history",
+                "cephalosporin_resistant_organism_history"
+              ],
+              "clinicalStateIn": [
+                "septic_shock"
+              ]
+            },
+            "recommendations": [
+              {
+                "rank": 1,
+                "drugRef": {
+                  "name": "meropenem",
+                  "variant": "IV"
+                },
+                "notes": null,
+                "trace": {
+                  "page": 1,
+                  "sourceText": "Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months or Septic shock",
+                  "confidence": null
+                }
+              }
+            ]
+          },
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "ADD or Replace vancomycin with Daptomycin IV if: Severe sepsis or Septic shock, or History of VRE in the past 12 months.",
+                "Consider anti-fungal therapy (i.e. micafungin) in severe sepsis or septic shock."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV#",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": {
+            "when": {
+              "riskFlagsAny": [
+                "esbl_history",
+                "cephalosporin_resistant_organism_history"
+              ],
+              "clinicalStateIn": [
+                "septic_shock"
+              ]
+            },
+            "recommendations": [
+              {
+                "rank": 1,
+                "drugRef": {
+                  "name": "meropenem",
+                  "variant": "IV"
+                },
+                "notes": null,
+                "trace": {
+                  "page": 1,
+                  "sourceText": "Consider meropenem IV if: History of ESBL E. coli or Klebsiella spp. or other cephalosporin resistant gram-negative organism in the last 12 months or Septic shock",
+                  "confidence": null
+                }
+              }
+            ]
+          },
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "daptomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "Vancomycin may also be used.",
+                "Consider Daptomycin IV if history of VRE in past 12 months or severe sepsis or septic shock.",
+                "If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: For severe IgE mediated PCN reactions, benefit of using carbapenem should be weighed.",
+                "Consider anti-fungal therapy (i.e. micafungin) in severe sepsis or septic shock."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Metronidazole IV/PO PLUS Daptomycin IV or Vancomycin IV#",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+7. Skin and Soft Tissue Infection (Non-severe) (from abx-08.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-08.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "skin_soft_tissue_infection_non_severe",
+    "name": "Skin and Soft Tissue Infection (Non-severe)",
+    "setting": "community",
+    "synonyms": [
+      "SSTI",
+      "cellulitis"
+    ]
+  },
+  "diagnostics": null,
+  "pathways": [
+    {
+      "id": "non_purulent",
+      "label": "Non-purulent (non-severe) cellulitis",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": [
+          "stable"
+        ],
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration"
+        ]
+      },
+      "durationDays": {
+        "min": 5,
+        "max": 7,
+        "from": "start",
+        "notes": null,
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cephalexin",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cephalexin PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "cefazolin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefazolin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefazolin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefazolin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "vancomycin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    },
+    {
+      "id": "purulent",
+      "label": "Purulent (non-severe) cellulitis",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": [
+          "stable"
+        ],
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration"
+        ]
+      },
+      "durationDays": {
+        "min": 5,
+        "max": 7,
+        "from": "start",
+        "notes": "If I&D of abscess is performed, count 5-7d from source control.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash",
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "trimethoprim-sulfamethoxazole",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "TMP/SMX PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "doxycycline",
+                "variant": "IV/PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Doxycycline IV/PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 3,
+              "drugRef": {
+                "name": "vancomycin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    },
+    {
+      "id": "injection_related",
+      "label": "Injection-related cellulitis and/or xylazine related wounds (non-severe)",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": [
+          "stable"
+        ],
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": [
+        "In stable patients, hold OFF on antibiotics until wound care and thorough wound examination is performed."
+      ],
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration"
+        ]
+      },
+      "durationDays": {
+        "min": 5,
+        "max": 7,
+        "from": "start",
+        "notes": "If I&D of abscess is performed, count 5-7d from source control.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "amoxicillin",
+                "variant": "1gm q12h PO"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "doxycycline",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Amoxicillin 1gm q12h PO PLUS Doxycycline IV/PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "trimethoprim-sulfamethoxazole",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "TMP/SMX PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 3,
+              "drugRef": {
+                "name": "vancomycin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Vancomycin IV",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 4,
+              "drugRef": {
+                "name": "daptomycin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Daptomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash",
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "trimethoprim-sulfamethoxazole",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "TMP/SMX PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "vancomycin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Vancomycin IV",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 3,
+              "drugRef": {
+                "name": "daptomycin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Daptomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+8. Severe / Necrotizing SSTI (from abx-09.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-09.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "skin_soft_tissue_infection_severe",
+    "name": "Severe / Necrotizing SSTI",
+    "setting": "hospital",
+    "synonyms": [
+      "NSTI"
+    ]
+  },
+  "diagnostics": null,
+  "pathways": [
+    {
+      "id": "severe_non_necrotizing",
+      "label": "Severe sepsis patient with SSTI (non-necrotizing)",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": [
+          "severe_sepsis",
+          "septic_shock"
+        ],
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if assistance needed"
+        ]
+      },
+      "durationDays": {
+        "min": null,
+        "max": null,
+        "from": null,
+        "notes": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "Consider Cefepime IV if: immunocompromised host.",
+                "For vancomycin allergy: Linezolid IV/PO OR Daptomycin IV."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ceftriaxone IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "vancomycin",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "aztreonam",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "For vancomycin allergy: Linezolid IV/PO OR Daptomycin IV."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Vancomycin IV (1st) PLUS Aztreonam IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    },
+    {
+      "id": "necrotizing",
+      "label": "Necrotizing SSTI (NSTI)",
+      "firstLine": false,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": [
+          "ICU"
+        ],
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": [
+        "early general surgery consultation"
+      ],
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "Always recommend ID consult for NSTI",
+          "For guidance on gram negative coverage in severe PCN allergy with SJS/DRESS history"
+        ]
+      },
+      "durationDays": {
+        "min": null,
+        "max": null,
+        "from": null,
+        "notes": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "linezolid",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": [
+                "Linezolid has anti-toxin effects similar to clindamycin."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV (1st) PLUS Linezolid IV/PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "linezolid",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": [
+                "Linezolid has anti-toxin effects similar to clindamycin."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Linezolid IV/PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 3,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "clindamycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV (1st) PLUS Vancomycin IV PLUS Clindamycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "linezolid",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Linezolid IV/PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "clindamycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV PLUS Clindamycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "linezolid",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": [
+                "If patient with hx of SJS/DRESS: Linezolid IV OR Vancomycin IV + Clindamycin IV AND CONSULT INFECTIOUS DISEASES for guidance on gram negative coverage"
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Linezolid IV/PO PLUS Metronidazole IV/PO",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": {
+            "when": {
+              "riskFlagsAny": null,
+              "clinicalStateIn": [
+                "critically_ill"
+              ]
+            },
+            "recommendations": [
+              {
+                "rank": 1,
+                "drugRef": {
+                  "name": "meropenem",
+                  "variant": "IV"
+                },
+                "notes": [
+                  "Consider meropenem in place of aztreonam/metronidazole if critically ill (i.e. ICU admission)"
+                ],
+                "trace": {
+                  "page": 1,
+                  "sourceText": "Consider meropenem in place of aztreonam/metronidazole if critically ill (i.e. ICU admission)",
+                  "confidence": null
+                }
+              }
+            ]
+          },
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+9. Diabetic Wound Infection (from abx-10.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-10.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "diabetic_wound_infection",
+    "name": "Diabetic Wound",
+    "setting": "hospital",
+    "synonyms": []
+  },
+  "diagnostics": {
+    "orders": [
+      "biopsy"
+    ],
+    "timing": null,
+    "deescalationRules": null
+  },
+  "pathways": [
+    {
+      "id": "default",
+      "label": "Diabetic Wound Infection",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": false
+      },
+      "procedureRecommendations": [
+        "Patients with NO systemic signs/symptoms of infection & pending biopsy, consider monitor off antibiotic until biopsy."
+      ],
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if assistance needed",
+          "For SJS/DRESS history with severe PCN allergy, for guidance on gram negative coverage"
+        ]
+      },
+      "durationDays": {
+        "min": null,
+        "max": null,
+        "from": null,
+        "notes": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash",
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": [
+              "no_recent_antibiotic_use"
+            ],
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "mild_infection"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "vancomycin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "For vancomycin allergy daptomycin IV can be substituted."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Mild, no recent antibiotic use: Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "severe_sepsis",
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "For vancomycin allergy daptomycin IV can be substituted."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "If Severe sepsis or septic shock:\nPiperacillin-tazobactam IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "For vancomycin allergy daptomycin IV can be substituted."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "All other situations without severe sepsis or septic shock\nCeftriaxone IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "severe_sepsis",
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": [
+                "For vancomycin allergy daptomycin IV can be substituted."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "If Severe sepsis or septic shock:\nCefepime IV (1st) PLUS Vancomycin IV PLUS Metronidazole IV/PO",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "For vancomycin allergy daptomycin IV can be substituted."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "All other situations without severe sepsis or septic shock:\nCeftriaxone IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "vancomycin",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "aztreonam",
+                    "variant": "IV"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                }
+              ],
+              "notes": [
+                "If patient with hx of SJS/DRESS: Vancomycin IV (1st) AND CONSULT INFECTIOUS DISEASES for guidance on gram negative coverage.",
+                "For vancomycin allergy daptomycin IV can be substituted."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "All other situations:\nVancomycin IV (1st) PLUS Aztreonam IV PLUS Metronidazole IV/PO",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+10. Bite Wound (from abx-10.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-10.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "bite_wound",
+    "name": "Bite Wound (Human, dog, cat)",
+    "setting": "community",
+    "synonyms": []
+  },
+  "diagnostics": null,
+  "pathways": [
+    {
+      "id": "default",
+      "label": "Bite Wound Infection or Prophylaxis",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": [
+        "Thorough wound irrigation and examination",
+        "Evaluation for tetanus and/or rabies post-exposure prophylaxis",
+        "Consider antibiotic prophylaxis when: Deep wounds (cat bites, Bone or Joint penetration), Wounds of face, hands or genitals, Immunocompromised, asplenia, Wound is adjacent to prosthetic material"
+      ],
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "for all other bite wounds (not human, dog, cat)",
+          "if assistance needed for duration"
+        ]
+      },
+      "durationDays": {
+        "min": 3,
+        "max": 14,
+        "from": "start",
+        "notes": "Prophylaxis: 3-5 days. Mild infection: 5-7 days. Severe/complicated infection: 7-14 days.",
+        "bandsBySeverity": {
+          "prophylaxis": "3-5",
+          "mild": "5-7",
+          "severe": "7-14"
+        }
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "amoxicillin-clavulanate",
+                "variant": "PO"
+              },
+              "adjuncts": null,
+              "notes": null,
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Amoxicillin-clavulanate PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "ampicillin-sulbactam",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "If unable to take oral agent"
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "If unable to take oral agent:\nAmpicillin-sulbactam IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "metronidazole",
+                "variant": "PO"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "doxycycline",
+                    "variant": "PO"
+                  }
+                }
+              ],
+              "notes": [
+                "OR TMP/SMX PO OR Levofloxacin PO"
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Metronidazole PO PLUS of the following: Doxycycline PO OR TMP/SMX PO OR Levofloxacin PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "If unable to take oral agent"
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "If unable to take oral agent:\nCeftriaxone IV PLUS Metronidazole IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "metronidazole",
+                "variant": "PO"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "doxycycline",
+                    "variant": "PO"
+                  }
+                }
+              ],
+              "notes": [
+                "OR TMP/SMX PO OR Levofloxacin PO"
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Metronidazole PO PLUS of the following: Doxycycline PO OR TMP/SMX PO OR Levofloxacin PO",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "doxycycline",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "If unable to take oral agent. Can also use Levofloxacin IV instead of Doxycycline IV."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "If unable to take oral agent: Doxycycline IV PLUS Metronidazole IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+11. Septic Arthritis (from abx-11.pdf)
+JSON
+
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-11.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "septic_arthritis",
+    "name": "Septic arthritis",
+    "setting": "hospital",
+    "synonyms": []
+  },
+  "diagnostics": {
+    "orders": [
+      "synovial_fluid_gram_stain",
+      "synovial_fluid_culture"
+    ],
+    "timing": [
+      {
+        "test": "synovial_fluid_gram_stain_and_cultures",
+        "preAntibioticPreferred": true
+      }
+    ],
+    "deescalationRules": [
+      {
+        "test": "gram_stain_and_cultures",
+        "result": "positive",
+        "action": "narrow",
+        "target": "empiric_therapy",
+        "evidence": null,
+        "trace": {
+          "page": 1,
+          "sourceText": "Therapy should be tailored based on gram stain, culture, and sensitivities.",
+          "confidence": null
+        }
+      }
+    ]
+  },
+  "pathways": [
+    {
+      "id": "default",
+      "label": "Septic Arthritis",
+      "firstLine": true,
+      "eligibility": null,
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration",
+          "if assistance needed for duration",
+          "if patient has a history of organisms that are resistant to the recommended empiric regimen"
+        ]
+      },
+      "durationDays": {
+        "min": null,
+        "max": null,
+        "from": null,
+        "notes": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash",
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": [
+              "atraumatic_arthritis"
+            ],
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "vancomycin",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "For vancomycin allergy: Linezolid IV/PO OR Daptomycin IV."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Vancomycin IV (1st)",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": [
+              "traumatic_arthritis",
+              "pwid",
+              "prosthetic_joint_infection"
+            ],
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "severe_sepsis",
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ceftriaxone IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": [
+              "immunocompromised"
+            ],
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": [
+              "traumatic_arthritis",
+              "pwid",
+              "prosthetic_joint_infection",
+              "immunocompromised"
+            ],
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "severe_sepsis",
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-12.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "community_acquired_meningitis",
+    "name": "Community Acquired Meningitis",
+    "setting": "community",
+    "synonyms": []
+  },
+  "diagnostics": {
+    "orders": [
+      "lumbar_puncture"
+    ],
+    "timing": [
+      {
+        "test": "lumbar_puncture",
+        "preAntibioticPreferred": false
+      }
+    ],
+    "deescalationRules": null
+  },
+  "pathways": [
+    {
+      "id": "default",
+      "label": "Community Acquired Meningitis",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": [
+        "Consider adding dexamethasone 0.15 mg/kg IV with the first dose administered 10-20 minutes before, or at least concomitant with, the first dose of antimicrobial therapy in adults with suspected or proven pneumococcal meningitis."
+      ],
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "ID consult highly recommended for the management of meningitis",
+          "if assistance needed for duration"
+        ]
+      },
+      "durationDays": {
+        "min": null,
+        "max": null,
+        "from": null,
+        "notes": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "ADD ampicillin IV for listeria if: >50 years old, History of transplant, HIV and other immunocompromised patient.",
+                "For vancomycin allergy: Initiate ceftriaxone as above AND CONSULT INFECTIOUS DISEASES.",
+                "Consider acyclovir IV based on clinical presentation and CSF results."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ceftriaxone IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "ceftriaxone",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "ADD TMP/SMX IV for listeria if: >50 years old, History of transplant, HIV and other immunocompromised patient.",
+                "If listeria coverage needed, and TMP/SMX contraindicated: Meropenem IV PLUS Vancomycin IV.",
+                "For vancomycin allergy: Initiate ceftriaxone as above AND CONSULT INFECTIOUS DISEASES.",
+                "Consider acyclovir IV based on clinical presentation and CSF results."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Ceftriaxone IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": [
+              "no_sjs_dress_history"
+            ],
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "meropenem",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "AND CONSULT INFECTIOUS DISEASES.",
+                "ADD TMP/SMX IV for listeria if: >50 years old, History of transplant, HIV and other immunocompromised patient.",
+                "For vancomycin allergy: Initiate meropenem as above AND CONSULT INFECTIOUS DISEASES.",
+                "Consider acyclovir IV based on clinical presentation and CSF results."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Patients without hx of SJS/DRESS: Meropenem IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": [
+              "sjs_dress_history"
+            ],
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "vancomycin",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "ciprofloxacin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "ADD TMP/SMX IV for listeria if Ciprofloxacin is used AND CONSULT INFECTIOUS DISEASES.",
+                "For vancomycin allergy: Initiate ciprofloxacin as above AND CONSULT INFECTIOUS DISEASES.",
+                "Consider acyclovir IV based on clinical presentation and CSF results."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Patients with hx of SJS/DRESS: Vancomycin IV (1st) PLUS Ciprofloxacin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-13.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "healthcare_associated_meningitis",
+    "name": "Healthcare associated Meningitis / Ventriculitis",
+    "setting": "healthcare_associated",
+    "synonyms": []
+  },
+  "diagnostics": null,
+  "pathways": [
+    {
+      "id": "default",
+      "label": "Healthcare associated Meningitis / Ventriculitis",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "Consult is mandatory for all treatment pathways."
+        ]
+      },
+      "durationDays": {
+        "min": null,
+        "max": null,
+        "from": null,
+        "notes": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "For vancomycin allergy: Initiate cefepime as above AND CONSULT INFECTIOUS DISEASES."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "AND CONSULT INFECTIOUS DISEASES.",
+                "For vancomycin allergy: Initiate aztreonam as above AND CONSULT INFECTIOUS DISEASES."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-14.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "neutropenic_fever",
+    "name": "Neutropenic fever",
+    "setting": "hospital",
+    "synonyms": [
+      "Febrile Neutropenia"
+    ]
+  },
+  "diagnostics": null,
+  "pathways": [
+    {
+      "id": "default",
+      "label": "Absolute Neutrophil Count (ANC) of less than 500, or ANC 1000 with an expectation that the ANC will drop below 500 within 48 hours",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": true
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if assistance needed for duration",
+          "for non-IgE mediated PCN reactions (SJS/DRESS) with ESBL history"
+        ]
+      },
+      "durationDays": {
+        "min": null,
+        "max": null,
+        "from": null,
+        "notes": "Duration depends on the infectious source and ANC recovery. Please consult infectious diseases if assistance needed.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "Consider Vancomycin IV if: Suspicion of PNA, SSTI, line infection; Hemodynamic instability; History of MRSA or PCN/Ceph resistant pneumococci.",
+                "Consider: metronidazole IV/PO if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st)",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "Consider Vancomycin IV if: Suspicion of PNA, SSTI, line infection; Hemodynamic instability; History of MRSA or PCN/Ceph resistant pneumococci.",
+                "Consider: metronidazole IV/PO if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": {
+            "drugRef": {
+              "name": "tobramycin",
+              "variant": "IV"
+            },
+            "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+          }
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "none",
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "Consider Vancomycin IV if: Suspicion of PNA, SSTI, line infection; Hemodynamic instability; History of MRSA or PCN/Ceph resistant pneumococci.",
+                "Consider: metronidazole IV/PO if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st)",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": null,
+              "notes": [
+                "Consider Vancomycin IV if: Suspicion of PNA, SSTI, line infection; Hemodynamic instability; History of MRSA or PCN/Ceph resistant pneumococci.",
+                "Consider: metronidazole IV/PO if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess."
+              ],
+              "firstAdministrationPriority": false,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "Consider: metronidazole IV/PO if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess.",
+                "If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: For severe IgE mediated PCN reactions, benefit of using carbapenem should be weighed. For non-IgE mediated PCN reactions (SJS/DRESS), discuss with ID."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": {
+            "drugRef": {
+              "name": "tobramycin",
+              "variant": "IV"
+            },
+            "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+          }
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "Consider: metronidazole IV/PO if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess.",
+                "If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: For severe IgE mediated PCN reactions, benefit of using carbapenem should be weighed. For non-IgE mediated PCN reactions (SJS/DRESS), discuss with ID."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-15.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "central_line_infection",
+    "name": "Central Line Infection",
+    "setting": "hospital",
+    "synonyms": [
+      "CLABSI",
+      "catheter related bloodstream infection"
+    ]
+  },
+  "diagnostics": null,
+  "pathways": [
+    {
+      "id": "default",
+      "label": "PICC lines, Ports, HD catheters",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": [
+        "Consider removal of lines whenever feasible"
+      ],
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration",
+          "if assistance needed for duration"
+        ]
+      },
+      "durationDays": {
+        "min": null,
+        "max": null,
+        "from": null,
+        "notes": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "Consider Micafungin IV If the patient receives TPN via central line for >7days."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            },
+            {
+              "rank": 2,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "Consider Micafungin IV If the patient receives TPN via central line for >7days."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "Consider Micafungin IV If the patient receives TPN via central line for >7days."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": [
+                "Consider Micafungin IV If the patient receives TPN via central line for >7days."
+              ],
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}
+{
+  "document": {
+    "title": "Empiric Antimicrobial Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH",
+    "versionDate": "2020-11",
+    "fileName": "abx-15.pdf",
+    "meta": {
+      "notes": [
+        "This document is intended as a guideline only & should NOT replace sound clinical judgement."
+      ]
+    }
+  },
+  "infection": {
+    "id": "unknown_source_infection",
+    "name": "Unknown Source of Infection",
+    "setting": "hospital",
+    "synonyms": [
+      "sepsis of unknown origin"
+    ]
+  },
+  "diagnostics": null,
+  "pathways": [
+    {
+      "id": "default",
+      "label": "Unknown source of infection",
+      "firstLine": true,
+      "eligibility": {
+        "allergyClassIn": null,
+        "riskFlagsAny": null,
+        "careLocationIn": null,
+        "clinicalStateIn": null,
+        "immunocompromiseGate": null
+      },
+      "procedureRecommendations": null,
+      "consult": {
+        "service": "Infectious Diseases",
+        "when": [
+          "if no clinical improvement past the expected duration",
+          "if assistance needed for duration"
+        ]
+      },
+      "durationDays": {
+        "min": null,
+        "max": null,
+        "from": null,
+        "notes": "Duration depends on the causative pathogen and clinical scenario. Please consult infectious diseases if assistance needed.",
+        "bandsBySeverity": null
+      },
+      "stopRules": null,
+      "regimenRules": [
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": {
+            "drugRef": {
+              "name": "tobramycin",
+              "variant": "IV"
+            },
+            "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+          }
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "none"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "piperacillin-tazobactam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Piperacillin-tazobactam IV (1st) PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": {
+            "drugRef": {
+              "name": "tobramycin",
+              "variant": "IV"
+            },
+            "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+          }
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_mild_rash"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "cefepime",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Cefepime IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": [
+              "septic_shock"
+            ],
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": {
+            "drugRef": {
+              "name": "tobramycin",
+              "variant": "IV"
+            },
+            "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+          }
+        },
+        {
+          "when": {
+            "allergyClassIn": [
+              "pcn_severe_anaphylaxis"
+            ],
+            "riskFlagsAny": null,
+            "careLocationIn": null,
+            "clinicalStateIn": null,
+            "sourceRiskAny": null
+          },
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {
+                "name": "aztreonam",
+                "variant": "IV"
+              },
+              "adjuncts": [
+                {
+                  "drugRef": {
+                    "name": "metronidazole",
+                    "variant": "IV/PO"
+                  }
+                },
+                {
+                  "drugRef": {
+                    "name": "vancomycin",
+                    "variant": "IV"
+                  }
+                }
+              ],
+              "notes": null,
+              "firstAdministrationPriority": true,
+              "trace": {
+                "page": 1,
+                "sourceText": "Aztreonam IV (1st) PLUS Metronidazole IV/PO PLUS Vancomycin IV",
+                "confidence": null
+              }
+            }
+          ],
+          "overrides": null,
+          "oneTimeDose": null
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}

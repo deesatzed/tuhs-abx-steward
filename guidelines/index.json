@@ -1,0 +1,118 @@
+{
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+  "description": "Registry of all guideline files for TUHS Antibiotic Steward",
+
+  "infections": {
+    "uti": {
+      "file": "infections/uti.json",
+      "includes": ["cystitis", "pyelonephritis"],
+      "critical_rules": [
+        "Pyelonephritis requires IV antibiotics",
+        "Fever + UTI = pyelonephritis = IV therapy"
+      ],
+      "status": "active"
+    },
+    "pneumonia": {
+      "file": "infections/pneumonia.json",
+      "includes": ["CAP", "HAP", "VAP", "Aspiration"],
+      "status": "active"
+    },
+    "intra_abdominal": {
+      "file": "infections/intra_abdominal.json",
+      "includes": ["peritonitis", "abscess", "post-surgical"],
+      "status": "active"
+    },
+    "bacteremia": {
+      "file": "infections/bacteremia.json",
+      "includes": ["sepsis", "MRSA", "septic shock"],
+      "status": "active"
+    },
+    "meningitis": {
+      "file": "infections/meningitis.json",
+      "includes": ["bacterial meningitis", "post-neurosurgical"],
+      "critical_note": "HIGHER DOSES required for CNS penetration",
+      "status": "active"
+    },
+    "skin_soft_tissue": {
+      "file": "infections/skin_soft_tissue.json",
+      "includes": ["cellulitis", "abscess"],
+      "status": "pending"
+    }
+  },
+
+  "drugs": {
+    "ceftriaxone": {
+      "file": "drugs/ceftriaxone.json",
+      "class": "cephalosporin",
+      "renal_adjustment": false,
+      "status": "active"
+    },
+    "cefepime": {
+      "file": "drugs/cefepime.json",
+      "class": "cephalosporin",
+      "renal_adjustment": true,
+      "status": "pending"
+    },
+    "piperacillin_tazobactam": {
+      "file": "drugs/piperacillin_tazobactam.json",
+      "class": "penicillin_combination",
+      "renal_adjustment": true,
+      "status": "active"
+    },
+    "aztreonam": {
+      "file": "drugs/aztreonam.json",
+      "class": "monobactam",
+      "critical_use": "Severe PCN allergy",
+      "renal_adjustment": true,
+      "status": "active"
+    },
+    "vancomycin": {
+      "file": "drugs/vancomycin.json",
+      "class": "glycopeptide",
+      "critical_use": "MRSA coverage",
+      "renal_adjustment": true,
+      "monitoring_required": true,
+      "status": "active"
+    },
+    "metronidazole": {
+      "file": "drugs/metronidazole.json",
+      "class": "nitroimidazole",
+      "critical_use": "Anaerobic coverage",
+      "renal_adjustment": false,
+      "status": "active"
+    }
+  },
+
+  "modifiers": {
+    "allergy_rules": {
+      "file": "modifiers/allergy_rules.json",
+      "description": "Mild vs severe allergy classification",
+      "status": "active"
+    },
+    "pregnancy_rules": {
+      "file": "modifiers/pregnancy_rules.json",
+      "description": "Pregnancy safety rules",
+      "status": "active"
+    },
+    "renal_adjustment_rules": {
+      "file": "modifiers/renal_adjustment_rules.json",
+      "description": "Renal dose adjustments",
+      "status": "active"
+    }
+  },
+
+  "loading_order": [
+    "modifiers/allergy_rules.json",
+    "modifiers/pregnancy_rules.json",
+    "modifiers/renal_adjustment_rules.json",
+    "infections/*.json",
+    "drugs/*.json"
+  ],
+
+  "validation_rules": {
+    "cross_reference_check": "All drug IDs in infections must exist in drugs/",
+    "schema_validation": "All files must validate against their schemas",
+    "completeness_check": "All infections must have regimens for all allergy types"
+  }
+}

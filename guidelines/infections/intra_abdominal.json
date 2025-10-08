@@ -1,0 +1,95 @@
+{
+  "infection_name": "Intra-Abdominal Infection",
+  "infection_code": "intra_abdominal",
+  "description": "Peritonitis, abscess, post-surgical infections",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "categories": [
+    {
+      "category": "Community-Acquired Intra-Abdominal Infection",
+      "infection_subtype": "community_acquired",
+      "location": "Ward",
+      "severity": "moderate",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["piperacillin_tazobactam", "metronidazole"],
+          "reasoning": "Broad-spectrum coverage including anaerobes",
+          "alternative": "ceftriaxone + metronidazole",
+          "note": "Piperacillin-tazobactam already has anaerobic coverage, metronidazole optional"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["piperacillin_tazobactam", "metronidazole"],
+          "reasoning": "Mild PCN allergy (rash only) can use piperacillin-tazobactam",
+          "evidence": "Cross-reactivity <1% for rash-only allergy",
+          "alternative": "ceftriaxone + metronidazole"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "metronidazole", "vancomycin"],
+          "reasoning": "Aztreonam for gram-negative, metronidazole for anaerobes, vancomycin for gram-positive",
+          "note": "Triple therapy needed to cover all organisms"
+        }
+      ]
+    },
+    {
+      "category": "Healthcare-Associated Intra-Abdominal Infection",
+      "infection_subtype": "healthcare_associated",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["recent surgery", "recent hospitalization", "prior antibiotics"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["piperacillin_tazobactam"],
+          "reasoning": "Broader spectrum for resistant organisms",
+          "alternative": "meropenem (if Pseudomonas or resistant organisms)"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["cefepime", "metronidazole"],
+          "reasoning": "Cefepime for Pseudomonas coverage, metronidazole for anaerobes"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "metronidazole", "vancomycin"],
+          "reasoning": "Triple therapy for severe allergy"
+        }
+      ]
+    },
+    {
+      "category": "Post-Surgical Peritonitis",
+      "infection_subtype": "post_surgical",
+      "location": "Ward",
+      "severity": "moderate_to_severe",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["piperacillin_tazobactam"],
+          "reasoning": "Broad-spectrum post-surgical coverage"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["cefepime", "metronidazole"],
+          "reasoning": "Cefepime + metronidazole for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "metronidazole", "vancomycin"],
+          "reasoning": "Triple therapy"
+        }
+      ]
+    }
+  ],
+
+  "pregnancy_considerations": {
+    "safe_drugs": ["piperacillin_tazobactam", "ceftriaxone", "metronidazole", "aztreonam"],
+    "contraindicated_drugs": ["fluoroquinolones"],
+    "notes": "Most beta-lactams and metronidazole safe in pregnancy"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "infection_name": "Bacteremia / Sepsis",
+  "infection_code": "bacteremia",
+  "description": "Bloodstream infections and septic shock",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "categories": [
+    {
+      "category": "Bacteremia - Community Source",
+      "infection_subtype": "community",
+      "location": "Ward",
+      "severity": "moderate_to_severe",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ceftriaxone", "vancomycin"],
+          "reasoning": "Ceftriaxone for gram-negative, vancomycin for gram-positive including MRSA",
+          "alternative": "piperacillin_tazobactam + vancomycin"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ceftriaxone", "vancomycin"],
+          "reasoning": "Cephalosporins safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "vancomycin"],
+          "reasoning": "Aztreonam for gram-negative, vancomycin for gram-positive"
+        }
+      ]
+    },
+    {
+      "category": "Bacteremia - Hospital Acquired / Central Line",
+      "infection_subtype": "hospital_acquired",
+      "location": "ICU",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["central line", "prolonged hospitalization", "immunosuppressed"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["piperacillin_tazobactam", "vancomycin"],
+          "reasoning": "Broader coverage for Pseudomonas + MRSA",
+          "alternative": "cefepime + vancomycin"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["cefepime", "vancomycin"],
+          "reasoning": "Cefepime for Pseudomonas, vancomycin for MRSA"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "vancomycin"],
+          "reasoning": "Aztreonam + vancomycin for severe allergy",
+          "note": "May need aminoglycoside if Pseudomonas suspected"
+        }
+      ]
+    },
+    {
+      "category": "Septic Shock / Sepsis - Unknown Source",
+      "infection_subtype": "septic_shock",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["piperacillin_tazobactam", "vancomycin", "metronidazole"],
+          "reasoning": "Broad-spectrum empiric coverage for septic shock with unknown source",
+          "note": "Metronidazole for anaerobic coverage if abdominal source possible"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["cefepime", "vancomycin", "metronidazole"],
+          "reasoning": "Broad coverage for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "vancomycin", "metronidazole"],
+          "reasoning": "Triple therapy for severe allergy + broad coverage"
+        }
+      ]
+    },
+    {
+      "category": "MRSA Bacteremia (Known/Suspected)",
+      "infection_subtype": "mrsa",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["MRSA colonization", "MRSA history", "MRSA nares positive"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "cefepime"],
+          "reasoning": "Vancomycin for MRSA, cefepime for gram-negative coverage",
+          "note": "Vancomycin loading dose recommended"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "cefepime"],
+          "reasoning": "Same regimen, cefepime safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam"],
+          "reasoning": "Vancomycin for MRSA, aztreonam for gram-negative"
+        }
+      ]
+    }
+  ],
+
+  "pregnancy_considerations": {
+    "safe_drugs": ["ceftriaxone", "piperacillin_tazobactam", "aztreonam", "vancomycin"],
+    "contraindicated_drugs": ["fluoroquinolones", "aminoglycosides"],
+    "notes": "Most beta-lactams and vancomycin safe in pregnancy. Avoid aminoglycosides if possible."
+  }
+}

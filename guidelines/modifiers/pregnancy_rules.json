@@ -1,0 +1,171 @@
+{
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+  "description": "Pregnancy safety rules for antibiotic selection",
+
+  "safe_antibiotics": {
+    "category_B": {
+      "drugs": [
+        "ceftriaxone",
+        "cefepime",
+        "cefazolin",
+        "piperacillin_tazobactam",
+        "aztreonam",
+        "ampicillin",
+        "amoxicillin",
+        "azithromycin",
+        "metronidazole"
+      ],
+      "note": "Generally safe in all trimesters"
+    },
+    "category_C": {
+      "drugs": ["vancomycin"],
+      "note": "Use only if benefits outweigh risks. Monitor closely."
+    }
+  },
+
+  "contraindicated_antibiotics": {
+    "fluoroquinolones": {
+      "drugs": [
+        "ciprofloxacin",
+        "levofloxacin",
+        "moxifloxacin",
+        "ofloxacin"
+      ],
+      "reason": "Cartilage damage in animal studies",
+      "severity": "contraindicated",
+      "all_trimesters": true
+    },
+    "tetracyclines": {
+      "drugs": [
+        "doxycycline",
+        "tetracycline",
+        "minocycline"
+      ],
+      "reason": "Tooth discoloration, bone growth inhibition",
+      "severity": "contraindicated",
+      "trimester_2_3": true
+    },
+    "trimethoprim_sulfamethoxazole": {
+      "drugs": ["trimethoprim_sulfamethoxazole"],
+      "reason": "Neural tube defects (1st trimester), kernicterus risk (near term)",
+      "severity": "avoid",
+      "trimester_1": "contraindicated",
+      "trimester_3_near_term": "contraindicated"
+    },
+    "aminoglycosides": {
+      "drugs": [
+        "gentamicin",
+        "tobramycin",
+        "amikacin"
+      ],
+      "reason": "Ototoxicity to fetus",
+      "severity": "use only if no alternative",
+      "note": "Reserved for life-threatening infections only"
+    }
+  },
+
+  "trimester_specific_guidance": {
+    "first_trimester": {
+      "avoid": [
+        "trimethoprim_sulfamethoxazole",
+        "metronidazole",
+        "fluoroquinolones",
+        "tetracyclines"
+      ],
+      "safe": [
+        "ceftriaxone",
+        "cefepime",
+        "aztreonam",
+        "piperacillin_tazobactam",
+        "ampicillin",
+        "azithromycin"
+      ]
+    },
+    "second_third_trimester": {
+      "avoid": [
+        "fluoroquinolones",
+        "tetracyclines"
+      ],
+      "safe": [
+        "ceftriaxone",
+        "cefepime",
+        "aztreonam",
+        "piperacillin_tazobactam",
+        "metronidazole",
+        "azithromycin"
+      ]
+    },
+    "near_term": {
+      "avoid": [
+        "trimethoprim_sulfamethoxazole",
+        "fluoroquinolones",
+        "tetracyclines"
+      ],
+      "note": "TMP/SMX near term can cause kernicterus"
+    }
+  },
+
+  "infection_specific_recommendations": {
+    "pyelonephritis": {
+      "first_line": "ceftriaxone",
+      "alternative": "aztreonam (if severe PCN allergy)",
+      "avoid": "ciprofloxacin",
+      "note": "IV therapy required. Ceftriaxone safe and effective in pregnancy."
+    },
+    "cystitis": {
+      "first_line": "nitrofurantoin",
+      "alternative": "cephalexin",
+      "avoid": "trimethoprim_sulfamethoxazole (1st trimester)",
+      "note": "Nitrofurantoin avoid near term"
+    },
+    "pneumonia": {
+      "first_line": "ceftriaxone + azithromycin",
+      "avoid": "fluoroquinolones",
+      "note": "Azithromycin safe for atypical coverage"
+    },
+    "intra_abdominal": {
+      "first_line": "piperacillin_tazobactam OR ceftriaxone + metronidazole",
+      "note": "Metronidazole safe in 2nd/3rd trimester"
+    }
+  },
+
+  "consultation_triggers": {
+    "high_risk": [
+      "Severe infection requiring contraindicated antibiotic",
+      "Meningitis in pregnancy",
+      "Life-threatening infection",
+      "Multiple drug allergies limiting safe options"
+    ],
+    "consult": [
+      "Maternal-Fetal Medicine",
+      "Infectious Diseases"
+    ]
+  },
+
+  "recognition_keywords": [
+    "pregnancy",
+    "pregnant",
+    "gestation",
+    "weeks pregnant",
+    "trimester",
+    "gravid",
+    "expecting"
+  ],
+
+  "filtering_algorithm": {
+    "step_1": "Detect pregnancy from patient data",
+    "step_2": "Remove all contraindicated antibiotics from drug choices",
+    "step_3": "Prioritize Category B antibiotics",
+    "step_4": "If severe allergy + pregnancy, use aztreonam (safe for both)",
+    "step_5": "Note pregnancy safety in recommendation"
+  },
+
+  "notes": [
+    "Fluoroquinolones CONTRAINDICATED in pregnancy (all trimesters)",
+    "Tetracyclines CONTRAINDICATED in pregnancy",
+    "Cephalosporins (ceftriaxone, cefepime) are SAFE",
+    "Aztreonam is SAFE (good for pregnancy + severe PCN allergy)",
+    "Consult MFM for complex cases"
+  ]
+}

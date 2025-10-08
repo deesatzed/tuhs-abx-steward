@@ -1,0 +1,120 @@
+{
+  "infection_name": "Pneumonia",
+  "infection_code": "pneumonia",
+  "description": "Community-acquired and hospital-acquired pneumonia",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "categories": [
+    {
+      "category": "Community-Acquired Pneumonia (Ward)",
+      "infection_subtype": "cap_ward",
+      "location": "Ward",
+      "severity": "moderate",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ceftriaxone", "azithromycin"],
+          "reasoning": "Beta-lactam + macrolide for typical + atypical coverage",
+          "evidence": "IDSA/ATS CAP Guidelines 2019",
+          "alternative": "ceftriaxone + doxycycline"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ceftriaxone", "azithromycin"],
+          "reasoning": "Cephalosporins safe with mild PCN allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["levofloxacin"],
+          "reasoning": "Respiratory fluoroquinolone monotherapy",
+          "alternative": "moxifloxacin"
+        }
+      ]
+    },
+    {
+      "category": "Community-Acquired Pneumonia (ICU)",
+      "infection_subtype": "cap_icu",
+      "location": "ICU",
+      "severity": "severe",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ceftriaxone", "azithromycin"],
+          "reasoning": "Same as ward but consider broader coverage if risk factors",
+          "alternative": "piperacillin_tazobactam + azithromycin (if Pseudomonas risk)"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ceftriaxone", "azithromycin"],
+          "reasoning": "Cephalosporins safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["levofloxacin"],
+          "reasoning": "Respiratory fluoroquinolone",
+          "note": "Consider adding vancomycin if MRSA risk"
+        }
+      ]
+    },
+    {
+      "category": "Hospital-Acquired Pneumonia / Ventilator-Associated Pneumonia",
+      "infection_subtype": "hap_vap",
+      "location": "ICU",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["intubation", "prolonged hospitalization", "prior antibiotics"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["piperacillin_tazobactam", "vancomycin"],
+          "reasoning": "Broad-spectrum for Pseudomonas + MRSA coverage",
+          "alternative": "cefepime + vancomycin"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["cefepime", "vancomycin"],
+          "reasoning": "Cefepime safe for mild allergy, covers Pseudomonas"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "vancomycin", "levofloxacin"],
+          "reasoning": "Aztreonam for Pseudomonas, vancomycin for MRSA"
+        }
+      ]
+    },
+    {
+      "category": "Aspiration Pneumonia",
+      "infection_subtype": "aspiration",
+      "location": "Ward",
+      "severity": "moderate",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ampicillin_sulbactam"],
+          "reasoning": "Covers oral anaerobes",
+          "alternative": "ceftriaxone + metronidazole"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ceftriaxone", "metronidazole"],
+          "reasoning": "Ceftriaxone + metronidazole for anaerobic coverage"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["levofloxacin", "metronidazole"],
+          "reasoning": "Fluoroquinolone + metronidazole"
+        }
+      ]
+    }
+  ],
+
+  "pregnancy_considerations": {
+    "safe_drugs": ["ceftriaxone", "azithromycin", "ampicillin_sulbactam"],
+    "contraindicated_drugs": ["levofloxacin", "moxifloxacin", "doxycycline"],
+    "notes": "Fluoroquinolones and tetracyclines contraindicated in pregnancy"
+  }
+}
