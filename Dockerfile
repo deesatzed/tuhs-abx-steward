@@ -26,6 +26,10 @@ COPY alpine_frontend.html .
 COPY .env .
 COPY scripts/* .
 COPY public/* .
+
+# Copy v3 architecture files
+COPY lib/ ./lib/
+COPY guidelines/ ./guidelines/
 EXPOSE 8080
 
 # Healthcheck hits /health
