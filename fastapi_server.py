@@ -148,12 +148,34 @@ async def get_recommendation(patient_data: PatientData):
         )
 
         # Convert FastAPI model to v3 engine format
+        # Handle empty strings from frontend
+        def safe_int(value, default=0):
+            try:
+                return int(value) if value and str(value).strip() else default
+            except (ValueError, TypeError):
+                return default
+
+        def safe_float(value, default=70.0):
+            try:
+                return float(value) if value and str(value).strip() else default
+            except (ValueError, TypeError):
+                return default
+
+        age = safe_int(patient_dict.get('age'), None)
+        infection_type = patient_dict.get('infection_type', '').lower().replace(' ', '_').replace('/', '_')
+
+        # Validate required fields
+        if not age or age == 0:
+            raise HTTPException(status_code=400, detail="Age is required")
+        if not infection_type or infection_type == '':
+            raise HTTPException(status_code=400, detail="Infection type is required")
+
         v3_input = {
-            'age': int(patient_dict.get('age', 0)),
-            'infection_type': patient_dict.get('infection_type', '').lower().replace(' ', '_').replace('/', '_'),
+            'age': age,
+            'infection_type': infection_type,
             'allergies': patient_dict.get('allergies', 'none'),
-            'weight': float(patient_dict.get('weight_kg', 70)) if patient_dict.get('weight_kg') else 70,
-            'crcl': float(patient_dict.get('gfr', 100)) if patient_dict.get('gfr') else 100,  # Using GFR as proxy for CrCl
+            'weight': safe_float(patient_dict.get('weight_kg'), 70),
+            'crcl': safe_float(patient_dict.get('gfr'), 100),  # Using GFR as proxy for CrCl
             'fever': 'fever' in patient_dict.get('inf_risks', '').lower() or 'fever' in patient_dict.get('infection_type', '').lower(),
             'severity': 'icu' if patient_dict.get('location', '').lower() == 'icu' else 'moderate',
             'pregnancy': 'pregnan' in patient_dict.get('inf_risks', '').lower(),
