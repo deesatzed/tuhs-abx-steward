@@ -141,6 +141,72 @@ class DoseCalculator:
                 normalized_indication = normalized_indication.replace(suffix, '', 1)
                 break
 
+        # Map specific infection categories to broader drug indications
+        # This handles the mismatch between infection_subtype and drug indication names
+        indication_mapping = {
+            # SSTI variants
+            'cellulitis': 'ssti',
+            'purulent_cellulitis': 'ssti',
+            'mrsa_cellulitis': 'ssti',
+            'abscess': 'ssti',
+            'purulent_abscess': 'ssti',
+            'severe_cellulitis': 'ssti',
+            'necrotizing': 'ssti',
+            'necrotizing_fasciitis': 'ssti',
+            'diabetic_foot': 'ssti',
+            'diabetic_foot_severe': 'ssti',
+            'diabetic_foot_infection': 'ssti',
+            'bite_wound': 'ssti',
+
+            # Bone/Joint variants
+            'vertebral_osteo': 'bone_joint',
+            'peripheral_osteo': 'bone_joint',
+            'septic_arthritis': 'bone_joint',
+            'prosthetic_joint': 'bone_joint',
+            'diabetic_osteo': 'bone_joint',
+            'acute_osteomyelitis': 'bone_joint',
+            'mrsa_osteomyelitis': 'bone_joint',
+            'prosthetic_joint_infection': 'bone_joint',
+            'vertebral_osteomyelritis': 'bone_joint',
+            'diabetic_foot_osteomyelitis': 'bone_joint',
+
+            # Endocarditis variants
+            'native_valve_acute': 'endocarditis',
+            'native_valve_subacute': 'endocarditis',
+            'prosthetic_valve': 'endocarditis',
+            'ivdu_endocarditis': 'endocarditis',
+            'enterococcal': 'endocarditis',
+
+            # CNS variants
+            'brain_abscess': 'cns',
+            'post_surgical_abscess': 'cns',
+            'ventriculitis': 'cns',
+            'encephalitis': 'cns',
+            'subdural_empyema': 'cns',
+
+            # Head/neck variants
+            'dental_abscess': 'dental',
+            'peritonsillar_abscess': 'head_neck',
+            'ludwig_angina': 'head_neck',
+            'retropharyngeal_abscess': 'head_neck',
+            'parotitis': 'parotitis',
+            'sinusitis_complicated': 'head_neck',
+            'mastoiditis': 'head_neck',
+            'epiglottitis': 'head_neck',
+            'orbital_cellulitis': 'head_neck',
+
+            # UTI variants
+            'cystitis': 'cystitis',
+            'uncomplicated_cystitis': 'cystitis',
+            # Don't map pyelonephritis - many drugs have it as a specific indication
+            'complicated_uti': 'uti',
+            'epididymitis': 'uti',
+            'orchitis': 'uti',
+            'prostatitis': 'uti',
+        }
+
+        normalized_indication = indication_mapping.get(normalized_indication, normalized_indication)
+
         # Get base dose from loader
         dose_info = self.loader.get_drug_dose(drug_id, normalized_indication, crcl)
 
