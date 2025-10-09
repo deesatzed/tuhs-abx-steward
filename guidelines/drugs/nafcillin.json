@@ -1,0 +1,35 @@
+{
+  "drug_id": "nafcillin",
+  "drug_name": "Nafcillin",
+  "drug_class": "Penicillin (anti-staphylococcal)",
+  "route": "IV",
+  "indications": {
+    "bacteremia": {
+      "standard_dose": "2 g IV q4h",
+      "high_dose": "2 g IV q4h",
+      "loading_dose": null
+    },
+    "bone_joint": {
+      "standard_dose": "2 g IV q4h",
+      "high_dose": "2 g IV q4h",
+      "loading_dose": null
+    },
+    "endocarditis": {
+      "standard_dose": "2 g IV q4h",
+      "high_dose": "2 g IV q4h",
+      "loading_dose": null
+    },
+    "ssti": {
+      "standard_dose": "1-2 g IV q4-6h",
+      "high_dose": "2 g IV q4h",
+      "loading_dose": null
+    }
+  },
+  "renal_adjustments": [
+    {"gfr_range": [0, 999], "dose": "No adjustment (hepatically cleared)"}
+  ],
+  "monitoring": ["Liver function", "Clinical response"],
+  "contraindications": ["Penicillin allergy"],
+  "warnings": ["Phlebitis with peripheral IV", "Interstitial nephritis", "Hepatotoxicity"],
+  "pregnancy_category": "B"
+}

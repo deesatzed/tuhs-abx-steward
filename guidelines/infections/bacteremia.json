@@ -28,6 +28,11 @@
           "allergy_status": "severe_pcn_allergy",
           "drugs": ["aztreonam", "vancomycin"],
           "reasoning": "Aztreonam for gram-negative, vancomycin for gram-positive"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["ceftriaxone", "vancomycin"],
+          "reasoning": "No cross-reactivity between sulfa and beta-lactams. Same regimen as no allergy."
         }
       ]
     },
@@ -55,6 +60,13 @@
           "drugs": ["aztreonam", "vancomycin"],
           "reasoning": "Aztreonam + vancomycin for severe allergy",
           "note": "May need aminoglycoside if Pseudomonas suspected"
+        },
+        {
+          "allergy_status": "vancomycin_allergy",
+          "drugs": ["piperacillin_tazobactam", "daptomycin"],
+          "reasoning": "Daptomycin alternative for MRSA with vancomycin allergy (10 mg/kg/day for bacteremia)",
+          "alternative": "piperacillin_tazobactam + linezolid",
+          "note": "Daptomycin preferred over linezolid for bacteremia"
         }
       ]
     },

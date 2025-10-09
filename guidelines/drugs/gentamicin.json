@@ -1,0 +1,38 @@
+{
+  "drug_id": "gentamicin",
+  "drug_name": "Gentamicin",
+  "drug_class": "Aminoglycoside",
+  "route": "IV",
+  "indications": {
+    "endocarditis": {
+      "standard_dose": "3 mg/kg IV q24h (or 1 mg/kg q8h for synergy)",
+      "high_dose": "5 mg/kg IV q24h",
+      "loading_dose": null
+    },
+    "bacteremia": {
+      "standard_dose": "5-7 mg/kg IV q24h",
+      "high_dose": "7 mg/kg IV q24h",
+      "loading_dose": null
+    },
+    "uti": {
+      "standard_dose": "5 mg/kg IV q24h",
+      "high_dose": "5 mg/kg IV q24h",
+      "loading_dose": null
+    },
+    "intra_abdominal": {
+      "standard_dose": "5 mg/kg IV q24h",
+      "high_dose": "7 mg/kg IV q24h",
+      "loading_dose": null
+    }
+  },
+  "renal_adjustments": [
+    {"gfr_range": [60, 999], "dose": "No adjustment (monitor levels)"},
+    {"gfr_range": [40, 59], "dose": "Dose q36h or reduce dose"},
+    {"gfr_range": [20, 39], "dose": "Dose q48h or reduce dose"},
+    {"gfr_range": [0, 19], "dose": "Dose based on levels (q48-72h)"}
+  ],
+  "monitoring": ["Peak and trough levels", "Renal function daily", "Audiology if prolonged use"],
+  "contraindications": ["Aminoglycoside allergy", "Pregnancy (relative)"],
+  "warnings": ["Nephrotoxicity", "Ototoxicity", "Neuromuscular blockade"],
+  "pregnancy_category": "D"
+}

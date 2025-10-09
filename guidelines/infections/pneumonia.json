@@ -30,6 +30,27 @@
           "drugs": ["levofloxacin"],
           "reasoning": "Respiratory fluoroquinolone monotherapy",
           "alternative": "moxifloxacin"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["ceftriaxone", "azithromycin"],
+          "reasoning": "No cross-reactivity between sulfa and beta-lactams/macrolides"
+        },
+        {
+          "allergy_status": "cephalosporin_allergy",
+          "drugs": ["levofloxacin"],
+          "reasoning": "Respiratory fluoroquinolone covers typical + atypical pathogens",
+          "alternative": "moxifloxacin"
+        },
+        {
+          "allergy_status": "macrolide_allergy",
+          "drugs": ["ceftriaxone", "doxycycline"],
+          "reasoning": "Doxycycline for atypical coverage when macrolides contraindicated"
+        },
+        {
+          "allergy_status": "fluoroquinolone_allergy",
+          "drugs": ["ceftriaxone", "azithromycin"],
+          "reasoning": "No cross-reactivity between fluoroquinolones and beta-lactams/macrolides"
         }
       ]
     },
@@ -56,6 +77,17 @@
           "drugs": ["levofloxacin"],
           "reasoning": "Respiratory fluoroquinolone",
           "note": "Consider adding vancomycin if MRSA risk"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["ceftriaxone", "azithromycin"],
+          "reasoning": "No cross-reactivity between sulfa and beta-lactams/macrolides"
+        },
+        {
+          "allergy_status": "cephalosporin_allergy",
+          "drugs": ["levofloxacin"],
+          "reasoning": "Respiratory fluoroquinolone monotherapy for severe allergy",
+          "alternative": "moxifloxacin or aztreonam + levofloxacin"
         }
       ]
     },

@@ -1,0 +1,187 @@
+{
+  "infection_name": "Bone and Joint Infections",
+  "infection_code": "bone_joint",
+  "description": "Includes osteomyelitis, septic arthritis, and prosthetic joint infections",
+  "version": "3.0.0",
+  "last_updated": "2025-10-09",
+
+  "categories": [
+    {
+      "category": "Osteomyelitis - Vertebral",
+      "infection_subtype": "vertebral_osteo",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["vertebral osteomyelitis", "back pain", "bacteremia"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "Empiric coverage for S. aureus (including MRSA) and gram-negatives",
+          "evidence": "IDSA Osteomyelitis Guidelines",
+          "duration": "6-8 weeks minimum"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "Ceftriaxone safe for mild PCN allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam"],
+          "reasoning": "Aztreonam for gram-negative coverage with severe PCN allergy"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "No cross-reactivity"
+        }
+      ]
+    },
+    {
+      "category": "Osteomyelitis - Long Bone / Peripheral",
+      "infection_subtype": "peripheral_osteo",
+      "location": "Ward",
+      "severity": "moderate_to_severe",
+      "route": "IV",
+      "risk_factors": ["osteomyelitis", "bone pain", "trauma", "open fracture"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "cefazolin"],
+          "reasoning": "Coverage for S. aureus (including MRSA)",
+          "alternative": "nafcillin (if MSSA confirmed)",
+          "duration": "4-6 weeks"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "cefazolin"],
+          "reasoning": "Cefazolin safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "Vancomycin monotherapy for severe PCN allergy",
+          "alternative": "vancomycin + aztreonam (if gram-negative suspected)"
+        },
+        {
+          "allergy_status": "vancomycin_allergy",
+          "drugs": ["daptomycin"],
+          "reasoning": "Daptomycin for osteomyelitis with vancomycin allergy (8-10 mg/kg)",
+          "note": "Higher dose daptomycin for bone penetration"
+        }
+      ]
+    },
+    {
+      "category": "Septic Arthritis - Native Joint",
+      "infection_subtype": "septic_arthritis",
+      "location": "Ward",
+      "severity": "moderate_to_severe",
+      "route": "IV",
+      "risk_factors": ["septic arthritis", "joint swelling", "joint effusion"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "Empiric coverage for S. aureus, Streptococcus, and N. gonorrhoeae",
+          "evidence": "IDSA Septic Arthritis Guidelines",
+          "note": "Arthrocentesis and joint drainage essential"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "Ceftriaxone safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam"],
+          "reasoning": "Aztreonam for gram-negative coverage",
+          "alternative": "vancomycin + levofloxacin"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "No cross-reactivity"
+        }
+      ]
+    },
+    {
+      "category": "Prosthetic Joint Infection",
+      "infection_subtype": "prosthetic_joint",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["prosthetic joint", "hip replacement", "knee replacement", "pain", "loosening"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "cefepime"],
+          "reasoning": "Broad coverage for MRSA, coagulase-negative staph, and gram-negatives",
+          "evidence": "IDSA Prosthetic Joint Infection Guidelines",
+          "note": "May require surgical debridement or explantation",
+          "duration": "4-6 weeks (if retention), 6 weeks (if explantation)"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "cefepime"],
+          "reasoning": "Cefepime safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam"],
+          "reasoning": "Aztreonam for gram-negative coverage"
+        },
+        {
+          "allergy_status": "vancomycin_allergy",
+          "drugs": ["daptomycin", "cefepime"],
+          "reasoning": "Daptomycin for MRSA with vancomycin allergy (8-10 mg/kg)",
+          "alternative": "linezolid + cefepime"
+        }
+      ]
+    },
+    {
+      "category": "Diabetic Foot Osteomyelitis",
+      "infection_subtype": "diabetic_osteo",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["diabetes", "diabetic foot", "osteomyelitis", "ulcer"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "piperacillin_tazobactam"],
+          "reasoning": "Broad coverage for polymicrobial infection including MRSA, anaerobes, and gram-negatives",
+          "duration": "6 weeks minimum"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "cefepime", "metronidazole"],
+          "reasoning": "Cefepime + metronidazole for broad coverage"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam", "metronidazole"],
+          "reasoning": "Triple therapy for severe allergy"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["vancomycin", "piperacillin_tazobactam"],
+          "reasoning": "No cross-reactivity"
+        }
+      ]
+    }
+  ],
+
+  "special_considerations": {
+    "duration": "Prolonged therapy required (4-12 weeks depending on infection type)",
+    "surgical_management": "Many bone/joint infections require surgical debridement",
+    "biofilm": "Prosthetic joint infections involve biofilm - may require device removal",
+    "monitoring": "Weekly inflammatory markers (CRP, ESR) to assess response"
+  },
+
+  "pregnancy_considerations": {
+    "safe_drugs": ["ceftriaxone", "cefazolin", "aztreonam", "vancomycin"],
+    "contraindicated_drugs": ["fluoroquinolones", "doxycycline"],
+    "notes": "Beta-lactams and vancomycin safe. Avoid fluoroquinolones."
+  }
+}

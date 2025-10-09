@@ -1,0 +1,36 @@
+{
+  "drug_id": "daptomycin",
+  "drug_name": "Daptomycin",
+  "drug_class": "Lipopeptide",
+  "route": "IV",
+  "indications": {
+    "ssti": {
+      "standard_dose": "6 mg/kg IV q24h",
+      "high_dose": "6 mg/kg IV q24h",
+      "loading_dose": null
+    },
+    "bacteremia": {
+      "standard_dose": "10 mg/kg IV q24h",
+      "high_dose": "10 mg/kg IV q24h",
+      "loading_dose": null
+    },
+    "bone_joint": {
+      "standard_dose": "8 mg/kg IV q24h",
+      "high_dose": "10 mg/kg IV q24h",
+      "loading_dose": null
+    },
+    "endocarditis": {
+      "standard_dose": "10 mg/kg IV q24h",
+      "high_dose": "10 mg/kg IV q24h",
+      "loading_dose": null
+    }
+  },
+  "renal_adjustments": [
+    {"gfr_range": [30, 999], "dose": "No adjustment"},
+    {"gfr_range": [0, 29], "dose": "Dose q48h (same mg/kg)"}
+  ],
+  "monitoring": ["CPK weekly", "Renal function"],
+  "contraindications": ["Pneumonia (inactivated by surfactant)"],
+  "warnings": ["Myopathy/rhabdomyolysis", "Eosinophilic pneumonia", "Hold statins during therapy"],
+  "pregnancy_category": "B"
+}

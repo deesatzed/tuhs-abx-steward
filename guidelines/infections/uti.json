@@ -98,6 +98,26 @@
           "reasoning": "Aztreonam safe for severe PCN allergy (no cross-reactivity)",
           "alternative": "levofloxacin IV (reserve for severe allergy)",
           "note": "Anaphylaxis/SJS/DRESS requires aztreonam, NOT cephalosporins"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["ceftriaxone"],
+          "route": "IV",
+          "reasoning": "No cross-reactivity between sulfa and cephalosporins. Ceftriaxone first-line for pyelonephritis.",
+          "alternative": "levofloxacin IV (if also PCN/cephalosporin allergy)"
+        },
+        {
+          "allergy_status": "fluoroquinolone_allergy",
+          "drugs": ["ceftriaxone"],
+          "route": "IV",
+          "reasoning": "No cross-reactivity between fluoroquinolones and cephalosporins"
+        },
+        {
+          "allergy_status": "cephalosporin_allergy",
+          "drugs": ["aztreonam"],
+          "route": "IV",
+          "reasoning": "Aztreonam safe for cephalosporin allergy (no cross-reactivity with monobactams)",
+          "alternative": "levofloxacin IV"
         }
       ]
     },

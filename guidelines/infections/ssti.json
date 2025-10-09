@@ -1,0 +1,229 @@
+{
+  "infection_name": "Skin and Soft Tissue Infections",
+  "infection_code": "ssti",
+  "description": "Includes cellulitis, abscess, diabetic foot infections, and necrotizing soft tissue infections",
+  "version": "3.0.0",
+  "last_updated": "2025-10-09",
+
+  "categories": [
+    {
+      "category": "Uncomplicated Cellulitis",
+      "infection_subtype": "cellulitis",
+      "location": "Ward",
+      "severity": "mild_to_moderate",
+      "route": "PO",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["cephalexin"],
+          "reasoning": "Oral cephalosporin for strep/staph coverage",
+          "alternative": "trimethoprim_sulfamethoxazole (if MRSA suspected)",
+          "evidence": "IDSA SSTI Guidelines 2014"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["cephalexin"],
+          "reasoning": "Cephalosporins safe for mild PCN allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["doxycycline"],
+          "reasoning": "Tetracycline for severe beta-lactam allergy",
+          "alternative": "clindamycin"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["cephalexin"],
+          "reasoning": "No cross-reactivity between sulfa and beta-lactams"
+        }
+      ]
+    },
+    {
+      "category": "Cellulitis with Purulence / Abscess (MRSA suspected)",
+      "infection_subtype": "purulent_cellulitis",
+      "location": "Ward",
+      "severity": "moderate",
+      "route": "PO",
+      "risk_factors": ["abscess", "purulence", "I&D performed"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["trimethoprim_sulfamethoxazole"],
+          "reasoning": "TMP/SMX for community-acquired MRSA coverage",
+          "alternative": "doxycycline",
+          "note": "Incision and drainage is primary treatment for abscess"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["trimethoprim_sulfamethoxazole"],
+          "reasoning": "No cross-reactivity with PCN"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["trimethoprim_sulfamethoxazole"],
+          "reasoning": "No cross-reactivity with PCN"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["doxycycline"],
+          "reasoning": "Doxycycline for MRSA when sulfa contraindicated",
+          "alternative": "clindamycin (if local resistance <10%)"
+        },
+        {
+          "allergy_status": "clindamycin_allergy",
+          "drugs": ["trimethoprim_sulfamethoxazole"],
+          "reasoning": "TMP/SMX preferred over clindamycin for MRSA"
+        }
+      ]
+    },
+    {
+      "category": "Cellulitis with MRSA Risk Factors",
+      "infection_subtype": "mrsa_cellulitis",
+      "location": "Ward",
+      "severity": "moderate",
+      "route": "IV",
+      "risk_factors": ["MRSA colonization", "MRSA history", "injection drug use"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "IV vancomycin for MRSA coverage",
+          "alternative": "linezolid PO (if tolerated)"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "No cross-reactivity"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "No cross-reactivity"
+        },
+        {
+          "allergy_status": "vancomycin_allergy",
+          "drugs": ["daptomycin"],
+          "reasoning": "Daptomycin for MRSA with vancomycin allergy (6 mg/kg for SSTI)",
+          "alternative": "linezolid"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "No cross-reactivity"
+        }
+      ]
+    },
+    {
+      "category": "Necrotizing Fasciitis / Severe SSTI",
+      "infection_subtype": "necrotizing",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "risk_factors": ["necrotizing fasciitis", "crepitus", "systemic toxicity", "gas gangrene"],
+      "critical_warnings": [
+        "🚨 SURGICAL EMERGENCY - Immediate debridement required",
+        "🚨 Broad-spectrum IV antibiotics + clindamycin for toxin suppression"
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["piperacillin_tazobactam", "vancomycin", "clindamycin"],
+          "reasoning": "Broad coverage for polymicrobial necrotizing infection + toxin suppression",
+          "evidence": "IDSA SSTI Guidelines 2014",
+          "note": "Clindamycin inhibits toxin production"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["cefepime", "vancomycin", "clindamycin"],
+          "reasoning": "Cefepime safe for mild allergy, broad gram-negative coverage"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "vancomycin", "metronidazole"],
+          "reasoning": "Aztreonam for gram-negative, metronidazole for anaerobes, vancomycin for MRSA"
+        },
+        {
+          "allergy_status": "clindamycin_allergy",
+          "drugs": ["piperacillin_tazobactam", "vancomycin", "metronidazole"],
+          "reasoning": "Metronidazole for anaerobes when clindamycin contraindicated"
+        }
+      ]
+    },
+    {
+      "category": "Diabetic Foot Infection - Mild to Moderate",
+      "infection_subtype": "diabetic_foot",
+      "location": "Ward",
+      "severity": "moderate",
+      "route": "PO",
+      "risk_factors": ["diabetes", "diabetic foot", "ulcer"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["trimethoprim_sulfamethoxazole"],
+          "reasoning": "MRSA coverage for diabetic foot infection",
+          "alternative": "cephalexin + trimethoprim_sulfamethoxazole (if mixed infection)"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["trimethoprim_sulfamethoxazole"],
+          "reasoning": "No cross-reactivity"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["trimethoprim_sulfamethoxazole"],
+          "reasoning": "No cross-reactivity"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["doxycycline"],
+          "reasoning": "Doxycycline for diabetic foot when sulfa contraindicated",
+          "alternative": "moxifloxacin (if need broader coverage)"
+        }
+      ]
+    },
+    {
+      "category": "Diabetic Foot Infection - Severe / Osteomyelitis",
+      "infection_subtype": "diabetic_foot_severe",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["diabetes", "osteomyelitis", "deep tissue infection"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["piperacillin_tazobactam", "vancomycin"],
+          "reasoning": "Broad-spectrum for polymicrobial diabetic foot with bone involvement",
+          "alternative": "ampicillin_sulbactam + vancomycin"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["cefepime", "vancomycin", "metronidazole"],
+          "reasoning": "Cefepime for gram-negative, metronidazole for anaerobes"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["aztreonam", "vancomycin", "metronidazole"],
+          "reasoning": "Aztreonam for gram-negative, vancomycin for MRSA, metronidazole for anaerobes"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["piperacillin_tazobactam", "vancomycin"],
+          "reasoning": "No cross-reactivity"
+        }
+      ]
+    }
+  ],
+
+  "special_considerations": {
+    "abscess_management": "Incision and drainage is the primary treatment. Antibiotics are adjunctive.",
+    "mrsa_prevalence": "Consider local MRSA prevalence when selecting empiric therapy",
+    "biofilm": "Diabetic foot infections with osteomyelitis may require prolonged therapy (4-6 weeks)",
+    "imaging": "MRI or bone biopsy for suspected osteomyelitis"
+  },
+
+  "pregnancy_considerations": {
+    "safe_drugs": ["cephalexin", "amoxicillin_clavulanate", "aztreonam", "vancomycin"],
+    "contraindicated_drugs": ["fluoroquinolones", "doxycycline", "trimethoprim_sulfamethoxazole"],
+    "notes": "Avoid TMP/SMX in 1st trimester. Tetracyclines contraindicated in pregnancy."
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "infection_name": "Infective Endocarditis",
+  "infection_code": "endocarditis",
+  "description": "Native valve and prosthetic valve endocarditis",
+  "version": "3.0.0",
+  "last_updated": "2025-10-09",
+
+  "critical_note": "ENDOCARDITIS IS A LIFE-THREATENING INFECTION - Prolonged bactericidal therapy required",
+
+  "categories": [
+    {
+      "category": "Native Valve Endocarditis - Acute",
+      "infection_subtype": "native_valve_acute",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "Empiric coverage for S. aureus (including MRSA), Streptococcus, and HACEK organisms",
+          "evidence": "AHA Endocarditis Guidelines 2015",
+          "duration": "4-6 weeks",
+          "note": "Obtain 3 sets of blood cultures before starting antibiotics"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "Ceftriaxone safe for mild PCN allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam"],
+          "reasoning": "Aztreonam for gram-negative coverage with severe PCN allergy",
+          "alternative": "vancomycin + levofloxacin"
+        },
+        {
+          "allergy_status": "sulfa_allergy",
+          "drugs": ["vancomycin", "ceftriaxone"],
+          "reasoning": "No cross-reactivity"
+        }
+      ]
+    },
+    {
+      "category": "Native Valve Endocarditis - Subacute (Viridans Strep suspected)",
+      "infection_subtype": "native_valve_subacute",
+      "location": "Ward",
+      "severity": "moderate_to_severe",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ceftriaxone"],
+          "reasoning": "Ceftriaxone for viridans streptococci and nutritionally variant streptococci",
+          "alternative": "penicillin G + gentamicin",
+          "duration": "4 weeks"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ceftriaxone"],
+          "reasoning": "Ceftriaxone safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "Vancomycin for streptococcal endocarditis with severe PCN allergy",
+          "duration": "6 weeks (longer than beta-lactam regimen)"
+        },
+        {
+          "allergy_status": "cephalosporin_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "Vancomycin alternative for cephalosporin allergy"
+        }
+      ]
+    },
+    {
+      "category": "Prosthetic Valve Endocarditis",
+      "infection_subtype": "prosthetic_valve",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "risk_factors": ["prosthetic valve", "valve replacement"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "cefepime", "gentamicin"],
+          "reasoning": "Broad empiric coverage for coagulase-negative staph, S. aureus, and gram-negatives",
+          "evidence": "AHA Endocarditis Guidelines 2015",
+          "duration": "6 weeks minimum",
+          "note": "Consult cardiothoracic surgery - may need valve replacement"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "cefepime", "gentamicin"],
+          "reasoning": "Cefepime safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam", "gentamicin"],
+          "reasoning": "Aztreonam for gram-negative coverage"
+        },
+        {
+          "allergy_status": "vancomycin_allergy",
+          "drugs": ["daptomycin", "cefepime", "gentamicin"],
+          "reasoning": "Daptomycin for MRSA with vancomycin allergy (8-10 mg/kg for endocarditis)",
+          "note": "Higher dose daptomycin required for endocarditis"
+        },
+        {
+          "allergy_status": "aminoglycoside_allergy",
+          "drugs": ["vancomycin", "cefepime"],
+          "reasoning": "Avoid gentamicin if aminoglycoside allergy/ototoxicity",
+          "alternative": "vancomycin + cefepime + rifampin"
+        }
+      ]
+    },
+    {
+      "category": "IVDU-Associated Endocarditis (Right-Sided)",
+      "infection_subtype": "ivdu_endocarditis",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": ["IV drug use", "tricuspid valve", "injection drug use"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "MRSA coverage for IVDU-associated endocarditis (usually right-sided)",
+          "duration": "4-6 weeks",
+          "note": "Consider adding ceftriaxone if Pseudomonas risk"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "Vancomycin monotherapy adequate for MRSA"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin"],
+          "reasoning": "Vancomycin monotherapy"
+        },
+        {
+          "allergy_status": "vancomycin_allergy",
+          "drugs": ["daptomycin"],
+          "reasoning": "Daptomycin for MRSA endocarditis (8-10 mg/kg)",
+          "alternative": "linezolid (600 mg q12h)"
+        }
+      ]
+    },
+    {
+      "category": "Enterococcal Endocarditis",
+      "infection_subtype": "enterococcal",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ampicillin", "gentamicin"],
+          "reasoning": "Synergistic combination for enterococcal endocarditis",
+          "alternative": "vancomycin + gentamicin (if ampicillin-resistant)",
+          "duration": "4-6 weeks"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ampicillin", "gentamicin"],
+          "reasoning": "Ampicillin may be tolerated with mild rash-only allergy",
+          "note": "Use with caution - desensitization may be needed"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "gentamicin"],
+          "reasoning": "Vancomycin + gentamicin for severe PCN allergy",
+          "duration": "6 weeks"
+        },
+        {
+          "allergy_status": "vancomycin_allergy",
+          "drugs": ["daptomycin", "ceftriaxone"],
+          "reasoning": "Daptomycin + ceftriaxone for enterococcal endocarditis with vancomycin allergy",
+          "note": "Consult ID - VRE endocarditis is complex"
+        }
+      ]
+    }
+  ],
+
+  "special_considerations": {
+    "blood_cultures": "Obtain 3 sets of blood cultures from different sites before starting antibiotics",
+    "echocardiography": "TEE (transesophageal echo) preferred over TTE for diagnosis",
+    "surgery": "Indications: heart failure, persistent bacteremia, large vegetations (>10mm), abscess formation",
+    "monitoring": "Weekly blood cultures until clearance, monitor for embolic complications",
+    "duration": "Minimum 4-6 weeks of IV antibiotics. Prosthetic valve requires 6+ weeks."
+  },
+
+  "pregnancy_considerations": {
+    "safe_drugs": ["ampicillin", "ceftriaxone", "cefepime", "aztreonam", "vancomycin"],
+    "contraindicated_drugs": ["gentamicin", "fluoroquinolones", "doxycycline"],
+    "notes": "Aminoglycosides should be avoided if possible due to ototoxicity/nephrotoxicity risk. Use beta-lactams and vancomycin."
+  }
+}

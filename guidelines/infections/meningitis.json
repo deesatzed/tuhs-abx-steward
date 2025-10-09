@@ -34,6 +34,13 @@
           "reasoning": "Vancomycin + respiratory fluoroquinolone for severe allergy",
           "note": "Consult ID - meningitis with severe PCN allergy is complex",
           "alternative": "Chloramphenicol + vancomycin (rare, ID consult required)"
+        },
+        {
+          "allergy_status": "cephalosporin_allergy",
+          "drugs": ["vancomycin", "moxifloxacin"],
+          "reasoning": "Vancomycin + moxifloxacin for cephalosporin allergy",
+          "note": "ID consult recommended - meningitis with cephalosporin allergy requires careful management",
+          "alternative": "Vancomycin + aztreonam (aztreonam does NOT cover S. pneumoniae)"
         }
       ]
     },

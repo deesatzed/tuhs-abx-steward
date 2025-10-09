@@ -1,0 +1,186 @@
+{
+  "infection_name": "CNS Infections (Non-Meningitis)",
+  "infection_code": "cns",
+  "description": "Includes brain abscess, encephalitis, ventriculitis, and subdural empyema",
+  "version": "3.0.0",
+  "last_updated": "2025-10-09",
+
+  "critical_note": "CNS INFECTIONS ARE MEDICAL/SURGICAL EMERGENCIES - High-dose antibiotics with CNS penetration required",
+
+  "categories": [
+    {
+      "category": "Brain Abscess - Community Acquired",
+      "infection_subtype": "brain_abscess",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "risk_factors": ["brain abscess", "headache", "focal neuro deficits", "seizures"],
+      "critical_warnings": [
+        "🚨 NEUROSURGICAL EMERGENCY - Consider drainage/aspiration",
+        "🚨 HIGH-DOSE ANTIBIOTICS for CNS penetration"
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ceftriaxone", "metronidazole", "vancomycin"],
+          "reasoning": "Broad coverage for Streptococcus, anaerobes, and S. aureus",
+          "evidence": "IDSA Brain Abscess Guidelines",
+          "duration": "6-8 weeks",
+          "note": "Metronidazole for anaerobic coverage (oral flora source)"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ceftriaxone", "metronidazole", "vancomycin"],
+          "reasoning": "Ceftriaxone safe for mild PCN allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["moxifloxacin", "metronidazole", "vancomycin"],
+          "reasoning": "Moxifloxacin has good CNS penetration",
+          "alternative": "aztreonam + metronidazole + vancomycin"
+        },
+        {
+          "allergy_status": "metronidazole_allergy",
+          "drugs": ["ceftriaxone", "vancomycin"],
+          "reasoning": "Limited alternatives for anaerobes - clindamycin has poor CNS penetration",
+          "note": "Consult ID - may need desensitization or alternative anaerobic coverage"
+        }
+      ]
+    },
+    {
+      "category": "Brain Abscess - Post-Neurosurgical",
+      "infection_subtype": "post_surgical_abscess",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "risk_factors": ["recent neurosurgery", "craniotomy", "brain abscess"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "cefepime", "metronidazole"],
+          "reasoning": "Coverage for S. aureus (including MRSA), Pseudomonas, and anaerobes",
+          "duration": "6-8 weeks"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "cefepime", "metronidazole"],
+          "reasoning": "Cefepime safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam", "metronidazole"],
+          "reasoning": "Aztreonam for Pseudomonas with severe PCN allergy",
+          "alternative": "vancomycin + moxifloxacin + metronidazole"
+        }
+      ]
+    },
+    {
+      "category": "Ventriculitis / EVD-Associated Infection",
+      "infection_subtype": "ventriculitis",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "risk_factors": ["EVD", "external ventricular drain", "ventriculitis", "fever"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["vancomycin", "cefepime"],
+          "reasoning": "Coverage for coagulase-negative staph, S. aureus, and Pseudomonas",
+          "note": "May need intrathecal vancomycin if poor response",
+          "duration": "10-14 days after drain removal or CSF clearance"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["vancomycin", "cefepime"],
+          "reasoning": "Cefepime safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["vancomycin", "aztreonam"],
+          "reasoning": "Aztreonam for Pseudomonas coverage",
+          "alternative": "vancomycin + moxifloxacin"
+        },
+        {
+          "allergy_status": "vancomycin_allergy",
+          "drugs": ["linezolid", "cefepime"],
+          "reasoning": "Linezolid has excellent CNS penetration",
+          "note": "Linezolid preferred over daptomycin for CNS infections"
+        }
+      ]
+    },
+    {
+      "category": "Encephalitis - Viral (Empiric)",
+      "infection_subtype": "encephalitis",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "risk_factors": ["encephalitis", "altered mental status", "fever", "seizures"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["acyclovir", "ceftriaxone", "vancomycin"],
+          "reasoning": "Acyclovir for HSV encephalitis + antibacterial coverage until bacterial meningitis ruled out",
+          "note": "Start acyclovir immediately - do not wait for LP results",
+          "duration": "14-21 days for HSV encephalitis"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["acyclovir", "ceftriaxone", "vancomycin"],
+          "reasoning": "Ceftriaxone safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["acyclovir", "moxifloxacin", "vancomycin"],
+          "reasoning": "Moxifloxacin for severe PCN allergy"
+        },
+        {
+          "allergy_status": "acyclovir_allergy",
+          "drugs": ["foscarnet", "ceftriaxone", "vancomycin"],
+          "reasoning": "Foscarnet alternative for HSV with acyclovir allergy",
+          "note": "Consult ID - foscarnet has significant renal toxicity"
+        }
+      ]
+    },
+    {
+      "category": "Subdural Empyema",
+      "infection_subtype": "subdural_empyema",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "risk_factors": ["subdural empyema", "sinusitis", "ear infection", "recent trauma"],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": ["ceftriaxone", "metronidazole", "vancomycin"],
+          "reasoning": "Similar to brain abscess - coverage for Streptococcus, anaerobes, S. aureus",
+          "note": "URGENT neurosurgical drainage required",
+          "duration": "4-6 weeks"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": ["ceftriaxone", "metronidazole", "vancomycin"],
+          "reasoning": "Ceftriaxone safe for mild allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": ["moxifloxacin", "metronidazole", "vancomycin"],
+          "reasoning": "Moxifloxacin for severe PCN allergy"
+        }
+      ]
+    }
+  ],
+
+  "special_considerations": {
+    "imaging": "MRI with contrast is preferred over CT for CNS infections",
+    "surgical_management": "Many CNS infections require neurosurgical drainage/debridement",
+    "duration": "Prolonged therapy required (4-8 weeks minimum)",
+    "monitoring": "Serial imaging to assess response, consider repeat LP for ventriculitis",
+    "high_dose": "Higher antibiotic doses may be needed for CNS penetration"
+  },
+
+  "pregnancy_considerations": {
+    "safe_drugs": ["ceftriaxone", "cefepime", "aztreonam", "vancomycin", "acyclovir"],
+    "contraindicated_drugs": ["fluoroquinolones", "foscarnet"],
+    "notes": "Beta-lactams, vancomycin, and acyclovir are safe. Avoid fluoroquinolones."
+  }
+}
