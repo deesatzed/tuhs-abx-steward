@@ -76,6 +76,38 @@
         "duration": "7-14 days",
         "route": "IV"
       },
+      "ssti": {
+        "loading_dose": "optional",
+        "maintenance_dose": "15-20 mg/kg IV",
+        "frequency": "q12h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "note": "For MRSA coverage in skin/soft tissue infections"
+      },
+      "bone_joint": {
+        "loading_dose": "25-30 mg/kg IV once",
+        "maintenance_dose": "15-20 mg/kg IV",
+        "frequency": "q8-12h",
+        "duration": "4-12 weeks",
+        "route": "IV",
+        "note": "Loading dose recommended. Trough 15-20 mcg/mL. Prolonged therapy required."
+      },
+      "endocarditis": {
+        "loading_dose": "25-30 mg/kg IV once",
+        "maintenance_dose": "15-20 mg/kg IV",
+        "frequency": "q8-12h",
+        "duration": "4-6 weeks minimum",
+        "route": "IV",
+        "note": "Loading dose MANDATORY. Target trough 15-20 mcg/mL. Often combined with gentamicin."
+      },
+      "cns": {
+        "loading_dose": "25-30 mg/kg IV once",
+        "maintenance_dose": "15-20 mg/kg IV",
+        "frequency": "q8-12h",
+        "duration": "6-8 weeks",
+        "route": "IV",
+        "note": "Loading dose required. Target trough 15-20 mcg/mL. Limited CNS penetration - high doses needed."
+      },
       "intra_abdominal": {
         "loading_dose": "optional",
         "maintenance_dose": "15-20 mg/kg IV",
