@@ -1,0 +1,124 @@
+{
+  "drug_name": "Fosfomycin",
+  "drug_id": "fosfomycin",
+  "generic_name": "fosfomycin",
+  "brand_names": ["Monurol"],
+  "class": "Phosphonic Acid Antibiotic",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["PO"],
+  "default_route": "PO",
+
+  "contraindications": {
+    "absolute": [
+      "fosfomycin_allergy"
+    ],
+    "relative": [],
+    "note": "Generally well tolerated. No major contraindications."
+  },
+
+  "allergy_considerations": {
+    "pcn_allergy": {
+      "safe": true,
+      "contraindicated": false,
+      "note": "Safe with PCN allergy (no cross-reactivity). Excellent alternative for uncomplicated cystitis."
+    },
+    "sulfa_allergy": {
+      "safe": true,
+      "contraindicated": false,
+      "note": "Safe with sulfa allergy"
+    },
+    "fluoroquinolone_allergy": {
+      "safe": true,
+      "note": "Safe with fluoroquinolone allergy"
+    }
+  },
+
+  "pregnancy_category": "B",
+  "pregnancy_safe": true,
+  "pregnancy_notes": "Safe in pregnancy. Commonly used for uncomplicated UTI in pregnant women.",
+
+  "renal_adjustment": {
+    "required": true,
+    "adjustments": {
+      "CrCl_>80": {
+        "dose": "Standard dose (3 g × 1)",
+        "note": "No adjustment needed"
+      },
+      "CrCl_<80": {
+        "dose": "Use with caution",
+        "note": "Reduced efficacy with lower CrCl. Consider alternative."
+      }
+    }
+  },
+
+  "dosing": {
+    "by_indication": {
+      "cystitis": {
+        "dose": "3 g PO (one packet)",
+        "frequency": "Single dose",
+        "duration": "Single dose",
+        "note": "SINGLE-DOSE therapy for uncomplicated cystitis in women. Mix packet with water and drink immediately.",
+        "route": "PO",
+        "loading_dose": null
+      },
+      "uti_uncomplicated": {
+        "dose": "3 g PO (one packet)",
+        "frequency": "Single dose",
+        "duration": "Single dose",
+        "note": "For uncomplicated lower UTI only. DO NOT USE for pyelonephritis.",
+        "route": "PO"
+      }
+    },
+    "pediatric": {
+      "note": "NOT approved for children <12 years. If ≥12 years: adult dose (3 g × 1)."
+    }
+  },
+
+  "monitoring": {
+    "required": ["clinical response at 2-3 days"],
+    "optional": []
+  },
+
+  "drug_interactions": {
+    "major": ["metoclopramide (decreases fosfomycin levels - avoid)"],
+    "moderate": []
+  },
+
+  "adverse_effects": {
+    "common": ["diarrhea", "headache", "nausea", "vaginal yeast infection"],
+    "serious": ["anaphylaxis (rare)"],
+    "rare": ["C. difficile colitis (rare)"]
+  },
+
+  "spectrum": {
+    "gram_positive": "Good (Enterococcus)",
+    "gram_negative": "Good (E. coli, Klebsiella, Enterobacter)",
+    "anaerobes": "Limited",
+    "atypicals": "No coverage",
+    "note": "URINARY CONCENTRATION ONLY - inadequate tissue levels for pyelonephritis/systemic infections. Active against ESBL-producing E. coli."
+  },
+
+  "notes": [
+    "⚠️ SINGLE-DOSE THERAPY (3 g × 1)",
+    "⚠️ ONLY FOR UNCOMPLICATED LOWER UTI (CYSTITIS)",
+    "⚠️ DO NOT USE FOR PYELONEPHRITIS (inadequate tissue levels)",
+    "Alternative to nitrofurantoin and TMP/SMX for uncomplicated cystitis",
+    "Excellent for multidrug-resistant UTI (ESBL E. coli)",
+    "Safe with PCN, sulfa, fluoroquinolone allergies",
+    "Safe in pregnancy",
+    "Patient convenience: Single dose (vs 5-7 day courses)",
+    "Mix packet with 3-4 oz (90-120 mL) cold water and drink immediately",
+    "Take on empty stomach (1 hour before or 2 hours after meals) for best absorption",
+    "AVOID metoclopramide (decreases fosfomycin levels)",
+    "Cure rates slightly lower than 5-7 day courses (85% vs 90-95%)",
+    "NOT approved for children <12 years"
+  ],
+
+  "evidence": [
+    "IDSA Uncomplicated UTI Guidelines 2019 - alternative for cystitis",
+    "Cochrane Review: Fosfomycin for uncomplicated UTI",
+    "Effective against ESBL E. coli (95% susceptibility)"
+  ]
+}

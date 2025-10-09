@@ -1,0 +1,158 @@
+{
+  "drug_name": "Trimethoprim-Sulfamethoxazole",
+  "drug_id": "trimethoprim_sulfamethoxazole",
+  "generic_name": "trimethoprim-sulfamethoxazole",
+  "brand_names": ["Bactrim", "Septra", "TMP/SMX", "Cotrimoxazole"],
+  "class": "Sulfonamide + Dihydrofolate Reductase Inhibitor",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["PO", "IV"],
+  "default_route": "PO",
+
+  "contraindications": {
+    "absolute": [
+      "sulfa_allergy",
+      "severe_hypersensitivity",
+      "megaloblastic_anemia_from_folate_deficiency",
+      "first_trimester_pregnancy"
+    ],
+    "relative": [
+      "G6PD_deficiency",
+      "severe_renal_impairment",
+      "severe_hepatic_impairment"
+    ],
+    "note": "Avoid in pregnancy (especially 1st trimester). Contraindicated in sulfa allergy."
+  },
+
+  "allergy_considerations": {
+    "sulfa_allergy": {
+      "safe": false,
+      "contraindicated": true,
+      "note": "Absolutely contraindicated in sulfa allergy. Use doxycycline or clindamycin instead."
+    },
+    "pcn_allergy": {
+      "safe": true,
+      "note": "Safe with penicillin allergy (no cross-reactivity)"
+    }
+  },
+
+  "pregnancy_category": "D",
+  "pregnancy_safe": false,
+  "pregnancy_notes": "Avoid in 1st trimester (neural tube defects). Avoid in 3rd trimester (kernicterus risk). Use only if benefits outweigh risks.",
+
+  "renal_adjustment": {
+    "required": true,
+    "adjustments": {
+      "CrCl_>30": {
+        "dose": "Standard dose",
+        "note": "No adjustment needed"
+      },
+      "CrCl_15_30": {
+        "dose": "50% of standard dose",
+        "note": "Reduce dose by 50%"
+      },
+      "CrCl_<15": {
+        "dose": "Avoid or use alternative",
+        "note": "Contraindicated in severe renal impairment"
+      }
+    }
+  },
+
+  "dosing": {
+    "by_indication": {
+      "ssti": {
+        "dose": "1-2 DS tablets PO",
+        "frequency": "BID (q12h)",
+        "duration": "7-10 days",
+        "note": "First-line for MRSA skin infections (outpatient)",
+        "route": "PO",
+        "loading_dose": null
+      },
+      "uti": {
+        "dose": "1 DS tablet PO",
+        "frequency": "BID (q12h)",
+        "duration": "3-5 days (uncomplicated)",
+        "note": "Avoid if local resistance >20%. Not recommended for pyelonephritis.",
+        "route": "PO"
+      },
+      "cystitis": {
+        "dose": "1 DS tablet PO",
+        "frequency": "BID (q12h)",
+        "duration": "3 days",
+        "note": "Short course for uncomplicated cystitis in women",
+        "route": "PO"
+      },
+      "pcp_treatment": {
+        "dose": "TMP 15-20 mg/kg/day IV (divided q6-8h)",
+        "frequency": "q6-8h",
+        "duration": "21 days",
+        "note": "Pneumocystis pneumonia treatment (HIV/AIDS)",
+        "route": "IV"
+      },
+      "pcp_prophylaxis": {
+        "dose": "1 SS tablet PO daily",
+        "frequency": "daily",
+        "duration": "Ongoing",
+        "note": "Pneumocystis prophylaxis for HIV (CD4 <200)",
+        "route": "PO"
+      },
+      "mrsa_ssti": {
+        "dose": "1-2 DS tablets PO",
+        "frequency": "BID (q12h)",
+        "duration": "7-14 days",
+        "note": "Excellent MRSA coverage for skin/soft tissue infections",
+        "route": "PO"
+      }
+    },
+    "pediatric": {
+      "note": "TMP 8-12 mg/kg/day divided q12h (based on TMP component)"
+    }
+  },
+
+  "monitoring": {
+    "required": ["clinical response", "CBC (if prolonged therapy)"],
+    "optional": ["renal function", "potassium (can cause hyperkalemia)"]
+  },
+
+  "drug_interactions": {
+    "major": ["warfarin (increases INR)", "methotrexate", "phenytoin"],
+    "moderate": ["ACE inhibitors (hyperkalemia)", "diuretics"]
+  },
+
+  "adverse_effects": {
+    "common": ["nausea", "rash", "photosensitivity"],
+    "serious": [
+      "Stevens-Johnson syndrome",
+      "toxic epidermal necrolysis",
+      "hyperkalemia",
+      "bone marrow suppression",
+      "severe hypersensitivity"
+    ],
+    "rare": ["agranulocytosis", "aplastic anemia"]
+  },
+
+  "spectrum": {
+    "gram_positive": "Good (including MRSA)",
+    "gram_negative": "Good (E. coli, but resistance increasing)",
+    "anaerobes": "Limited",
+    "atypicals": "Limited"
+  },
+
+  "notes": [
+    "First-line for MRSA skin/soft tissue infections (outpatient)",
+    "Avoid if local UTI resistance >20%",
+    "Contraindicated in sulfa allergy",
+    "Avoid in pregnancy (especially 1st trimester)",
+    "Can cause severe hypersensitivity reactions (SJS/TEN)",
+    "Monitor for hyperkalemia (especially with ACE inhibitors)",
+    "DS = Double Strength (TMP 160mg / SMX 800mg)",
+    "SS = Single Strength (TMP 80mg / SMX 400mg)"
+  ],
+
+  "evidence": [
+    "IDSA SSTI Guidelines 2014 - first-line for MRSA",
+    "IDSA Uncomplicated UTI Guidelines 2019",
+    "CDC PCP Prophylaxis Guidelines"
+  ]
+}

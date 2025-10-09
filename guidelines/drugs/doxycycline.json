@@ -1,0 +1,184 @@
+{
+  "drug_name": "Doxycycline",
+  "drug_id": "doxycycline",
+  "generic_name": "doxycycline",
+  "brand_names": ["Vibramycin", "Doryx", "Acticlate"],
+  "class": "Tetracycline Antibiotic",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["PO", "IV"],
+  "default_route": "PO",
+
+  "contraindications": {
+    "absolute": [
+      "pregnancy",
+      "children_<8_years",
+      "tetracycline_allergy"
+    ],
+    "relative": [
+      "esophageal_disease",
+      "myasthenia_gravis"
+    ],
+    "note": "CONTRAINDICATED in pregnancy and children <8 years (tooth discoloration, bone growth effects)."
+  },
+
+  "allergy_considerations": {
+    "pcn_allergy": {
+      "safe": true,
+      "contraindicated": false,
+      "note": "Safe with PCN allergy. Excellent alternative for many PCN-allergic patients."
+    },
+    "severe_pcn_allergy": {
+      "safe": true,
+      "contraindicated": false,
+      "note": "Safe alternative for severe PCN allergy (no cross-reactivity)"
+    },
+    "sulfa_allergy": {
+      "safe": true,
+      "note": "Safe with sulfa allergy"
+    },
+    "cephalosporin_allergy": {
+      "safe": true,
+      "note": "Safe with cephalosporin allergy"
+    }
+  },
+
+  "pregnancy_category": "D",
+  "pregnancy_safe": false,
+  "pregnancy_notes": "CONTRAINDICATED in pregnancy (all trimesters). Causes tooth discoloration and inhibits bone growth in fetus.",
+
+  "renal_adjustment": {
+    "required": false,
+    "note": "NO renal dose adjustment needed. Primarily fecal excretion. Safe in renal failure."
+  },
+
+  "dosing": {
+    "by_indication": {
+      "ssti_mrsa": {
+        "dose": "100 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "7-10 days",
+        "note": "First-line for MRSA skin infections (outpatient). Alternative to TMP/SMX.",
+        "route": "PO",
+        "loading_dose": null
+      },
+      "cap": {
+        "dose": "100 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "5-7 days",
+        "note": "For community-acquired pneumonia (atypical coverage)",
+        "route": "PO"
+      },
+      "bite_wound": {
+        "dose": "100 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "3-5 days",
+        "note": "Alternative for bite wounds with PCN allergy (combine with metronidazole for anaerobes)",
+        "route": "PO"
+      },
+      "tick_borne": {
+        "dose": "100 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "10-21 days (depends on disease)",
+        "note": "First-line for Rocky Mountain Spotted Fever, Lyme disease, ehrlichiosis, anaplasmosis",
+        "route": "PO"
+      },
+      "lyme_disease": {
+        "dose": "100 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "10-21 days",
+        "note": "First-line for early Lyme disease",
+        "route": "PO"
+      },
+      "pelvic_inflammatory_disease": {
+        "dose": "100 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "14 days",
+        "note": "Outpatient PID regimen (with ceftriaxone 500 mg IM × 1)",
+        "route": "PO"
+      },
+      "chlamydia": {
+        "dose": "100 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "7 days",
+        "note": "First-line for Chlamydia trachomatis (alternative: azithromycin 1 g × 1)",
+        "route": "PO"
+      },
+      "atypical_pneumonia": {
+        "dose": "100 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "7-10 days",
+        "note": "For Mycoplasma, Chlamydia pneumoniae",
+        "route": "PO"
+      },
+      "malaria_prophylaxis": {
+        "dose": "100 mg PO",
+        "frequency": "daily",
+        "duration": "Start 1-2 days before travel, continue 4 weeks after",
+        "note": "Malaria prophylaxis (endemic areas)",
+        "route": "PO"
+      }
+    },
+    "pediatric": {
+      "note": "CONTRAINDICATED in children <8 years (tooth discoloration). If >8 years and >45 kg: adult dose."
+    }
+  },
+
+  "monitoring": {
+    "required": ["clinical response"],
+    "optional": ["liver function tests (if prolonged therapy)"]
+  },
+
+  "drug_interactions": {
+    "major": [
+      "antacids (decrease absorption)",
+      "calcium/iron/zinc supplements (chelation - decrease absorption)",
+      "warfarin (increases INR)"
+    ],
+    "moderate": ["oral contraceptives (may decrease effectiveness)", "penicillins (antagonism)"]
+  },
+
+  "adverse_effects": {
+    "common": [
+      "nausea (COMMON - take with food)",
+      "photosensitivity (WARN patients - use sunscreen)",
+      "esophagitis (take with water, remain upright)"
+    ],
+    "serious": [
+      "severe photosensitivity reactions",
+      "esophageal ulceration",
+      "hepatotoxicity (rare)",
+      "intracranial hypertension (pseudotumor cerebri - rare)"
+    ],
+    "rare": ["C. difficile colitis", "tooth discoloration (if used <8 years)"]
+  },
+
+  "spectrum": {
+    "gram_positive": "Good (MSSA, some MRSA - check local susceptibility)",
+    "gram_negative": "Moderate",
+    "anaerobes": "Limited (not reliable)",
+    "atypicals": "Excellent (Mycoplasma, Chlamydia, Rickettsia, Ehrlichia, Borrelia)"
+  },
+
+  "notes": [
+    "⚠️ CONTRAINDICATED in pregnancy and children <8 years",
+    "First-line for MRSA SSTI (alternative to TMP/SMX)",
+    "First-line for tick-borne diseases (Lyme, RMSF, ehrlichiosis)",
+    "Excellent atypical coverage (Mycoplasma, Chlamydia)",
+    "Safe with PCN/sulfa allergies",
+    "NO renal dose adjustment needed (safe in renal failure)",
+    "⚠️ PHOTOSENSITIVITY - warn patients to use sunscreen",
+    "Take with food to reduce nausea",
+    "Take with full glass of water, remain upright 30 min (prevent esophagitis)",
+    "AVOID: antacids, calcium, iron, zinc within 2 hours (chelation)",
+    "May reduce oral contraceptive effectiveness (use backup method)",
+    "DO NOT combine with penicillins (antagonism)"
+  ],
+
+  "evidence": [
+    "IDSA SSTI Guidelines 2014 - first-line for CA-MRSA",
+    "IDSA Lyme Disease Guidelines 2020",
+    "CDC Tick-Borne Disease Guidelines"
+  ]
+}

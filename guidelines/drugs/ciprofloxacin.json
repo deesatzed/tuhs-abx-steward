@@ -1,38 +1,78 @@
 {
   "drug_id": "ciprofloxacin",
   "drug_name": "Ciprofloxacin",
-  "drug_class": "Fluoroquinolone",
   "route": "IV/PO",
-  "indications": {
-    "uti": {
-      "standard_dose": "400 mg IV q12h or 500 mg PO q12h",
-      "high_dose": "400 mg IV q8h",
-      "loading_dose": null
+  "renal_adjustments": [
+    {
+      "gfr_range": [
+        50,
+        999
+      ],
+      "dose": "No adjustment"
     },
-    "intra_abdominal": {
-      "standard_dose": "400 mg IV q12h",
-      "high_dose": "400 mg IV q8h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        30,
+        49
+      ],
+      "dose": "400 mg IV q12h or 500 mg PO q12h"
     },
-    "bacteremia": {
-      "standard_dose": "400 mg IV q12h",
-      "high_dose": "400 mg IV q8h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        5,
+        29
+      ],
+      "dose": "200-400 mg IV q18-24h"
     },
-    "bone_joint": {
-      "standard_dose": "400 mg IV q12h or 750 mg PO q12h",
-      "high_dose": "400 mg IV q8h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        0,
+        4
+      ],
+      "dose": "200-400 mg IV q24h"
+    }
+  ],
+  "monitoring": [
+    "QTc interval",
+    "Tendon pain",
+    "Neurologic symptoms"
+  ],
+  "contraindications": [
+    "Fluoroquinolone allergy",
+    "Pregnancy",
+    "Children <18 (relative)",
+    "Myasthenia gravis"
+  ],
+  "warnings": [
+    "Tendon rupture",
+    "QT prolongation",
+    "CNS toxicity",
+    "C. difficile risk"
+  ],
+  "pregnancy_category": "C",
+  "dosing": {
+    "by_indication": {
+      "uti": {
+        "dose": "400 mg IV",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "intra_abdominal": {
+        "dose": "400 mg IV",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "bacteremia": {
+        "dose": "400 mg IV",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "bone_joint": {
+        "dose": "400 mg IV",
+        "frequency": "q12h",
+        "route": "IV"
+      }
     }
   },
-  "renal_adjustments": [
-    {"gfr_range": [50, 999], "dose": "No adjustment"},
-    {"gfr_range": [30, 49], "dose": "400 mg IV q12h or 500 mg PO q12h"},
-    {"gfr_range": [5, 29], "dose": "200-400 mg IV q18-24h"},
-    {"gfr_range": [0, 4], "dose": "200-400 mg IV q24h"}
-  ],
-  "monitoring": ["QTc interval", "Tendon pain", "Neurologic symptoms"],
-  "contraindications": ["Fluoroquinolone allergy", "Pregnancy", "Children <18 (relative)", "Myasthenia gravis"],
-  "warnings": ["Tendon rupture", "QT prolongation", "CNS toxicity", "C. difficile risk"],
-  "pregnancy_category": "C"
+  "class": "Fluoroquinolone"
 }

@@ -1,45 +1,66 @@
 {
   "drug_id": "linezolid",
   "drug_name": "Linezolid",
-  "drug_class": "Oxazolidinone",
   "route": "IV/PO",
-  "indications": {
-    "pneumonia": {
-      "standard_dose": "600 mg IV/PO q12h",
-      "high_dose": "600 mg IV/PO q12h",
-      "loading_dose": null
-    },
-    "bacteremia": {
-      "standard_dose": "600 mg IV/PO q12h",
-      "high_dose": "600 mg IV/PO q12h",
-      "loading_dose": null
-    },
-    "ssti": {
-      "standard_dose": "600 mg IV/PO q12h",
-      "high_dose": "600 mg IV/PO q12h",
-      "loading_dose": null
-    },
-    "bone_joint": {
-      "standard_dose": "600 mg IV/PO q12h",
-      "high_dose": "600 mg IV/PO q12h",
-      "loading_dose": null
-    },
-    "endocarditis": {
-      "standard_dose": "600 mg IV/PO q12h",
-      "high_dose": "600 mg IV/PO q12h",
-      "loading_dose": null
-    },
-    "cns": {
-      "standard_dose": "600 mg IV/PO q12h",
-      "high_dose": "600 mg IV/PO q12h",
-      "loading_dose": null
+  "renal_adjustments": [
+    {
+      "gfr_range": [
+        0,
+        999
+      ],
+      "dose": "No adjustment needed"
+    }
+  ],
+  "monitoring": [
+    "CBC weekly (thrombocytopenia, anemia)",
+    "Optic neuritis if >28 days",
+    "Peripheral neuropathy"
+  ],
+  "contraindications": [
+    "MAOI use within 14 days",
+    "Uncontrolled hypertension",
+    "Pheochromocytoma"
+  ],
+  "warnings": [
+    "Myelosuppression with prolonged use",
+    "Serotonin syndrome",
+    "Lactic acidosis",
+    "Bacteriostatic - not ideal for bacteremia/endocarditis"
+  ],
+  "pregnancy_category": "C",
+  "dosing": {
+    "by_indication": {
+      "pneumonia": {
+        "dose": "600 mg IV/PO",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "bacteremia": {
+        "dose": "600 mg IV/PO",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "ssti": {
+        "dose": "600 mg IV/PO",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "bone_joint": {
+        "dose": "600 mg IV/PO",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "endocarditis": {
+        "dose": "600 mg IV/PO",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "cns": {
+        "dose": "600 mg IV/PO",
+        "frequency": "q12h",
+        "route": "IV"
+      }
     }
   },
-  "renal_adjustments": [
-    {"gfr_range": [0, 999], "dose": "No adjustment needed"}
-  ],
-  "monitoring": ["CBC weekly (thrombocytopenia, anemia)", "Optic neuritis if >28 days", "Peripheral neuropathy"],
-  "contraindications": ["MAOI use within 14 days", "Uncontrolled hypertension", "Pheochromocytoma"],
-  "warnings": ["Myelosuppression with prolonged use", "Serotonin syndrome", "Lactic acidosis", "Bacteriostatic - not ideal for bacteremia/endocarditis"],
-  "pregnancy_category": "C"
+  "class": "Oxazolidinone"
 }

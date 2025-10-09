@@ -1,0 +1,170 @@
+{
+  "drug_name": "Clindamycin",
+  "drug_id": "clindamycin",
+  "generic_name": "clindamycin",
+  "brand_names": ["Cleocin", "Dalacin"],
+  "class": "Lincosamide Antibiotic",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["PO", "IV"],
+  "default_route": "PO",
+
+  "contraindications": {
+    "absolute": [
+      "clindamycin_allergy",
+      "lincomycin_allergy"
+    ],
+    "relative": [
+      "history_of_c_difficile_colitis",
+      "inflammatory_bowel_disease"
+    ],
+    "note": "HIGH RISK OF C. DIFFICILE COLITIS. Use with caution in elderly and those with GI disease."
+  },
+
+  "allergy_considerations": {
+    "pcn_allergy": {
+      "safe": true,
+      "contraindicated": false,
+      "note": "Excellent alternative for PCN allergy (no cross-reactivity). Covers oral anaerobes and MSSA."
+    },
+    "severe_pcn_allergy": {
+      "safe": true,
+      "contraindicated": false,
+      "note": "Safe with severe PCN allergy. First-line alternative for dental/oral infections."
+    },
+    "cephalosporin_allergy": {
+      "safe": true,
+      "note": "Safe alternative for cephalosporin allergy"
+    }
+  },
+
+  "pregnancy_category": "B",
+  "pregnancy_safe": true,
+  "pregnancy_notes": "Safe in all trimesters. Commonly used for dental/SSTI in pregnancy with PCN allergy.",
+
+  "renal_adjustment": {
+    "required": false,
+    "note": "NO renal dose adjustment needed. Primarily hepatic metabolism."
+  },
+
+  "dosing": {
+    "by_indication": {
+      "dental": {
+        "dose": "300 mg PO",
+        "frequency": "QID (q6h) or 450 mg TID (q8h)",
+        "duration": "7 days",
+        "note": "First-line for dental abscess with PCN allergy. Excellent oral anaerobe coverage.",
+        "route": "PO",
+        "loading_dose": null
+      },
+      "head_neck": {
+        "dose": "300-450 mg PO",
+        "frequency": "TID-QID (q6-8h)",
+        "duration": "7-10 days",
+        "note": "For peritonsillar abscess, Ludwig angina with PCN allergy",
+        "route": "PO"
+      },
+      "ssti_mrsa": {
+        "dose": "300-450 mg PO",
+        "frequency": "TID-QID (q6-8h)",
+        "duration": "7-10 days",
+        "note": "Good for MRSA SSTI (not as good as TMP/SMX or doxycycline for CA-MRSA)",
+        "route": "PO"
+      },
+      "aspiration_pneumonia": {
+        "dose": "600-900 mg IV",
+        "frequency": "q8h",
+        "duration": "7-14 days",
+        "note": "Excellent anaerobe coverage for aspiration pneumonia",
+        "route": "IV"
+      },
+      "toxic_shock_syndrome": {
+        "dose": "900 mg IV",
+        "frequency": "q8h",
+        "duration": "10-14 days",
+        "note": "Added to vancomycin for toxin suppression (inhibits protein synthesis)",
+        "route": "IV"
+      },
+      "necrotizing_fasciitis": {
+        "dose": "900 mg IV",
+        "frequency": "q8h",
+        "duration": "Until debridement complete",
+        "note": "Added for toxin suppression (Group A Strep, Clostridium)",
+        "route": "IV"
+      },
+      "bite_wound": {
+        "dose": "300-450 mg PO",
+        "frequency": "TID-QID",
+        "duration": "3-5 days",
+        "note": "Alternative for bite wounds with PCN allergy (combine with ciprofloxacin for Pasteurella)",
+        "route": "PO"
+      },
+      "brain_abscess": {
+        "dose": "600-900 mg IV",
+        "frequency": "q8h",
+        "duration": "6-8 weeks",
+        "note": "Excellent CNS penetration and anaerobe coverage",
+        "route": "IV"
+      },
+      "pelvic_inflammatory_disease": {
+        "dose": "900 mg IV",
+        "frequency": "q8h",
+        "duration": "Until 24h afebrile, then switch to PO",
+        "note": "Combined with gentamicin for polymicrobial coverage",
+        "route": "IV"
+      }
+    },
+    "pediatric": {
+      "note": "PO: 10-30 mg/kg/day divided q6-8h. IV: 25-40 mg/kg/day divided q6-8h"
+    }
+  },
+
+  "monitoring": {
+    "required": ["clinical response", "diarrhea (C. diff risk)"],
+    "optional": ["liver function tests (if prolonged therapy)"]
+  },
+
+  "drug_interactions": {
+    "major": ["neuromuscular blocking agents (potentiates blockade)"],
+    "moderate": ["warfarin (may increase INR)", "erythromycin (antagonism)"]
+  },
+
+  "adverse_effects": {
+    "common": ["diarrhea (VERY common)", "nausea", "abdominal pain", "rash"],
+    "serious": [
+      "C. difficile colitis (HIGH RISK - 10-20%)",
+      "pseudomembranous colitis",
+      "hepatotoxicity",
+      "severe hypersensitivity (rare)"
+    ],
+    "rare": ["Stevens-Johnson syndrome", "agranulocytosis"]
+  },
+
+  "spectrum": {
+    "gram_positive": "Excellent (Streptococcus, MSSA, some MRSA - check local susceptibility)",
+    "gram_negative": "Poor (no coverage)",
+    "anaerobes": "Excellent (Bacteroides, oral anaerobes, Clostridium)",
+    "atypicals": "No coverage"
+  },
+
+  "notes": [
+    "⚠️ HIGH RISK OF C. DIFFICILE COLITIS (10-20%)",
+    "First-line alternative for dental infections with PCN allergy",
+    "Excellent oral anaerobe coverage",
+    "Good for MSSA, variable MRSA coverage (check local susceptibility)",
+    "NO gram-negative coverage",
+    "Excellent bone/CNS/abscess penetration",
+    "NO renal dose adjustment needed",
+    "Safe in pregnancy",
+    "Added to β-lactams for toxin suppression (necrotizing fasciitis, toxic shock)",
+    "Take with full glass of water to prevent esophagitis",
+    "WARN PATIENTS: Report diarrhea immediately (C. diff risk)"
+  ],
+
+  "evidence": [
+    "IDSA SSTI Guidelines 2014",
+    "IDSA Dental Infection Guidelines",
+    "Aspiration Pneumonia Guidelines (ATS/IDSA)"
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "drug_name": "Amoxicillin-Clavulanate",
+  "drug_id": "amoxicillin_clavulanate",
+  "generic_name": "amoxicillin-clavulanate",
+  "brand_names": ["Augmentin", "Augmentin XR"],
+  "class": "Penicillin + Beta-lactamase Inhibitor",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["PO", "IV"],
+  "default_route": "PO",
+
+  "contraindications": {
+    "absolute": [
+      "severe_pcn_allergy_with_anaphylaxis",
+      "severe_pcn_allergy_with_sjs",
+      "history_of_cholestatic_jaundice_with_augmentin"
+    ],
+    "relative": [
+      "infectious_mononucleosis",
+      "severe_renal_impairment"
+    ],
+    "note": "Contraindicated in severe penicillin allergy. Can cause cholestatic jaundice."
+  },
+
+  "allergy_considerations": {
+    "mild_pcn_allergy": {
+      "safe": false,
+      "contraindicated": true,
+      "note": "Even mild PCN allergy is a contraindication. Use alternative agent."
+    },
+    "severe_pcn_allergy": {
+      "safe": false,
+      "contraindicated": true,
+      "note": "Absolutely contraindicated. Use clindamycin or doxycycline instead."
+    }
+  },
+
+  "pregnancy_category": "B",
+  "pregnancy_safe": true,
+  "pregnancy_notes": "Safe in all trimesters. Commonly used for UTI, sinusitis in pregnancy.",
+
+  "renal_adjustment": {
+    "required": true,
+    "adjustments": {
+      "CrCl_>30": {
+        "dose": "Standard dose",
+        "note": "No adjustment needed"
+      },
+      "CrCl_10_30": {
+        "dose": "875 mg q12h → 875 mg q24h",
+        "note": "Reduce dosing frequency"
+      },
+      "CrCl_<10": {
+        "dose": "875 mg q24h",
+        "note": "Significantly reduce frequency"
+      }
+    }
+  },
+
+  "dosing": {
+    "by_indication": {
+      "head_neck": {
+        "dose": "875 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "7-10 days",
+        "note": "Excellent for dental infections, peritonsillar abscess",
+        "route": "PO",
+        "loading_dose": null
+      },
+      "dental": {
+        "dose": "875 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "7 days",
+        "note": "First-line for dental abscess",
+        "route": "PO"
+      },
+      "sinusitis": {
+        "dose": "875 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "5-7 days",
+        "note": "First-line for acute bacterial sinusitis",
+        "route": "PO"
+      },
+      "bite_wound": {
+        "dose": "875 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "3-5 days",
+        "note": "First-line for animal/human bites (covers Pasteurella, Eikenella, anaerobes)",
+        "route": "PO"
+      },
+      "ssti": {
+        "dose": "875 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "7-10 days",
+        "note": "For non-purulent cellulitis",
+        "route": "PO"
+      },
+      "uti": {
+        "dose": "875 mg PO",
+        "frequency": "BID (q12h)",
+        "duration": "5-7 days",
+        "note": "Alternative for UTI (not first-line)",
+        "route": "PO"
+      }
+    },
+    "pediatric": {
+      "note": "45 mg/kg/day divided BID (based on amoxicillin component)"
+    }
+  },
+
+  "monitoring": {
+    "required": ["clinical response"],
+    "optional": ["liver function tests (if prolonged therapy)"]
+  },
+
+  "drug_interactions": {
+    "major": ["warfarin (increases INR)", "allopurinol (increases rash risk)"],
+    "moderate": ["oral contraceptives (may decrease effectiveness)"]
+  },
+
+  "adverse_effects": {
+    "common": ["diarrhea (very common)", "nausea", "vomiting", "rash"],
+    "serious": [
+      "C. difficile colitis",
+      "cholestatic jaundice",
+      "hepatotoxicity",
+      "hypersensitivity reactions"
+    ],
+    "rare": ["agranulocytosis", "hemolytic anemia"]
+  },
+
+  "spectrum": {
+    "gram_positive": "Excellent (Streptococcus, Staphylococcus MSSA)",
+    "gram_negative": "Good (E. coli, H. influenzae, Proteus, Moraxella)",
+    "anaerobes": "Excellent (Bacteroides, oral anaerobes)",
+    "atypicals": "No coverage"
+  },
+
+  "notes": [
+    "First-line for bite wounds (animal/human)",
+    "First-line for dental infections",
+    "Diarrhea is very common (due to clavulanate)",
+    "Take with food to reduce GI upset",
+    "875mg formulation preferred (less clavulanate, less diarrhea)",
+    "Covers beta-lactamase producing organisms",
+    "Safe in pregnancy",
+    "Avoid in severe PCN allergy"
+  ],
+
+  "evidence": [
+    "IDSA SSTI Guidelines 2014",
+    "IDSA Sinusitis Guidelines 2012",
+    "Pasteurella Multocida Guidelines (bite wounds)"
+  ]
+}

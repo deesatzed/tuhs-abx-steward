@@ -1,63 +1,97 @@
 {
   "drug_id": "cefepime",
   "drug_name": "Cefepime",
-  "drug_class": "Cephalosporin (4th generation)",
   "route": "IV",
-  "indications": {
-    "pneumonia": {
-      "standard_dose": "2 g IV q8h",
-      "high_dose": "2 g IV q8h",
-      "loading_dose": null
+  "renal_adjustments": [
+    {
+      "gfr_range": [
+        60,
+        999
+      ],
+      "dose": "No adjustment"
     },
-    "bacteremia": {
-      "standard_dose": "2 g IV q8h",
-      "high_dose": "2 g IV q8h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        30,
+        59
+      ],
+      "dose": "2 g IV q12h"
     },
-    "intra_abdominal": {
-      "standard_dose": "2 g IV q8h",
-      "high_dose": "2 g IV q8h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        11,
+        29
+      ],
+      "dose": "2 g IV q24h"
     },
-    "uti": {
-      "standard_dose": "2 g IV q12h",
-      "high_dose": "2 g IV q8h",
-      "loading_dose": null
-    },
-    "meningitis": {
-      "standard_dose": "2 g IV q8h",
-      "high_dose": "2 g IV q8h",
-      "loading_dose": null
-    },
-    "ssti": {
-      "standard_dose": "2 g IV q12h",
-      "high_dose": "2 g IV q8h",
-      "loading_dose": null
-    },
-    "bone_joint": {
-      "standard_dose": "2 g IV q12h",
-      "high_dose": "2 g IV q12h",
-      "loading_dose": null
-    },
-    "endocarditis": {
-      "standard_dose": "2 g IV q8h",
-      "high_dose": "2 g IV q8h",
-      "loading_dose": null
-    },
-    "cns": {
-      "standard_dose": "2 g IV q8h",
-      "high_dose": "2 g IV q8h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        0,
+        10
+      ],
+      "dose": "1 g IV q24h (or 2 g after HD)"
+    }
+  ],
+  "monitoring": [
+    "Renal function",
+    "Neurologic status (risk of encephalopathy in renal failure)"
+  ],
+  "contraindications": [
+    "Cephalosporin allergy"
+  ],
+  "warnings": [
+    "Neurotoxicity risk in renal impairment",
+    "Cross-reactivity with penicillins ~1%"
+  ],
+  "pregnancy_category": "B",
+  "dosing": {
+    "by_indication": {
+      "pneumonia": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "route": "IV"
+      },
+      "bacteremia": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "route": "IV"
+      },
+      "intra_abdominal": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "route": "IV"
+      },
+      "uti": {
+        "dose": "2 g IV",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "meningitis": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "route": "IV"
+      },
+      "ssti": {
+        "dose": "2 g IV",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "bone_joint": {
+        "dose": "2 g IV",
+        "frequency": "q12h",
+        "route": "IV"
+      },
+      "endocarditis": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "route": "IV"
+      },
+      "cns": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "route": "IV"
+      }
     }
   },
-  "renal_adjustments": [
-    {"gfr_range": [60, 999], "dose": "No adjustment"},
-    {"gfr_range": [30, 59], "dose": "2 g IV q12h"},
-    {"gfr_range": [11, 29], "dose": "2 g IV q24h"},
-    {"gfr_range": [0, 10], "dose": "1 g IV q24h (or 2 g after HD)"}
-  ],
-  "monitoring": ["Renal function", "Neurologic status (risk of encephalopathy in renal failure)"],
-  "contraindications": ["Cephalosporin allergy"],
-  "warnings": ["Neurotoxicity risk in renal impairment", "Cross-reactivity with penicillins ~1%"],
-  "pregnancy_category": "B"
+  "class": "Cephalosporin (4th generation)"
 }

@@ -1,0 +1,164 @@
+{
+  "drug_name": "Cefazolin",
+  "drug_id": "cefazolin",
+  "generic_name": "cefazolin",
+  "brand_names": ["Ancef", "Kefzol"],
+  "class": "1st Generation Cephalosporin",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["IV", "IM"],
+  "default_route": "IV",
+
+  "contraindications": {
+    "absolute": [
+      "severe_cephalosporin_allergy",
+      "severe_pcn_allergy_with_anaphylaxis"
+    ],
+    "relative": [
+      "severe_renal_impairment"
+    ],
+    "note": "Contraindicated in severe cephalosporin allergy. Use caution with severe PCN allergy (cross-reactivity <1% but avoid if anaphylaxis)."
+  },
+
+  "allergy_considerations": {
+    "mild_pcn_allergy": {
+      "safe": true,
+      "contraindicated": false,
+      "note": "Safe with mild PCN allergy (cross-reactivity <1%). Avoid if history of anaphylaxis."
+    },
+    "severe_pcn_allergy": {
+      "safe": false,
+      "contraindicated": true,
+      "note": "Contraindicated if PCN anaphylaxis. Use vancomycin or clindamycin instead."
+    },
+    "cephalosporin_allergy": {
+      "safe": false,
+      "contraindicated": true,
+      "note": "Absolutely contraindicated. Use vancomycin instead."
+    }
+  },
+
+  "pregnancy_category": "B",
+  "pregnancy_safe": true,
+  "pregnancy_notes": "Safe in all trimesters. Commonly used for surgical prophylaxis in pregnancy.",
+
+  "renal_adjustment": {
+    "required": true,
+    "adjustments": {
+      "CrCl_>50": {
+        "dose": "Standard dose",
+        "note": "No adjustment needed"
+      },
+      "CrCl_35_50": {
+        "dose": "Full dose q8h → q12h",
+        "note": "Reduce dosing frequency"
+      },
+      "CrCl_11_34": {
+        "dose": "50% of standard dose",
+        "note": "Reduce dose by 50%"
+      },
+      "CrCl_<10": {
+        "dose": "50% of standard dose q24h",
+        "note": "Significantly reduce dose and frequency"
+      }
+    }
+  },
+
+  "dosing": {
+    "by_indication": {
+      "osteomyelitis": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "duration": "4-6 weeks",
+        "note": "First-line for MSSA osteomyelitis. Excellent bone penetration.",
+        "route": "IV",
+        "loading_dose": null
+      },
+      "septic_arthritis": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "duration": "3-4 weeks",
+        "note": "First-line for MSSA septic arthritis",
+        "route": "IV"
+      },
+      "ssti_severe": {
+        "dose": "1-2 g IV",
+        "frequency": "q8h",
+        "duration": "7-14 days",
+        "note": "For severe cellulitis requiring IV therapy (non-purulent, MSSA coverage)",
+        "route": "IV"
+      },
+      "surgical_prophylaxis": {
+        "dose": "2 g IV (3 g if weight >120 kg)",
+        "frequency": "Single dose within 60 minutes of incision",
+        "duration": "Single dose (may redose q4h if surgery >4h)",
+        "note": "Gold standard for surgical prophylaxis (clean/clean-contaminated)",
+        "route": "IV"
+      },
+      "bacteremia_mssa": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "duration": "14 days (uncomplicated bacteremia)",
+        "note": "First-line for MSSA bacteremia (no endocarditis). If endocarditis, use nafcillin or oxacillin.",
+        "route": "IV"
+      },
+      "parotitis": {
+        "dose": "1-2 g IV",
+        "frequency": "q8h",
+        "duration": "7-10 days",
+        "note": "For bacterial parotitis (S. aureus coverage)",
+        "route": "IV"
+      }
+    },
+    "pediatric": {
+      "note": "50-100 mg/kg/day divided q8h (max 6 g/day)"
+    }
+  },
+
+  "monitoring": {
+    "required": ["clinical response", "renal function"],
+    "optional": ["CBC (if prolonged therapy)"]
+  },
+
+  "drug_interactions": {
+    "major": ["probenecid (increases cefazolin levels)"],
+    "moderate": ["aminoglycosides (increased nephrotoxicity risk)"]
+  },
+
+  "adverse_effects": {
+    "common": ["pain at injection site", "phlebitis", "GI upset"],
+    "serious": [
+      "hypersensitivity reactions",
+      "C. difficile colitis",
+      "nephrotoxicity (rare)",
+      "seizures (high doses in renal failure)"
+    ],
+    "rare": ["hemolytic anemia", "thrombocytopenia"]
+  },
+
+  "spectrum": {
+    "gram_positive": "Excellent (Streptococcus, MSSA). No MRSA coverage.",
+    "gram_negative": "Good (E. coli, Klebsiella, Proteus). Limited Pseudomonas.",
+    "anaerobes": "Limited",
+    "atypicals": "No coverage"
+  },
+
+  "notes": [
+    "First-line for MSSA osteomyelitis/septic arthritis",
+    "Gold standard for surgical prophylaxis",
+    "Excellent bone and joint penetration",
+    "Safe with mild PCN allergy (cross-reactivity <1%)",
+    "Avoid if PCN anaphylaxis history",
+    "Requires renal dose adjustment",
+    "NO MRSA COVERAGE - use vancomycin if MRSA suspected",
+    "Safe in pregnancy",
+    "Administer IV over 3-5 minutes or IM (painful)"
+  ],
+
+  "evidence": [
+    "IDSA Osteomyelitis Guidelines 2023",
+    "IDSA SSTI Guidelines 2014",
+    "Surgical Prophylaxis Guidelines (SCIP/ASHP)"
+  ]
+}

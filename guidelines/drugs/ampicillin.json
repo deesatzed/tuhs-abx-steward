@@ -1,37 +1,65 @@
 {
   "drug_id": "ampicillin",
   "drug_name": "Ampicillin",
-  "drug_class": "Penicillin (aminopenicillin)",
   "route": "IV",
-  "indications": {
-    "endocarditis": {
-      "standard_dose": "2 g IV q4h",
-      "high_dose": "2 g IV q4h",
-      "loading_dose": null
+  "renal_adjustments": [
+    {
+      "gfr_range": [
+        50,
+        999
+      ],
+      "dose": "No adjustment"
     },
-    "meningitis": {
-      "standard_dose": "2 g IV q4h",
-      "high_dose": "2 g IV q4h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        10,
+        49
+      ],
+      "dose": "Dose q6-12h"
     },
-    "bacteremia": {
-      "standard_dose": "2 g IV q6h",
-      "high_dose": "2 g IV q4h",
-      "loading_dose": null
-    },
-    "uti": {
-      "standard_dose": "1-2 g IV q6h",
-      "high_dose": "2 g IV q6h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        0,
+        9
+      ],
+      "dose": "Dose q12-24h"
+    }
+  ],
+  "monitoring": [
+    "Renal function",
+    "Clinical response"
+  ],
+  "contraindications": [
+    "Penicillin allergy"
+  ],
+  "warnings": [
+    "Hypersensitivity reactions",
+    "Rash with EBV/CMV"
+  ],
+  "pregnancy_category": "B",
+  "dosing": {
+    "by_indication": {
+      "endocarditis": {
+        "dose": "2 g IV",
+        "frequency": "q4h",
+        "route": "IV"
+      },
+      "meningitis": {
+        "dose": "2 g IV",
+        "frequency": "q4h",
+        "route": "IV"
+      },
+      "bacteremia": {
+        "dose": "2 g IV",
+        "frequency": "q6h",
+        "route": "IV"
+      },
+      "uti": {
+        "dose": "1-2 g IV",
+        "frequency": "q6h",
+        "route": "IV"
+      }
     }
   },
-  "renal_adjustments": [
-    {"gfr_range": [50, 999], "dose": "No adjustment"},
-    {"gfr_range": [10, 49], "dose": "Dose q6-12h"},
-    {"gfr_range": [0, 9], "dose": "Dose q12-24h"}
-  ],
-  "monitoring": ["Renal function", "Clinical response"],
-  "contraindications": ["Penicillin allergy"],
-  "warnings": ["Hypersensitivity reactions", "Rash with EBV/CMV"],
-  "pregnancy_category": "B"
+  "class": "Penicillin (aminopenicillin)"
 }

@@ -1,33 +1,69 @@
 {
   "drug_id": "acyclovir",
   "drug_name": "Acyclovir",
-  "drug_class": "Antiviral (nucleoside analog)",
   "route": "IV",
-  "indications": {
-    "cns": {
-      "standard_dose": "10 mg/kg IV q8h (for HSV encephalitis)",
-      "high_dose": "10 mg/kg IV q8h",
-      "loading_dose": null
+  "renal_adjustments": [
+    {
+      "gfr_range": [
+        50,
+        999
+      ],
+      "dose": "No adjustment"
     },
-    "hsv": {
-      "standard_dose": "5-10 mg/kg IV q8h",
-      "high_dose": "10 mg/kg IV q8h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        25,
+        49
+      ],
+      "dose": "Dose q12h"
     },
-    "vzv": {
-      "standard_dose": "10-15 mg/kg IV q8h",
-      "high_dose": "15 mg/kg IV q8h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        10,
+        24
+      ],
+      "dose": "Dose q24h"
+    },
+    {
+      "gfr_range": [
+        0,
+        9
+      ],
+      "dose": "50% dose q24h"
+    }
+  ],
+  "monitoring": [
+    "Renal function",
+    "Hydration status",
+    "Neurologic status"
+  ],
+  "contraindications": [
+    "Acyclovir allergy"
+  ],
+  "warnings": [
+    "Nephrotoxicity (crystalline nephropathy)",
+    "Neurotoxicity",
+    "Requires adequate hydration"
+  ],
+  "pregnancy_category": "B",
+  "dosing": {
+    "by_indication": {
+      "cns": {
+        "dose": "10 mg/kg IV",
+        "frequency": "q8h",
+        "route": "IV"
+      },
+      "hsv": {
+        "dose": "5-10 mg/kg IV",
+        "frequency": "q8h",
+        "route": "IV"
+      },
+      "vzv": {
+        "dose": "10-15 mg/kg IV",
+        "frequency": "q8h",
+        "route": "IV"
+      }
     }
   },
-  "renal_adjustments": [
-    {"gfr_range": [50, 999], "dose": "No adjustment"},
-    {"gfr_range": [25, 49], "dose": "Dose q12h"},
-    {"gfr_range": [10, 24], "dose": "Dose q24h"},
-    {"gfr_range": [0, 9], "dose": "50% dose q24h"}
-  ],
-  "monitoring": ["Renal function", "Hydration status", "Neurologic status"],
-  "contraindications": ["Acyclovir allergy"],
-  "warnings": ["Nephrotoxicity (crystalline nephropathy)", "Neurotoxicity", "Requires adequate hydration"],
-  "pregnancy_category": "B"
+  "class": "Antiviral (nucleoside analog)"
 }

@@ -1,28 +1,60 @@
 {
   "drug_id": "cephalexin",
   "drug_name": "Cephalexin",
-  "drug_class": "Cephalosporin (1st generation)",
   "route": "PO",
-  "indications": {
-    "ssti": {
-      "standard_dose": "500 mg PO q6h",
-      "high_dose": "1 g PO q6h",
-      "loading_dose": null
+  "renal_adjustments": [
+    {
+      "gfr_range": [
+        60,
+        999
+      ],
+      "dose": "No adjustment"
     },
-    "uti": {
-      "standard_dose": "500 mg PO q12h",
-      "high_dose": "500 mg PO q6h",
-      "loading_dose": null
+    {
+      "gfr_range": [
+        30,
+        59
+      ],
+      "dose": "500 mg PO q8-12h"
+    },
+    {
+      "gfr_range": [
+        15,
+        29
+      ],
+      "dose": "250-500 mg PO q12-24h"
+    },
+    {
+      "gfr_range": [
+        0,
+        14
+      ],
+      "dose": "250 mg PO q12-24h"
+    }
+  ],
+  "monitoring": [
+    "Clinical response"
+  ],
+  "contraindications": [
+    "Cephalosporin allergy"
+  ],
+  "warnings": [
+    "Cross-reactivity with penicillins ~1%"
+  ],
+  "pregnancy_category": "B",
+  "dosing": {
+    "by_indication": {
+      "ssti": {
+        "dose": "500 mg PO",
+        "frequency": "q6h",
+        "route": "PO"
+      },
+      "uti": {
+        "dose": "500 mg PO",
+        "frequency": "q12h",
+        "route": "PO"
+      }
     }
   },
-  "renal_adjustments": [
-    {"gfr_range": [60, 999], "dose": "No adjustment"},
-    {"gfr_range": [30, 59], "dose": "500 mg PO q8-12h"},
-    {"gfr_range": [15, 29], "dose": "250-500 mg PO q12-24h"},
-    {"gfr_range": [0, 14], "dose": "250 mg PO q12-24h"}
-  ],
-  "monitoring": ["Clinical response"],
-  "contraindications": ["Cephalosporin allergy"],
-  "warnings": ["Cross-reactivity with penicillins ~1%"],
-  "pregnancy_category": "B"
+  "class": "Cephalosporin (1st generation)"
 }

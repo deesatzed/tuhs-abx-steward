@@ -1,0 +1,145 @@
+{
+  "drug_name": "Nitrofurantoin",
+  "drug_id": "nitrofurantoin",
+  "generic_name": "nitrofurantoin",
+  "brand_names": ["Macrobid", "Macrodantin", "Furadantin"],
+  "class": "Nitrofuran Antibiotic",
+  "version": "3.0.0",
+  "last_updated": "2025-10-08",
+
+  "routes": ["PO"],
+  "default_route": "PO",
+
+  "contraindications": {
+    "absolute": [
+      "CrCl_<30",
+      "severe_renal_impairment",
+      "anuria",
+      "oliguria",
+      "pregnancy_term",
+      "neonates_<1_month",
+      "G6PD_deficiency"
+    ],
+    "relative": [
+      "pulmonary_fibrosis",
+      "hepatic_impairment",
+      "peripheral_neuropathy"
+    ],
+    "note": "CONTRAINDICATED if CrCl <30 (ineffective). DO NOT USE for pyelonephritis (inadequate tissue levels). Avoid at term pregnancy (risk of hemolytic anemia in newborn)."
+  },
+
+  "allergy_considerations": {
+    "pcn_allergy": {
+      "safe": true,
+      "contraindicated": false,
+      "note": "Safe with PCN allergy. Excellent alternative for uncomplicated cystitis."
+    },
+    "sulfa_allergy": {
+      "safe": true,
+      "contraindicated": false,
+      "note": "Safe with sulfa allergy (no cross-reactivity)"
+    }
+  },
+
+  "pregnancy_category": "B (but contraindicated at term)",
+  "pregnancy_safe": false,
+  "pregnancy_notes": "Safe in 1st and 2nd trimester. CONTRAINDICATED at term and during labor/delivery (risk of hemolytic anemia in newborn, especially if G6PD deficiency).",
+
+  "renal_adjustment": {
+    "required": true,
+    "adjustments": {
+      "CrCl_>60": {
+        "dose": "Standard dose",
+        "note": "No adjustment needed"
+      },
+      "CrCl_30_60": {
+        "dose": "Use with caution",
+        "note": "May use but reduced efficacy. Monitor closely."
+      },
+      "CrCl_<30": {
+        "dose": "CONTRAINDICATED",
+        "note": "Ineffective and increased toxicity risk. Use alternative agent."
+      }
+    }
+  },
+
+  "dosing": {
+    "by_indication": {
+      "cystitis": {
+        "dose": "100 mg PO (Macrobid)",
+        "frequency": "BID (q12h)",
+        "duration": "5 days",
+        "note": "First-line for uncomplicated cystitis in women. SHORT COURSE (5 days).",
+        "route": "PO",
+        "loading_dose": null
+      },
+      "uti_uncomplicated": {
+        "dose": "100 mg PO (Macrobid)",
+        "frequency": "BID (q12h)",
+        "duration": "5 days",
+        "note": "For uncomplicated lower UTI only. DO NOT USE for pyelonephritis.",
+        "route": "PO"
+      },
+      "uti_prophylaxis": {
+        "dose": "50-100 mg PO",
+        "frequency": "daily at bedtime",
+        "duration": "Ongoing (3-6 months typical)",
+        "note": "For recurrent UTI prophylaxis",
+        "route": "PO"
+      }
+    },
+    "pediatric": {
+      "note": "Children >1 month: 5-7 mg/kg/day divided BID (max 400 mg/day). CONTRAINDICATED in neonates <1 month."
+    }
+  },
+
+  "monitoring": {
+    "required": ["clinical response", "renal function (CrCl)"],
+    "optional": ["liver function tests (if prolonged therapy)", "pulmonary symptoms (if chronic use)"]
+  },
+
+  "drug_interactions": {
+    "major": ["magnesium trisilicate (decreases absorption)", "probenecid (decreases renal excretion)"],
+    "moderate": ["quinolones (may antagonize)", "antacids (decrease absorption)"]
+  },
+
+  "adverse_effects": {
+    "common": ["nausea (VERY common - take with food)", "headache", "urine discoloration (brown/yellow)"],
+    "serious": [
+      "pulmonary toxicity (acute/chronic - rare but serious)",
+      "hepatotoxicity (rare)",
+      "peripheral neuropathy (with prolonged use)",
+      "hemolytic anemia (G6PD deficiency)"
+    ],
+    "rare": ["interstitial pneumonitis", "pulmonary fibrosis (chronic use)"]
+  },
+
+  "spectrum": {
+    "gram_positive": "Good (Enterococcus, Staphylococcus saprophyticus)",
+    "gram_negative": "Good (E. coli - but resistance increasing)",
+    "anaerobes": "Limited",
+    "atypicals": "No coverage",
+    "note": "URINARY CONCENTRATION ONLY - inadequate tissue levels for pyelonephritis/systemic infections"
+  },
+
+  "notes": [
+    "⚠️ ONLY FOR UNCOMPLICATED LOWER UTI (CYSTITIS)",
+    "⚠️ DO NOT USE FOR PYELONEPHRITIS (inadequate tissue levels)",
+    "⚠️ CONTRAINDICATED if CrCl <30 (ineffective)",
+    "First-line for uncomplicated cystitis (5-day course)",
+    "Excellent for recurrent UTI prophylaxis",
+    "Safe with PCN and sulfa allergies",
+    "CONTRAINDICATED at term pregnancy (hemolytic anemia risk in newborn)",
+    "Safe in 1st/2nd trimester pregnancy for cystitis",
+    "Take with food to reduce nausea",
+    "WARN: Urine will turn brown/yellow (harmless)",
+    "Monitor for pulmonary symptoms with chronic use (rare but serious)",
+    "Macrobid (monohydrate/macrocrystals) = 100 mg BID",
+    "Macrodantin (macrocrystals) = 50-100 mg QID"
+  ],
+
+  "evidence": [
+    "IDSA Uncomplicated UTI Guidelines 2019 - first-line for cystitis",
+    "Cochrane Review: Nitrofurantoin for uncomplicated UTI"
+  ]
+}
