@@ -73,6 +73,20 @@
         "duration": "7-14 days",
         "route": "IV",
         "note": "For hospital-acquired or complicated pyelonephritis"
+      },
+      "ssti": {
+        "dose": "3.375 g IV",
+        "frequency": "q6h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "note": "For severe diabetic foot infections, necrotizing fasciitis, or polymicrobial SSTI"
+      },
+      "bone_joint": {
+        "dose": "3.375 g IV",
+        "frequency": "q6h",
+        "duration": "4-6 weeks",
+        "route": "IV",
+        "note": "Prolonged therapy for osteomyelitis. Often combined with vancomycin for MRSA coverage."
       }
     }
   },

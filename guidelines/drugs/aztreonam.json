@@ -2,22 +2,24 @@
   "drug_name": "Aztreonam",
   "drug_id": "aztreonam",
   "generic_name": "aztreonam",
-  "brand_names": ["Azactam", "Cayston"],
+  "brand_names": [
+    "Azactam",
+    "Cayston"
+  ],
   "class": "Monobactam",
   "version": "3.0.0",
   "last_updated": "2025-10-08",
-
-  "routes": ["IV", "IM"],
+  "routes": [
+    "IV",
+    "IM"
+  ],
   "default_route": "IV",
-
   "unique_property": "SAFE FOR SEVERE PCN ALLERGY - No cross-reactivity with beta-lactams",
-
   "contraindications": {
     "absolute": [],
     "relative": [],
     "note": "NO cross-reactivity with penicillins or cephalosporins. Safe for severe PCN allergy including anaphylaxis."
   },
-
   "allergy_considerations": {
     "severe_pcn_allergy": {
       "safe": true,
@@ -29,11 +31,9 @@
       "note": "Also safe for mild allergy, but cephalosporins are usually first choice"
     }
   },
-
   "pregnancy_category": "B",
   "pregnancy_safe": true,
   "pregnancy_notes": "Safe in pregnancy. Good alternative when fluoroquinolones contraindicated.",
-
   "renal_adjustment": {
     "required": true,
     "note": "Dose reduction needed for CrCl <30",
@@ -45,7 +45,6 @@
       "dialysis": "Give after dialysis"
     }
   },
-
   "dosing": {
     "by_indication": {
       "pyelonephritis": {
@@ -83,10 +82,16 @@
         "duration": "14+ days",
         "note": "Higher frequency for CNS penetration",
         "route": "IV"
+      },
+      "ssti": {
+        "dose": "2 g IV",
+        "frequency": "q8h",
+        "duration": "7-14 days",
+        "route": "IV",
+        "note": "For severe PCN allergy with necrotizing SSTI. Gram-negative coverage only - combine with vancomycin + metronidazole."
       }
     }
   },
-
   "spectrum": {
     "gram_positive": "NO COVERAGE",
     "gram_negative": "Excellent (including Pseudomonas)",
@@ -94,7 +99,6 @@
     "atypicals": "NO COVERAGE",
     "critical_gap": "Must combine with other agents for gram-positive and anaerobic coverage"
   },
-
   "combination_therapy": {
     "required": true,
     "typical_combinations": [
@@ -103,18 +107,26 @@
       "Aztreonam + Vancomycin + Metronidazole (broad-spectrum for severe allergy)"
     ]
   },
-
   "monitoring": {
-    "required": ["renal function", "clinical response"],
+    "required": [
+      "renal function",
+      "clinical response"
+    ],
     "optional": []
   },
-
   "adverse_effects": {
-    "common": ["diarrhea", "nausea", "injection site reaction"],
-    "serious": ["C. difficile colitis"],
-    "rare": ["hepatotoxicity"]
+    "common": [
+      "diarrhea",
+      "nausea",
+      "injection site reaction"
+    ],
+    "serious": [
+      "C. difficile colitis"
+    ],
+    "rare": [
+      "hepatotoxicity"
+    ]
   },
-
   "notes": [
     "FIRST-LINE for severe PCN allergy (anaphylaxis, SJS, DRESS)",
     "NO cross-reactivity with beta-lactams",
@@ -123,7 +135,6 @@
     "Renal adjustment required",
     "Safe in pregnancy"
   ],
-
   "evidence": [
     "Monobactam structure studies",
     "No cross-reactivity with penicillins/cephalosporins",

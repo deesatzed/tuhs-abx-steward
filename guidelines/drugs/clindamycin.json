@@ -2,14 +2,18 @@
   "drug_name": "Clindamycin",
   "drug_id": "clindamycin",
   "generic_name": "clindamycin",
-  "brand_names": ["Cleocin", "Dalacin"],
+  "brand_names": [
+    "Cleocin",
+    "Dalacin"
+  ],
   "class": "Lincosamide Antibiotic",
   "version": "3.0.0",
   "last_updated": "2025-10-08",
-
-  "routes": ["PO", "IV"],
+  "routes": [
+    "PO",
+    "IV"
+  ],
   "default_route": "PO",
-
   "contraindications": {
     "absolute": [
       "clindamycin_allergy",
@@ -21,7 +25,6 @@
     ],
     "note": "HIGH RISK OF C. DIFFICILE COLITIS. Use with caution in elderly and those with GI disease."
   },
-
   "allergy_considerations": {
     "pcn_allergy": {
       "safe": true,
@@ -38,16 +41,13 @@
       "note": "Safe alternative for cephalosporin allergy"
     }
   },
-
   "pregnancy_category": "B",
   "pregnancy_safe": true,
   "pregnancy_notes": "Safe in all trimesters. Commonly used for dental/SSTI in pregnancy with PCN allergy.",
-
   "renal_adjustment": {
     "required": false,
     "note": "NO renal dose adjustment needed. Primarily hepatic metabolism."
   },
-
   "dosing": {
     "by_indication": {
       "dental": {
@@ -113,43 +113,63 @@
         "duration": "Until 24h afebrile, then switch to PO",
         "note": "Combined with gentamicin for polymicrobial coverage",
         "route": "IV"
+      },
+      "ssti": {
+        "dose": "300-450 mg PO",
+        "frequency": "TID-QID (q6-8h)",
+        "duration": "7-10 days",
+        "route": "PO",
+        "note": "Good for MRSA SSTI (not as good as TMP/SMX or doxycycline for CA-MRSA)"
       }
     },
     "pediatric": {
       "note": "PO: 10-30 mg/kg/day divided q6-8h. IV: 25-40 mg/kg/day divided q6-8h"
     }
   },
-
   "monitoring": {
-    "required": ["clinical response", "diarrhea (C. diff risk)"],
-    "optional": ["liver function tests (if prolonged therapy)"]
+    "required": [
+      "clinical response",
+      "diarrhea (C. diff risk)"
+    ],
+    "optional": [
+      "liver function tests (if prolonged therapy)"
+    ]
   },
-
   "drug_interactions": {
-    "major": ["neuromuscular blocking agents (potentiates blockade)"],
-    "moderate": ["warfarin (may increase INR)", "erythromycin (antagonism)"]
+    "major": [
+      "neuromuscular blocking agents (potentiates blockade)"
+    ],
+    "moderate": [
+      "warfarin (may increase INR)",
+      "erythromycin (antagonism)"
+    ]
   },
-
   "adverse_effects": {
-    "common": ["diarrhea (VERY common)", "nausea", "abdominal pain", "rash"],
+    "common": [
+      "diarrhea (VERY common)",
+      "nausea",
+      "abdominal pain",
+      "rash"
+    ],
     "serious": [
       "C. difficile colitis (HIGH RISK - 10-20%)",
       "pseudomembranous colitis",
       "hepatotoxicity",
       "severe hypersensitivity (rare)"
     ],
-    "rare": ["Stevens-Johnson syndrome", "agranulocytosis"]
+    "rare": [
+      "Stevens-Johnson syndrome",
+      "agranulocytosis"
+    ]
   },
-
   "spectrum": {
     "gram_positive": "Excellent (Streptococcus, MSSA, some MRSA - check local susceptibility)",
     "gram_negative": "Poor (no coverage)",
     "anaerobes": "Excellent (Bacteroides, oral anaerobes, Clostridium)",
     "atypicals": "No coverage"
   },
-
   "notes": [
-    "⚠️ HIGH RISK OF C. DIFFICILE COLITIS (10-20%)",
+    "\u26a0\ufe0f HIGH RISK OF C. DIFFICILE COLITIS (10-20%)",
     "First-line alternative for dental infections with PCN allergy",
     "Excellent oral anaerobe coverage",
     "Good for MSSA, variable MRSA coverage (check local susceptibility)",
@@ -157,11 +177,10 @@
     "Excellent bone/CNS/abscess penetration",
     "NO renal dose adjustment needed",
     "Safe in pregnancy",
-    "Added to β-lactams for toxin suppression (necrotizing fasciitis, toxic shock)",
+    "Added to \u03b2-lactams for toxin suppression (necrotizing fasciitis, toxic shock)",
     "Take with full glass of water to prevent esophagitis",
     "WARN PATIENTS: Report diarrhea immediately (C. diff risk)"
   ],
-
   "evidence": [
     "IDSA SSTI Guidelines 2014",
     "IDSA Dental Infection Guidelines",
