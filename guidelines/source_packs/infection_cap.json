@@ -1,0 +1,242 @@
+{
+  "document": {
+    "title": "Antimicrobial Recommendations for Sepsis – Pneumonia (CAP)",
+    "system": "Temple University Hospital",
+    "fileName": "abx-02.pdf",
+    "versionDate": null,
+    "meta": {
+      "notes": [
+        "Review patient microbiology history within the last 12 months.",
+        "Clicking antibiotic names in the source doc shows dosing (handled in separate per-antibiotic JSON files).",
+        "If covering MRSA or Pseudomonas, obtain sputum cultures and discontinue extended coverage if no microbiologic confirmation."
+      ]
+    }
+  },
+  "infection": {
+    "id": "cap",
+    "name": "Community-Acquired Pneumonia",
+    "synonyms": ["CAP"],
+    "setting": "community"
+  },
+  "taxonomy": {
+    "allergyClasses": [
+      "none",
+      "pcn_mild_moderate", 
+      "pcn_severe_anaphylaxis"
+    ],
+    "riskFlags": [
+      "icu_admission",
+      "mrsa_history_12mo",
+      "lung_abscess_or_empyema_or_septic_emboli",
+      "recent_influenza_or_rsv_14d",
+      "aspiration_related_empyema_or_lung_abscess",
+      "azithro_contraindication"
+    ],
+    "careLocations": ["Ward", "ICU"]
+  },
+  "diagnostics": {
+    "orders": [
+      "MRSA nares swab if vancomycin is started",
+      "Sputum cultures if MRSA or Pseudomonas coverage is initiated"
+    ],
+    "deescalationRules": [
+      {
+        "trigger": "MRSA nares swab negative",
+        "evidence": {"npv": 0.95, "note": ">95% negative predictive value for MRSA PNA"},
+        "action": {"type": "stop", "target": "vancomycin"},
+        "trace": {"page": 1, "bbox": null}
+      },
+      {
+        "trigger": "No microbiologic confirmation of MRSA or Pseudomonas",
+        "action": {"type": "stop", "target": "extended_coverage"},
+        "trace": {"page": 1, "bbox": null}
+      }
+    ]
+  },
+  "duration": {
+    "expectedDays": 5,
+    "longerIf": [
+      "Severe CAP",
+      "Empyema",
+      "Complicated by extra-pulmonary infection"
+    ],
+    "consultIfNoImprovement": true
+  },
+  "pathways": [
+    {
+      "id": "cap_none_pcn",
+      "label": "No penicillin allergy",
+      "firstLine": true,
+      "regimenRules": [
+        {
+          "when": {"allergyClassIn": ["none"]},
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {"name": "ceftriaxone", "variant": "standard"},
+              "notes": ["(1st)"],
+              "trace": {"page": 1, "bbox": null}
+            },
+            {
+              "rank": 1,
+              "drugRef": {"name": "ampicillin_sulbactam", "variant": "standard"},
+              "notes": ["(1st)", "Preferred if aspiration-related empyema or lung abscess suspected"],
+              "trace": {"page": 1, "bbox": null}
+            },
+            {
+              "rank": 2,
+              "drugRef": {"name": "azithromycin", "variant": "cap_macrolide"},
+              "trace": {"page": 1, "bbox": null}
+            },
+            {
+              "rank": 2,
+              "drugRef": {"name": "doxycycline", "variant": "cap_tetracycline"},
+              "notes": ["Use if azithromycin contraindicated"],
+              "trace": {"page": 1, "bbox": null}
+            }
+          ],
+          "adjunctRules": [
+            {
+              "if": {
+                "riskFlagsAny": [
+                  "icu_admission",
+                  "mrsa_history_12mo",
+                  "lung_abscess_or_empyema_or_septic_emboli",
+                  "recent_influenza_or_rsv_14d"
+                ]
+              },
+              "then": {
+                "add": {"drugRef": {"name": "vancomycin", "variant": "pna"}}
+              },
+              "trace": {"page": 1, "bbox": null}
+            }
+          ]
+        }
+      ],
+      "stopRules": [
+        {
+          "target": "azithromycin",
+          "when": "dosed 500 mg daily",
+          "onDay": 3,
+          "notes": "Stop regardless of total antibiotic duration due to prolonged half-life",
+          "trace": {"page": 1, "bbox": null}
+        },
+        {
+          "target": "azithromycin",
+          "when": "dosed 500 mg day 1 then 250 mg daily",
+          "onDay": 5,
+          "notes": "Stop regardless of total antibiotic duration due to prolonged half-life",
+          "trace": {"page": 1, "bbox": null}
+        }
+      ]
+    },
+    {
+      "id": "cap_pcn_mild",
+      "label": "Mild to moderate PCN allergy (rash/itching, intolerance, PEN-FAST ≤ 2, unknown >10y)",
+      "regimenRules": [
+        {
+          "when": {"allergyClassIn": ["pcn_mild_moderate"]},
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {"name": "ceftriaxone", "variant": "standard"},
+              "notes": ["(1st)"],
+              "trace": {"page": 1, "bbox": null}
+            },
+            {
+              "rank": 2,
+              "drugRef": {"name": "azithromycin", "variant": "cap_macrolide"},
+              "trace": {"page": 1, "bbox": null}
+            },
+            {
+              "rank": 2,
+              "drugRef": {"name": "doxycycline", "variant": "cap_tetracycline"},
+              "notes": ["Use if azithromycin contraindicated"],
+              "trace": {"page": 1, "bbox": null}
+            }
+          ],
+          "adjunctRules": [
+            {
+              "if": {"riskFlagsAny": ["aspiration_related_empyema_or_lung_abscess"]},
+              "then": {"add": {"drugRef": {"name": "metronidazole", "variant": "anaerobes"}}},
+              "trace": {"page": 1, "bbox": null}
+            },
+            {
+              "if": {
+                "riskFlagsAny": [
+                  "icu_admission",
+                  "mrsa_history_12mo",
+                  "lung_abscess_or_empyema_or_septic_emboli",
+                  "recent_influenza_or_rsv_14d"
+                ]
+              },
+              "then": {"add": {"drugRef": {"name": "vancomycin", "variant": "pna"}}},
+              "trace": {"page": 1, "bbox": null}
+            }
+          ]
+        }
+      ],
+      "stopRules": [
+        {
+          "target": "azithromycin",
+          "when": "dosed 500 mg daily",
+          "onDay": 3,
+          "notes": "Stop regardless of total antibiotic duration",
+          "trace": {"page": 1, "bbox": null}
+        },
+        {
+          "target": "azithromycin",
+          "when": "dosed 500 mg day 1 then 250 mg daily",
+          "onDay": 5,
+          "notes": "Stop regardless of total antibiotic duration",
+          "trace": {"page": 1, "bbox": null}
+        }
+      ]
+    },
+    {
+      "id": "cap_pcn_severe",
+      "label": "Severe PCN allergy (anaphylaxis ≤10y, SJS/DRESS)",
+      "regimenRules": [
+        {
+          "when": {"allergyClassIn": ["pcn_severe_anaphylaxis"]},
+          "recommendations": [
+            {
+              "rank": 1,
+              "drugRef": {"name": "levofloxacin", "variant": "cap"},
+              "notes": ["(1st)"],
+              "trace": {"page": 1, "bbox": null}
+            }
+          ],
+          "adjunctRules": [
+            {
+              "if": {
+                "riskFlagsAny": [
+                  "icu_admission",
+                  "mrsa_history_12mo",
+                  "lung_abscess_or_empyema_or_septic_emboli",
+                  "recent_influenza_or_rsv_14d"
+                ]
+              },
+              "then": {"add": {"drugRef": {"name": "vancomycin", "variant": "pna"}}},
+              "trace": {"page": 1, "bbox": null}
+            },
+            {
+              "if": {"riskFlagsAny": ["icu_admission"]},
+              "then": {"add": {"drugRef": {"name": "aztreonam", "variant": "anti_psa"}}},
+              "trace": {"page": 1, "bbox": null}
+            },
+            {
+              "if": {"riskFlagsAny": ["aspiration_related_empyema_or_lung_abscess"]},
+              "then": {"add": {"drugRef": {"name": "metronidazole", "variant": "anaerobes"}}},
+              "trace": {"page": 1, "bbox": null}
+            }
+          ]
+        }
+      ],
+      "stopRules": []
+    }
+  ],
+  "validation": {
+    "flags": []
+  }
+}

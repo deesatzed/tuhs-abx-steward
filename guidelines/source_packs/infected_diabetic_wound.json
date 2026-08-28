@@ -1,0 +1,107 @@
+{
+  "documentInfo": {
+    "title": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH-Inc.",
+    "versionDate": "2025-04-02",
+    "sourceFile": "ATTCHMENT A_Inpatient Empiric antimicrobial Recommendations for common infections_ver 2025-04-02_shared with ED.docx"
+  },
+  "infections": [
+    {
+      "id": "diabetic_wound_infection",
+      "name": "Infected Diabetic Wound",
+      "diagnostics": {
+        "notes": [
+          "Patients with diabetes who have cellulitis but NO open wound should be managed as outlined for Skin/Soft Tissue Infection.",
+          "Patients with NO systemic signs/symptoms of infection & pending biopsy, consider monitoring off antibiotics until biopsy."
+        ]
+      },
+      "pathways": [
+        {
+          "label": "Mild Infection, no recent antibiotic use",
+          "eligibilityCriteria": {
+            "clinicalState": ["mild"],
+            "riskFlags": ["no_recent_antibiotic_use"]
+          },
+          "duration": {"notes": ["Duration depends on the causative pathogen and clinical scenario."]},
+          "consults": ["Please consult infectious diseases if assistance needed."],
+          "treatmentRecommendations": [
+            {
+              "allergyProfile": ["none", "pcn_mild_rash", "pcn_severe_anaphylaxis"],
+              "regimens": [{
+                "rank": 1,
+                "primaryDrugs": [{"name": "vancomycin"}],
+                "notes": ["For vancomycin allergy, daptomycin IV can be substituted."]
+              }]
+            }
+          ]
+        },
+        {
+          "label": "Moderate Infection (without severe sepsis)",
+          "eligibilityCriteria": {
+            "clinicalState": ["moderate"]
+          },
+          "duration": {"notes": ["Duration depends on the causative pathogen and clinical scenario."]},
+          "consults": ["Please consult infectious diseases if assistance needed."],
+          "treatmentRecommendations": [
+            {
+              "allergyProfile": ["none", "pcn_mild_rash"],
+              "regimens": [{
+                "rank": 1,
+                "primaryDrugs": [{"name": "ceftriaxone"}, {"name": "vancomycin"}],
+                "notes": ["For vancomycin allergy, daptomycin IV can be substituted."]
+              }]
+            },
+            {
+              "allergyProfile": ["pcn_severe_anaphylaxis"],
+              "regimens": [{
+                "rank": 1,
+                "primaryDrugs": [{"name": "vancomycin"}, {"name": "aztreonam"}, {"name": "metronidazole"}],
+                "notes": [
+                  "For vancomycin allergy, daptomycin IV can be substituted.",
+                  "If patient has a history of SJS/DRESS, use Vancomycin and consult Infectious Diseases for guidance on gram-negative coverage."
+                ]
+              }]
+            }
+          ]
+        },
+        {
+          "label": "Severe Infection (with severe sepsis or septic shock)",
+          "eligibilityCriteria": {
+            "clinicalState": ["severe_sepsis", "septic_shock"]
+          },
+          "duration": {"notes": ["Duration depends on the causative pathogen and clinical scenario."]},
+          "consults": ["Please consult infectious diseases if assistance needed."],
+          "treatmentRecommendations": [
+            {
+              "allergyProfile": ["none"],
+              "regimens": [{
+                "rank": 1,
+                "primaryDrugs": [{"name": "piperacillin-tazobactam"}, {"name": "vancomycin"}],
+                "notes": ["For vancomycin allergy, daptomycin IV can be substituted."]
+              }]
+            },
+            {
+              "allergyProfile": ["pcn_mild_rash"],
+              "regimens": [{
+                "rank": 1,
+                "primaryDrugs": [{"name": "cefepime"}, {"name": "vancomycin"}, {"name": "metronidazole"}],
+                "notes": ["For vancomycin allergy, daptomycin IV can be substituted."]
+              }]
+            },
+            {
+              "allergyProfile": ["pcn_severe_anaphylaxis"],
+              "regimens": [{
+                "rank": 1,
+                "primaryDrugs": [{"name": "vancomycin"}, {"name": "aztreonam"}, {"name": "metronidazole"}],
+                "notes": [
+                  "For vancomycin allergy, daptomycin IV can be substituted.",
+                  "If patient has a history of SJS/DRESS, use Vancomycin and consult Infectious Diseases for guidance on gram-negative coverage."
+                ]
+              }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

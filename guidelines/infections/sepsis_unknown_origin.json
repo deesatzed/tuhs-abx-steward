@@ -1,0 +1,82 @@
+{
+  "infection_name": "Sepsis of Unknown Origin",
+  "infection_code": "sepsis_unknown_origin",
+  "description": "Empiric therapy for sepsis when the source is unknown. Mapped from DKR sepsis_unknown_origin.json (id sepsis_of_unknown_origin); TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02. Steward bacteremia.json mentions sepsis / septic shock but is not this unknown-source pathway (DKR rank 1 is cefepime + metronidazole + vancomycin).",
+  "version": "3.0.0",
+  "last_updated": "2026-08-28",
+  "classification_rules": {
+    "unknown_source": {
+      "description": "Sepsis without an identified source",
+      "clinical_features": [
+        "sepsis",
+        "unknown source"
+      ],
+      "route_required": "IV",
+      "recognition_keywords": [
+        "sepsis of unknown origin",
+        "unknown source sepsis",
+        "undifferentiated sepsis"
+      ]
+    }
+  },
+  "categories": [
+    {
+      "category": "Unknown source",
+      "infection_subtype": "unknown_source",
+      "location": "ICU",
+      "severity": "critical",
+      "route": "IV",
+      "one_time_doses": [
+        {
+          "condition": "Septic shock",
+          "drugs": [
+            "tobramycin"
+          ],
+          "dose_note": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20",
+          "note": "TODO: tobramycin is named in DKR but has no monograph in guidelines/drugs/"
+        }
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": [
+            "cefepime",
+            "metronidazole",
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Cefepime plus metronidazole plus vancomycin first-line for sepsis of unknown origin (TUH 2025-04-02 rank 1)",
+          "evidence": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02",
+          "alternative": "piperacillin_tazobactam + vancomycin",
+          "note": "One-time tobramycin 5mg/kg IBW (2mg/kg if HD or CrCl <20) if septic shock (TODO: tobramycin not in guidelines/drugs/)."
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": [
+            "cefepime",
+            "metronidazole",
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Same cefepime-based regimen is listed for mild PCN allergy (rash)",
+          "note": "One-time tobramycin if septic shock (TODO: tobramycin not in guidelines/drugs/)."
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": [
+            "aztreonam",
+            "vancomycin",
+            "metronidazole"
+          ],
+          "route": "IV",
+          "reasoning": "Aztreonam plus vancomycin plus metronidazole for severe PCN allergy (anaphylaxis)",
+          "note": "One-time tobramycin if septic shock (TODO: tobramycin not in guidelines/drugs/)."
+        }
+      ]
+    }
+  ],
+  "de_escalation": {
+    "criteria": "Duration depends on the causative pathogen and clinical scenario.",
+    "note": "Please consult infectious diseases if assistance needed."
+  }
+}

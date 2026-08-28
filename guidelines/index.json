@@ -1,6 +1,6 @@
 {
   "version": "3.0.0",
-  "last_updated": "2025-10-08",
+  "last_updated": "2026-08-28",
   "description": "Registry of all guideline files for TUHS Antibiotic Steward",
 
   "infections": {
@@ -34,10 +34,59 @@
       "critical_note": "HIGHER DOSES required for CNS penetration",
       "status": "active"
     },
-    "skin_soft_tissue": {
-      "file": "infections/skin_soft_tissue.json",
-      "includes": ["cellulitis", "abscess"],
-      "status": "pending"
+    "ssti": {
+      "file": "infections/ssti.json",
+      "includes": ["cellulitis", "abscess", "diabetic_foot", "necrotizing"],
+      "status": "active",
+      "aliases": ["skin_soft_tissue"]
+    },
+    "cns": {
+      "file": "infections/cns.json",
+      "includes": ["brain abscess", "encephalitis", "ventriculitis", "subdural empyema"],
+      "critical_note": "HIGHER DOSES required for CNS penetration",
+      "status": "active"
+    },
+    "bone_joint": {
+      "file": "infections/bone_joint.json",
+      "includes": ["osteomyelitis", "septic arthritis", "prosthetic joint", "diabetic osteomyelitis"],
+      "status": "active"
+    },
+    "endocarditis": {
+      "file": "infections/endocarditis.json",
+      "includes": ["native valve", "prosthetic valve"],
+      "status": "active"
+    },
+    "bite_wounds": {
+      "file": "infections/bite_wounds.json",
+      "includes": ["human bite", "dog bite", "cat bite"],
+      "source": "DKR bite_wounds.json (id bite_wound_infection); TUH 2025-04-02",
+      "status": "active"
+    },
+    "central_line_infection": {
+      "file": "infections/central_line_infection.json",
+      "includes": ["PICC", "port", "HD catheter", "CLABSI"],
+      "source": "DKR central_line_infection.json; TUH 2025-04-02",
+      "status": "active"
+    },
+    "infected_diabetic_wound": {
+      "file": "infections/infected_diabetic_wound.json",
+      "includes": ["mild diabetic wound", "moderate diabetic wound", "severe diabetic wound"],
+      "source": "DKR infected_diabetic_wound.json (id diabetic_wound_infection); TUH 2025-04-02",
+      "note": "Soft-tissue open diabetic wound; not bone_joint diabetic osteomyelitis. Cellulitis without open wound remains ssti.json.",
+      "status": "active"
+    },
+    "neutropenic_fever": {
+      "file": "infections/neutropenic_fever.json",
+      "includes": ["febrile neutropenia"],
+      "source": "DKR neutropenic_fever.json; TUH 2025-04-02",
+      "status": "active"
+    },
+    "sepsis_unknown_origin": {
+      "file": "infections/sepsis_unknown_origin.json",
+      "includes": ["undifferentiated sepsis", "unknown source"],
+      "source": "DKR sepsis_unknown_origin.json (id sepsis_of_unknown_origin); TUH 2025-04-02",
+      "note": "Unknown-source pathway; distinct from bacteremia.json sepsis/septic shock categories.",
+      "status": "active"
     }
   },
 
@@ -72,7 +121,6 @@
       "class": "glycopeptide",
       "critical_use": "MRSA coverage",
       "renal_adjustment": true,
-      "monitoring_required": true,
       "status": "active"
     },
     "metronidazole": {
@@ -114,5 +162,10 @@
     "cross_reference_check": "All drug IDs in infections must exist in drugs/",
     "schema_validation": "All files must validate against their schemas",
     "completeness_check": "All infections must have regimens for all allergy types"
-  }
+  },
+
+  "todos": [
+    "TODO: micafungin is named in DKR central_line_infection (TPN via central line >7 days adjunct) but has no monograph in guidelines/drugs/; listed in infection notes/conditional_adjuncts only - do not invent a full drug monograph.",
+    "TODO: tobramycin is named in DKR neutropenic_fever and sepsis_unknown_origin (septic-shock one-time dose) but has no monograph in guidelines/drugs/; listed in infection notes/one_time_doses only - do not invent a full drug monograph."
+  ]
 }

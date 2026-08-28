@@ -1,0 +1,131 @@
+{
+  "documentInfo": {
+    "title": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH-Inc.",
+    "versionDate": "2025-04-02",
+    "sourceFile": "ATTCHMENT A_Inpatient Empiric antimicrobial Recommendations for common infections_ver 2025-04-02_shared with ED.docx"
+  },
+  "infections": [
+    {
+      "id": "neutropenic_fever",
+      "name": "Neutropenic Fever",
+      "diagnostics": {
+        "notes": [
+          "Defined as Absolute Neutrophil Count (ANC) of less than 500, or ANC 1000 with an expectation that the ANC will drop below 500 within 48 hours."
+        ]
+      },
+      "pathways": [
+        {
+          "label": "Neutropenic Fever",
+          "eligibilityCriteria": {
+            "immunocompromiseGate": true
+          },
+          "duration": {
+            "notes": [
+              "Duration depends on the infectious source and ANC recovery. Please consult infectious diseases if assistance needed."
+            ]
+          },
+          "consults": [
+            "Consider ID consult if no clinical improvement past the expected duration."
+          ],
+          "treatmentRecommendations": [
+            {
+              "allergyProfile": [
+                "none",
+                "pcn_mild_rash"
+              ],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [
+                    {
+                      "name": "cefepime",
+                      "routes": ["IV"],
+                      "variants": [
+                        {
+                          "label": "Neutropenic fever/CNS infections",
+                          "infusion": {"infuseMinutes": 30},
+                          "dosingByRenalFunction": [
+                            {"renalCategory": "gt_50", "dose": "2g", "frequency": "q8h"},
+                            {"renalCategory": "50_30", "dose": "2g", "frequency": "q12h"},
+                            {"renalCategory": "29_10", "dose": "2g", "frequency": "q24h"},
+                            {"renalCategory": "lt_10_no_hd", "dose": "1g", "frequency": "q24h"},
+                            {"renalCategory": "hd", "doseOptions": [{"dose": "1g", "frequency": "q24h AD"}, {"dose": "2g", "frequency": "after each HD"}]},
+                            {"renalCategory": "crrt", "dose": "2g", "frequency": "q12h", "dataQuality": {"renalBin": "limited"}}
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "rank": 2,
+                  "primaryDrugs": [
+                    {
+                      "name": "piperacillin-tazobactam",
+                      "routes": ["IV"],
+                      "variants": [
+                        {
+                          "label": "Extended infusion"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "conditionalAdjuncts": [
+                {
+                  "condition": "Suspicion of PNA, SSTI, line infection; Hemodynamic instability; History of MRSA or PCN/Ceph resistant pneumococci",
+                  "drugs": [{"name": "vancomycin"}]
+                },
+                {
+                  "condition": "Suspected gingivitis, neutropenic enterocolitis, or perirectal abscess",
+                  "drugs": [{"name": "metronidazole"}]
+                }
+              ],
+              "oneTimeDoses": [
+                {
+                  "condition": "Septic shock",
+                  "drug": {"name": "tobramycin"},
+                  "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+                }
+              ]
+            },
+            {
+              "allergyProfile": [
+                "pcn_severe_anaphylaxis"
+              ],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [
+                    {"name": "aztreonam"},
+                    {"name": "vancomycin"}
+                  ],
+                  "notes": [
+                    "If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock:",
+                    "- For severe IgE mediated PCN reactions: Benefit of using carbapenem should be weighed in this setting.",
+                    "- For non-IgE mediated PCN reactions (SJS/DRESS): discuss with ID"
+                  ]
+                }
+              ],
+              "conditionalAdjuncts": [
+                {
+                  "condition": "Suspected gingivitis, neutropenic enterocolitis, or perirectal abscess",
+                  "drugs": [{"name": "metronidazole"}]
+                }
+              ],
+              "oneTimeDoses": [
+                {
+                  "condition": "Septic shock",
+                  "drug": {"name": "tobramycin"},
+                  "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

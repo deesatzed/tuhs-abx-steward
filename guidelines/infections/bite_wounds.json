@@ -1,0 +1,114 @@
+{
+  "infection_name": "Bite Wounds (human, dog, cat)",
+  "infection_code": "bite_wounds",
+  "description": "Empiric treatment or prophylaxis for human, dog, and cat bite wounds. Mapped from DKR bite_wounds.json (id bite_wound_infection); TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02. Consult ID for all other bite wounds (not human, dog, or cat).",
+  "version": "3.0.0",
+  "last_updated": "2026-08-28",
+  "classification_rules": {
+    "oral": {
+      "description": "Oral therapy when the patient can take an oral agent",
+      "route_allowed": [
+        "PO"
+      ],
+      "recognition_keywords": [
+        "bite",
+        "bite wound",
+        "human bite",
+        "dog bite",
+        "cat bite"
+      ]
+    },
+    "iv": {
+      "description": "IV therapy if unable to take an oral agent",
+      "route_required": "IV"
+    },
+    "prophylaxis_indications": {
+      "description": "Consider antibiotic prophylaxis for: deep wounds (especially cat bites), wounds on face/hands/genitals, immunocompromised/asplenic patients, or wounds near prosthetic material."
+    }
+  },
+  "categories": [
+    {
+      "category": "Bite Wound Treatment or Prophylaxis (Oral)",
+      "infection_subtype": "oral",
+      "location": "Ward",
+      "severity": "mild_to_moderate",
+      "route": "PO",
+      "duration": "Prophylaxis 3-5 days; mild infection 5-7 days; severe/complicated 7-14 days",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": [
+            "amoxicillin_clavulanate"
+          ],
+          "route": "PO",
+          "reasoning": "First-line oral therapy for human, dog, and cat bite wounds (TUH 2025-04-02)",
+          "evidence": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": [
+            "metronidazole",
+            "doxycycline"
+          ],
+          "route": "PO",
+          "reasoning": "Metronidazole plus one aerobic agent for mild PCN allergy (rash). DKR conditionalAdjuncts: select one of doxycycline, trimethoprim-sulfamethoxazole, or levofloxacin.",
+          "alternative": "metronidazole + trimethoprim_sulfamethoxazole; or metronidazole + levofloxacin",
+          "note": "Select one adjunct: doxycycline, trimethoprim-sulfamethoxazole, or levofloxacin"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": [
+            "metronidazole",
+            "doxycycline"
+          ],
+          "route": "PO",
+          "reasoning": "Metronidazole plus one aerobic agent for severe PCN allergy (anaphylaxis). DKR conditionalAdjuncts: select one of doxycycline, trimethoprim-sulfamethoxazole, or levofloxacin.",
+          "alternative": "metronidazole + trimethoprim_sulfamethoxazole; or metronidazole + levofloxacin",
+          "note": "Select one adjunct: doxycycline, trimethoprim-sulfamethoxazole, or levofloxacin"
+        }
+      ]
+    },
+    {
+      "category": "Bite Wound Treatment or Prophylaxis (IV)",
+      "infection_subtype": "iv",
+      "location": "Ward",
+      "severity": "moderate_to_severe",
+      "route": "IV",
+      "duration": "Prophylaxis 3-5 days; mild infection 5-7 days; severe/complicated 7-14 days",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": [
+            "ampicillin_sulbactam"
+          ],
+          "route": "IV",
+          "reasoning": "IV therapy if unable to take an oral agent (TUH 2025-04-02 rank 2)",
+          "evidence": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": [
+            "ceftriaxone",
+            "metronidazole"
+          ],
+          "route": "IV",
+          "reasoning": "IV ceftriaxone plus metronidazole if unable to take oral agent with mild PCN allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": [
+            "doxycycline",
+            "metronidazole"
+          ],
+          "route": "IV",
+          "reasoning": "IV doxycycline plus metronidazole for severe PCN allergy when oral therapy is not possible",
+          "alternative": "levofloxacin + metronidazole IV"
+        }
+      ]
+    }
+  ],
+  "de_escalation": {
+    "criteria": "Duration depends on indication: prophylaxis 3-5 days; mild infection 5-7 days; severe/complicated 7-14 days",
+    "note": "Thorough wound irrigation and examination. Evaluate for tetanus and/or rabies post-exposure prophylaxis. Consult ID for bites that are not human, dog, or cat."
+  }
+}
