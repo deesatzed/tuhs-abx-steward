@@ -1,0 +1,94 @@
+{
+  "documentInfo": {
+    "title": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH-Inc.",
+    "versionDate": "2025-04-02",
+    "sourceFile": "ATTCHMENT A_Inpatient Empiric antimicrobial Recommendations for common infections_ver 2025-04-02_shared with ED.docx"
+  },
+  "infections": [
+    {
+      "id": "bite_wound_infection",
+      "name": "Bite Wounds (human, dog, cat)",
+      "diagnostics": null,
+      "pathways": [
+        {
+          "label": "Bite Wound Treatment or Prophylaxis",
+          "eligibilityCriteria": {},
+          "duration": {
+            "notes": [
+              "Prophylaxis: 3-5 days",
+              "Mild infection: 5-7 days",
+              "Severe/complicated infection: 7-14 days"
+            ]
+          },
+          "procedureRecommendations": [
+            "Thorough wound irrigation and examination.",
+            "Evaluation for tetanus and/or rabies post-exposure prophylaxis.",
+            "Consider antibiotic prophylaxis for: Deep wounds (especially cat bites), wounds on face/hands/genitals, immunocompromised/asplenic patients, or wounds near prosthetic material."
+          ],
+          "consults": [
+            "Consult ID for all other bite wounds (not human, dog, or cat)."
+          ],
+          "treatmentRecommendations": [
+            {
+              "allergyProfile": ["none"],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [{"name": "amoxicillin-clavulanate"}],
+                  "notes": ["Oral therapy"]
+                },
+                {
+                  "rank": 2,
+                  "primaryDrugs": [{"name": "ampicillin-sulbactam"}],
+                  "notes": ["IV therapy (if unable to take oral agent)"]
+                }
+              ]
+            },
+            {
+              "allergyProfile": ["pcn_mild_rash"],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [{"name": "metronidazole"}],
+                  "conditionalAdjuncts": [
+                    {"condition": "Select one", "drugs": [{"name": "doxycycline"}, {"name": "trimethoprim-sulfamethoxazole"}, {"name": "levofloxacin"}]}
+                  ],
+                  "notes": ["Oral therapy"]
+                },
+                {
+                  "rank": 2,
+                  "primaryDrugs": [{"name": "ceftriaxone"}, {"name": "metronidazole"}],
+                  "notes": ["IV therapy (if unable to take oral agent)"]
+                }
+              ]
+            },
+            {
+              "allergyProfile": ["pcn_severe_anaphylaxis"],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [{"name": "metronidazole"}],
+                   "conditionalAdjuncts": [
+                    {"condition": "Select one", "drugs": [{"name": "doxycycline"}, {"name": "trimethoprim-sulfamethoxazole"}, {"name": "levofloxacin"}]}
+                  ],
+                  "notes": ["Oral therapy"]
+                },
+                {
+                  "rank": 2,
+                  "primaryDrugs": [{"name": "doxycycline"}, {"name": "metronidazole"}],
+                  "notes": ["IV therapy (if unable to take oral agent)"]
+                },
+                {
+                  "rank": 3,
+                  "primaryDrugs": [{"name": "levofloxacin"}, {"name": "metronidazole"}],
+                  "notes": ["IV therapy (if unable to take oral agent)"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -41,7 +41,7 @@ class TestLoading:
 
     def test_expected_infections_loaded(self, loader):
         """Test that expected infection types are loaded"""
-        expected = ['uti', 'pneumonia', 'intra_abdominal', 'bacteremia', 'meningitis']
+        expected = ['uti', 'pneumonia', 'intra_abdominal', 'bacteremia', 'meningitis', 'ssti', 'cns', 'bone_joint', 'endocarditis', 'bite_wounds', 'central_line_infection', 'infected_diabetic_wound', 'neutropenic_fever', 'sepsis_unknown_origin']
         for infection_type in expected:
             assert infection_type in loader.infections, f"Missing infection: {infection_type}"
 

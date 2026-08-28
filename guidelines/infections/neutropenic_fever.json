@@ -1,0 +1,98 @@
+{
+  "infection_name": "Neutropenic Fever",
+  "infection_code": "neutropenic_fever",
+  "description": "Empiric therapy for neutropenic fever. Mapped from DKR neutropenic_fever.json; TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02. Defined as ANC <500, or ANC 1000 with expectation that ANC will drop below 500 within 48 hours.",
+  "version": "3.0.0",
+  "last_updated": "2026-08-28",
+  "classification_rules": {
+    "neutropenic_fever": {
+      "description": "ANC <500, or ANC 1000 expected to drop below 500 within 48 hours",
+      "clinical_features": [
+        "fever",
+        "neutropenia",
+        "ANC <500"
+      ],
+      "route_required": "IV",
+      "recognition_keywords": [
+        "neutropenic fever",
+        "febrile neutropenia",
+        "ANC"
+      ]
+    }
+  },
+  "categories": [
+    {
+      "category": "Neutropenic Fever",
+      "infection_subtype": "neutropenic_fever",
+      "location": "Ward",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": [
+        "neutropenia",
+        "ANC <500",
+        "immunocompromised"
+      ],
+      "conditional_adjuncts": [
+        {
+          "condition": "Suspicion of PNA, SSTI, line infection; hemodynamic instability; history of MRSA or PCN/Ceph resistant pneumococci",
+          "drugs": [
+            "vancomycin"
+          ]
+        },
+        {
+          "condition": "Suspected gingivitis, neutropenic enterocolitis, or perirectal abscess",
+          "drugs": [
+            "metronidazole"
+          ]
+        }
+      ],
+      "one_time_doses": [
+        {
+          "condition": "Septic shock",
+          "drugs": [
+            "tobramycin"
+          ],
+          "dose_note": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20",
+          "note": "TODO: tobramycin is named in DKR but has no monograph in guidelines/drugs/"
+        }
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": [
+            "cefepime"
+          ],
+          "route": "IV",
+          "reasoning": "Cefepime first-line for neutropenic fever (TUH 2025-04-02). DKR dosing variant Neutropenic fever/CNS infections: 2g IV q8h if CrCl >50 (infuse 30 min).",
+          "evidence": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02",
+          "alternative": "piperacillin_tazobactam IV (extended infusion)",
+          "note": "Add vancomycin if suspicion of PNA, SSTI, line infection; hemodynamic instability; or history of MRSA or PCN/Ceph resistant pneumococci. Add metronidazole if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess. One-time tobramycin 5mg/kg IBW (2mg/kg if HD or CrCl <20) if septic shock (TODO: tobramycin not in guidelines/drugs/)."
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": [
+            "cefepime"
+          ],
+          "route": "IV",
+          "reasoning": "Cefepime listed for none and pcn_mild_rash in DKR",
+          "alternative": "piperacillin_tazobactam IV (extended infusion)",
+          "note": "Same adjuncts as no_allergy pathway: vancomycin and/or metronidazole when indicated; one-time tobramycin if septic shock (TODO: tobramycin not in guidelines/drugs/)."
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": [
+            "aztreonam",
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Aztreonam plus vancomycin for severe PCN allergy (anaphylaxis)",
+          "note": "If history of ESBL E. coli or Klebsiella spp. in the last 12 months or septic shock: for severe IgE-mediated PCN reactions, benefit of using carbapenem should be weighed; for non-IgE mediated PCN reactions (SJS/DRESS), discuss with ID. Add metronidazole if suspected gingivitis, neutropenic enterocolitis, or perirectal abscess. One-time tobramycin if septic shock (TODO: tobramycin not in guidelines/drugs/)."
+        }
+      ]
+    }
+  ],
+  "de_escalation": {
+    "criteria": "Duration depends on the infectious source and ANC recovery.",
+    "note": "Consider ID consult if no clinical improvement past the expected duration. Please consult infectious diseases if assistance needed."
+  }
+}

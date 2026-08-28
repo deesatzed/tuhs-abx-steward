@@ -1,0 +1,132 @@
+{
+  "documentInfo": {
+    "title": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH-Inc.",
+    "versionDate": "2025-04-02",
+    "sourceFile": "ATTCHMENT A_Inpatient Empiric antimicrobial Recommendations for common infections_ver 2025-04-02_shared with ED.docx"
+  },
+  "infections": [
+    {
+      "id": "sepsis_of_unknown_origin",
+      "name": "Sepsis of Unknown Origin",
+      "diagnostics": null,
+      "pathways": [
+        {
+          "label": "Unknown source",
+          "eligibilityCriteria": {},
+          "duration": {
+            "notes": [
+              "Duration depends on the causative pathogen and clinical scenario."
+            ]
+          },
+          "consults": [
+            "Please consult infectious diseases if assistance needed."
+          ],
+          "treatmentRecommendations": [
+            {
+              "allergyProfile": [
+                "none"
+              ],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [
+                    {
+                      "name": "cefepime"
+                    },
+                    {
+                      "name": "metronidazole"
+                    },
+                    {
+                      "name": "vancomycin"
+                    }
+                  ]
+                },
+                {
+                  "rank": 2,
+                  "primaryDrugs": [
+                    {
+                      "name": "piperacillin-tazobactam"
+                    },
+                    {
+                      "name": "vancomycin"
+                    }
+                  ]
+                }
+              ],
+              "oneTimeDoses": [
+                {
+                  "condition": "Septic shock",
+                  "drug": {
+                    "name": "tobramycin"
+                  },
+                  "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+                }
+              ]
+            },
+            {
+              "allergyProfile": [
+                "pcn_mild_rash"
+              ],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [
+                    {
+                      "name": "cefepime"
+                    },
+                    {
+                      "name": "metronidazole"
+                    },
+                    {
+                      "name": "vancomycin"
+                    }
+                  ]
+                }
+              ],
+              "oneTimeDoses": [
+                {
+                  "condition": "Septic shock",
+                  "drug": {
+                    "name": "tobramycin"
+                  },
+                  "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+                }
+              ]
+            },
+            {
+              "allergyProfile": [
+                "pcn_severe_anaphylaxis"
+              ],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [
+                    {
+                      "name": "aztreonam"
+                    },
+                    {
+                      "name": "vancomycin"
+                    },
+                    {
+                      "name": "metronidazole"
+                    }
+                  ]
+                }
+              ],
+              "oneTimeDoses": [
+                {
+                  "condition": "Septic shock",
+                  "drug": {
+                    "name": "tobramycin"
+                  },
+                  "doseNote": "5mg/kg (IBW) x 1 dose, or 2mg/kg (IBW) if HD or CrCl <20"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

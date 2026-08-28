@@ -1,0 +1,178 @@
+{
+  "infection_name": "Infected Diabetic Wound",
+  "infection_code": "infected_diabetic_wound",
+  "description": "Soft-tissue infected diabetic wound (open wound) pathways. Mapped from DKR infected_diabetic_wound.json (id diabetic_wound_infection); TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02. This is not the osteomyelitis category in bone_joint.json. Patients with diabetes who have cellulitis but NO open wound should be managed as Skin/Soft Tissue Infection (ssti.json).",
+  "version": "3.0.0",
+  "last_updated": "2026-08-28",
+  "classification_rules": {
+    "mild": {
+      "description": "Mild infection, no recent antibiotic use",
+      "clinical_features": [
+        "mild",
+        "open diabetic wound"
+      ],
+      "no_systemic_symptoms": true,
+      "recognition_keywords": [
+        "diabetic wound",
+        "infected diabetic ulcer",
+        "diabetic foot wound"
+      ]
+    },
+    "moderate": {
+      "description": "Moderate infection without severe sepsis",
+      "clinical_features": [
+        "moderate",
+        "open diabetic wound"
+      ]
+    },
+    "severe": {
+      "description": "Severe infection with severe sepsis or septic shock",
+      "clinical_features": [
+        "severe sepsis",
+        "septic shock",
+        "open diabetic wound"
+      ],
+      "route_required": "IV"
+    }
+  },
+  "categories": [
+    {
+      "category": "Mild Infection, no recent antibiotic use",
+      "infection_subtype": "mild",
+      "location": "Ward",
+      "severity": "mild",
+      "route": "IV",
+      "risk_factors": [
+        "diabetes",
+        "open wound",
+        "no recent antibiotic use"
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": [
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Vancomycin for mild infected diabetic wound without recent antibiotic use (TUH 2025-04-02). Same DKR regimen for none / mild PCN / severe PCN.",
+          "evidence": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02",
+          "alternative": "daptomycin IV (if vancomycin allergy)",
+          "note": "For vancomycin allergy, daptomycin IV can be substituted. Patients with NO systemic signs/symptoms of infection and pending biopsy: consider monitoring off antibiotics until biopsy."
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": [
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "DKR lists the same vancomycin regimen for mild PCN allergy",
+          "alternative": "daptomycin IV (if vancomycin allergy)"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": [
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "DKR lists the same vancomycin regimen for severe PCN allergy",
+          "alternative": "daptomycin IV (if vancomycin allergy)"
+        }
+      ]
+    },
+    {
+      "category": "Moderate Infection (without severe sepsis)",
+      "infection_subtype": "moderate",
+      "location": "Ward",
+      "severity": "moderate",
+      "route": "IV",
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": [
+            "ceftriaxone",
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Ceftriaxone plus vancomycin for moderate infected diabetic wound without severe sepsis (TUH 2025-04-02)",
+          "evidence": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02",
+          "alternative": "daptomycin IV in place of vancomycin if vancomycin allergy"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": [
+            "ceftriaxone",
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Ceftriaxone safe for mild PCN allergy; plus vancomycin",
+          "alternative": "daptomycin IV in place of vancomycin if vancomycin allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": [
+            "vancomycin",
+            "aztreonam",
+            "metronidazole"
+          ],
+          "route": "IV",
+          "reasoning": "Vancomycin plus aztreonam plus metronidazole for severe PCN allergy",
+          "alternative": "daptomycin IV in place of vancomycin if vancomycin allergy",
+          "note": "If patient has a history of SJS/DRESS, use vancomycin and consult Infectious Diseases for guidance on gram-negative coverage."
+        }
+      ]
+    },
+    {
+      "category": "Severe Infection (with severe sepsis or septic shock)",
+      "infection_subtype": "severe",
+      "location": "ICU",
+      "severity": "severe",
+      "route": "IV",
+      "risk_factors": [
+        "severe sepsis",
+        "septic shock",
+        "diabetes",
+        "open wound"
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": [
+            "piperacillin_tazobactam",
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Piperacillin-tazobactam plus vancomycin for severe infected diabetic wound with severe sepsis or septic shock (TUH 2025-04-02)",
+          "evidence": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02",
+          "alternative": "daptomycin IV in place of vancomycin if vancomycin allergy"
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": [
+            "cefepime",
+            "vancomycin",
+            "metronidazole"
+          ],
+          "route": "IV",
+          "reasoning": "Cefepime plus vancomycin plus metronidazole for mild PCN allergy in severe infection",
+          "alternative": "daptomycin IV in place of vancomycin if vancomycin allergy"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": [
+            "vancomycin",
+            "aztreonam",
+            "metronidazole"
+          ],
+          "route": "IV",
+          "reasoning": "Vancomycin plus aztreonam plus metronidazole for severe PCN allergy",
+          "alternative": "daptomycin IV in place of vancomycin if vancomycin allergy",
+          "note": "If patient has a history of SJS/DRESS, use vancomycin and consult Infectious Diseases for guidance on gram-negative coverage."
+        }
+      ]
+    }
+  ],
+  "de_escalation": {
+    "criteria": "Duration depends on the causative pathogen and clinical scenario.",
+    "note": "Patients with diabetes who have cellulitis but NO open wound should be managed as SSTI. Patients with NO systemic signs/symptoms of infection and pending biopsy: consider monitoring off antibiotics until biopsy. Consult infectious diseases if assistance needed."
+  }
+}

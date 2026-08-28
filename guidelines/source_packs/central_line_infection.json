@@ -1,0 +1,129 @@
+{
+  "documentInfo": {
+    "title": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations for Common Infections in Hospitalized Adults",
+    "system": "TUH-Inc.",
+    "versionDate": "2025-04-02",
+    "sourceFile": "ATTCHMENT A_Inpatient Empiric antimicrobial Recommendations for common infections_ver 2025-04-02_shared with ED.docx"
+  },
+  "infections": [
+    {
+      "id": "central_line_infection",
+      "name": "Central Line Infection",
+      "diagnostics": null,
+      "pathways": [
+        {
+          "label": "PICC lines, Ports, HD catheters",
+          "eligibilityCriteria": {},
+          "duration": {
+            "notes": [
+              "Duration depends on the causative pathogen and clinical scenario."
+            ]
+          },
+          "procedureRecommendations": [
+            "Consider removal of lines whenever feasible."
+          ],
+          "consults": [
+            "Please consult infectious diseases if assistance needed."
+          ],
+          "treatmentRecommendations": [
+            {
+              "allergyProfile": [
+                "none"
+              ],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [
+                    {
+                      "name": "cefepime"
+                    },
+                    {
+                      "name": "vancomycin"
+                    }
+                  ]
+                },
+                {
+                  "rank": 2,
+                  "primaryDrugs": [
+                    {
+                      "name": "piperacillin-tazobactam"
+                    },
+                    {
+                      "name": "vancomycin"
+                    }
+                  ]
+                }
+              ],
+              "conditionalAdjuncts": [
+                {
+                  "condition": "Patient receives TPN via central line for >7 days",
+                  "drugs": [
+                    {
+                      "name": "micafungin"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "allergyProfile": [
+                "pcn_mild_rash"
+              ],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [
+                    {
+                      "name": "cefepime"
+                    },
+                    {
+                      "name": "vancomycin"
+                    }
+                  ]
+                }
+              ],
+              "conditionalAdjuncts": [
+                {
+                  "condition": "Patient receives TPN via central line for >7 days",
+                  "drugs": [
+                    {
+                      "name": "micafungin"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "allergyProfile": [
+                "pcn_severe_anaphylaxis"
+              ],
+              "regimens": [
+                {
+                  "rank": 1,
+                  "primaryDrugs": [
+                    {
+                      "name": "aztreonam"
+                    },
+                    {
+                      "name": "vancomycin"
+                    }
+                  ]
+                }
+              ],
+              "conditionalAdjuncts": [
+                {
+                  "condition": "Patient receives TPN via central line for >7 days",
+                  "drugs": [
+                    {
+                      "name": "micafungin"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

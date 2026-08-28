@@ -1,0 +1,89 @@
+{
+  "infection_name": "Central Line Infection",
+  "infection_code": "central_line_infection",
+  "description": "Empiric therapy for PICC lines, ports, and HD catheters. Mapped from DKR central_line_infection.json; TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02. Distinct from bacteremia.json hospital-acquired / central-line bacteremia category.",
+  "version": "3.0.0",
+  "last_updated": "2026-08-28",
+  "classification_rules": {
+    "picc_port_hd": {
+      "description": "PICC lines, ports, HD catheters",
+      "clinical_features": [
+        "central line",
+        "PICC",
+        "port",
+        "HD catheter"
+      ],
+      "route_required": "IV",
+      "recognition_keywords": [
+        "central line",
+        "CLABSI",
+        "PICC",
+        "port",
+        "HD catheter",
+        "hemodialysis catheter"
+      ]
+    }
+  },
+  "categories": [
+    {
+      "category": "PICC lines, Ports, HD catheters",
+      "infection_subtype": "picc_port_hd",
+      "location": "Ward",
+      "severity": "moderate_to_severe",
+      "route": "IV",
+      "risk_factors": [
+        "PICC",
+        "port",
+        "HD catheter",
+        "central line"
+      ],
+      "conditional_adjuncts": [
+        {
+          "condition": "Patient receives TPN via central line for >7 days",
+          "drugs": [
+            "micafungin"
+          ],
+          "note": "TODO: micafungin is named in DKR but has no monograph in guidelines/drugs/"
+        }
+      ],
+      "regimens": [
+        {
+          "allergy_status": "no_allergy",
+          "drugs": [
+            "cefepime",
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Cefepime plus vancomycin first-line for PICC/port/HD catheter infection (TUH 2025-04-02 rank 1)",
+          "evidence": "TUH-Inc. Empiric Antimicrobial Therapy Recommendations ver 2025-04-02",
+          "alternative": "piperacillin_tazobactam + vancomycin",
+          "note": "Add micafungin if TPN via central line >7 days (TODO: micafungin not in guidelines/drugs/). Consider line removal whenever feasible."
+        },
+        {
+          "allergy_status": "mild_pcn_allergy",
+          "drugs": [
+            "cefepime",
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Cefepime safe for mild PCN allergy; plus vancomycin",
+          "note": "Add micafungin if TPN via central line >7 days (TODO: micafungin not in guidelines/drugs/)"
+        },
+        {
+          "allergy_status": "severe_pcn_allergy",
+          "drugs": [
+            "aztreonam",
+            "vancomycin"
+          ],
+          "route": "IV",
+          "reasoning": "Aztreonam plus vancomycin for severe PCN allergy (anaphylaxis)",
+          "note": "Add micafungin if TPN via central line >7 days (TODO: micafungin not in guidelines/drugs/)"
+        }
+      ]
+    }
+  ],
+  "de_escalation": {
+    "criteria": "Duration depends on the causative pathogen and clinical scenario.",
+    "note": "Consider removal of lines whenever feasible. Consult infectious diseases if assistance needed."
+  }
+}
